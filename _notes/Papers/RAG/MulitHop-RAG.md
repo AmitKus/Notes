@@ -12,6 +12,9 @@ First categorize multi-hop queries into four types:
 4. Null query: Scenario where query cannot be derived from knowledge base
 	- What are the sales of company ABCD as reported in its 2022 and 2023 annual reports?
 
+
+![[embedding_compare.png]]
+
 **Data generation step:**
 Using GPT-4 as a data generator, we then take an extensive procedure to construct a diverse set of multi-hop queries, each requiring the retrieval and reasoning over multiple documents
 
