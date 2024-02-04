@@ -32,7 +32,7 @@ Using GPT-4 as a data generator, we then take an extensive procedure to construc
 - Talks about how to use this dataset to evaluate RAG pipeline
 - **Use of reranker**: bge-reranker-large: Retrieve 20 and select K after re-ranking
 
-![](../../pics/multi-hop-query.png)
+![](../../pics/embedding_compare.png)
 
 **Summary**
 
