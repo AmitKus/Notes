@@ -1,7 +1,7 @@
 ## MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries
 
+![[MulitHop-RAG.png]]
 
-![](../../pics/MulitHop-RAG.png)
 First categorize multi-hop queries into four types: 
 1. Inference query
 	- Which report discusses the supply chain risk of Apple, the 2019 annual report or the 2020 annual report?
@@ -13,12 +13,10 @@ First categorize multi-hop queries into four types:
 	- What are the sales of company ABCD as reported in its 2022 and 2023 annual reports?
 
 
-![[embedding_compare.png]]
-
 **Data generation step:**
 Using GPT-4 as a data generator, we then take an extensive procedure to construct a diverse set of multi-hop queries, each requiring the retrieval and reasoning over multiple documents
 
-![](../../pics/multi-hop-query.png)
+![[multi-hop-query.png]]
 
 **Evaluation metrics**
 
@@ -35,7 +33,7 @@ Using GPT-4 as a data generator, we then take an extensive procedure to construc
 - Talks about how to use this dataset to evaluate RAG pipeline
 - **Use of reranker**: bge-reranker-large: Retrieve 20 and select K after re-ranking
 
-![](../../pics/embedding_compare.png)
+![[embedding_compare.png]]
 
 **Summary**
 
