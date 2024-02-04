@@ -12,7 +12,30 @@ First categorize multi-hop queries into four types:
 4. Null query: Scenario where query cannot be derived from knowledge base
 	- What are the sales of company ABCD as reported in its 2022 and 2023 annual reports?
 
-Data generation step:
+**Data generation step:**
 Using GPT-4 as a data generator, we then take an extensive procedure to construct a diverse set of multi-hop queries, each requiring the retrieval and reasoning over multiple documents
 
 ![[Pasted image 20240203234028.png]]
+
+**Evaluation metrics**
+
+**Retrieval evaluation**
+- Mean average Precision @ K
+- Mean reciprocal rank @ K
+- Hit rate @ K
+
+**Response evaluation**
+- LLM response vs Ground truth
+
+**Benchmarking RAG systems using MultiHop-RAG**
+- Data released
+- Talks about how to use this dataset to evaluate RAG pipeline
+- **Use of reranker**: bge-reranker-large: Retrieve 20 and select K after re-ranking
+
+![[1-MulitHop-RAG-2.png]]
+
+**Summary**
+
+- MultiHop-RAG dataset creation
+- Reranker used
+- Embedding models compared
