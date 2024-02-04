@@ -15,7 +15,7 @@ First categorize multi-hop queries into four types:
 **Data generation step:**
 Using GPT-4 as a data generator, we then take an extensive procedure to construct a diverse set of multi-hop queries, each requiring the retrieval and reasoning over multiple documents
 
-![](../../pics/multi-hop-query)
+![](../../pics/multi-hop-query.png)
 
 **Evaluation metrics**
 
@@ -32,7 +32,7 @@ Using GPT-4 as a data generator, we then take an extensive procedure to construc
 - Talks about how to use this dataset to evaluate RAG pipeline
 - **Use of reranker**: bge-reranker-large: Retrieve 20 and select K after re-ranking
 
-![](../../pics/multi-hop-query)
+![](../../pics/multi-hop-query.png)
 
 **Summary**
 
