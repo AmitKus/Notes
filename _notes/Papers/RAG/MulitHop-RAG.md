@@ -1,7 +1,7 @@
 ## MultiHop-RAG: Benchmarking Retrieval-Augmented Generation for Multi-Hop Queries
 
 
-![[MulitHop-RAG.png]]
+![[../../pics/MulitHop-RAG.png]]
 First categorize multi-hop queries into four types: 
 1. Inference query
 	- Which report discusses the supply chain risk of Apple, the 2019 annual report or the 2020 annual report?
