@@ -13,8 +13,23 @@
 
 ## Papers
 
+## RAG VS FINE-TUNING: PIPELINES, TRADEOFFS, AND A CASE STUDY ON AGRICULTURE
+
+### Key points
+- the creation of AI copilots for industries that require specific contexts and adaptive responses, such as the agriculture industry.
+
+### Methodology
+
+
+![[d7e048f0470101f61127a2cff8f5fe7e_MD5.jpeg]]
+
+
 - [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](https://arxiv.org/pdf/2312.05934.pdf)
 - [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/pdf/2312.10997.pdf)
+
+
+
+
 
 ## Blogs
 

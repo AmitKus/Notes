@@ -67,10 +67,9 @@ Stay updated with the latest in AI research through our curated list of conferen
 
 ## Additional Resources
 
-Dive deeper with notes on AI topics, and visualize concepts with the pics directory, featuring diagrams and screenshots that complement our guides and explanations.
+- [ML-papers-of-the-week](https://github.com/dair-ai/ML-Papers-of-the-Week/tree/main?tab=readme-ov-file#top-ml-papers-of-the-week-february-26---march-3---2024)
+- [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets?tab=readme-ov-file)
 
-- [Notes](_07_AdditionalResources/_01_Notes.md)
-- [Pics](_07_AdditionalResources/_02_Pics.md)
 
 ## Guides
 
