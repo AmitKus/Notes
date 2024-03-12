@@ -17,12 +17,24 @@
 
 ### Key points
 - the creation of AI copilots for industries that require specific contexts and adaptive responses, such as the agriculture industry.
-
+![[]]
 ### Methodology
 
+- Data extraction (pdf): [GROBID](https://github.com/kermitt2/grobid)
+- Question generation: Use of guidance
+- Answer generation: Use RAG to create high-quality answers
+- Training parameters:
+	- 8 H100 GPUs and FSDP
+	- Micro-batch of 4 samples and gradient accumulation over 4 micro-batches -> 128 (4x4x8) effective batch size
+	- Epochs: 4
+	- Precision: Mixed with BFloat16
+	- Optimiser: Adam
+	- Base learning rate: 2e-5
+	- Cosine learning rate scheduler with linear warm-up (4% of total steps)
+	- Flash attention
+- Metrics: Number of metrics to test against
 
-![[d7e048f0470101f61127a2cff8f5fe7e_MD5.jpeg]]
-
+![](attachments/d7e048f0470101f61127a2cff8f5fe7e_MD5.jpeg)
 
 - [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](https://arxiv.org/pdf/2312.05934.pdf)
 - [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/pdf/2312.10997.pdf)
