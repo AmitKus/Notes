@@ -36,6 +36,13 @@
 
 ![](attachments/d7e048f0470101f61127a2cff8f5fe7e_MD5.jpeg)
 
+
+
+
+
+
+
+
 - [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](https://arxiv.org/pdf/2312.05934.pdf)
 - [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/pdf/2312.10997.pdf)
 
