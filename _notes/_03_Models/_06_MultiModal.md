@@ -47,3 +47,15 @@
 -  it does not accurately model the physics of many basic interactions, like glass shattering.
 
 </details>
+
+
+## From Concept to Manufacturing: Evaluating Vision-Language Models for Engineering Design
+
+<details>
+  <summary>Notes</summary>
+
+### Key points
+
+
+
+</details>
