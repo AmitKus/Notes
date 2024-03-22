@@ -55,7 +55,15 @@
   <summary>Notes</summary>
 
 ### Key points
+- These vision-language models (VLMs) can take images and text as input and generate text as output.
 
+![](attachments/705993b8bde33997bfd5b8429786da8a_MD5.jpeg)
 
+![](attachments/8c08f54111a09e90b3071de25bff0c64_MD5.jpeg)
 
+![](attachments/695540d399e1194895fc61037f744042_MD5.jpeg)
+
+![](attachments/b33819b30e4b943ad8b94e2d169170bc_MD5.jpeg)
+
+![](attachments/e23acd949f24c6669282254a30c2abd0_MD5.jpeg)
 </details>
