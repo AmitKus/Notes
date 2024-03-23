@@ -3,7 +3,7 @@
 
 <details>
   <summary>Notes</summary>
-
+  
 ### Key points
 - We explore large-scale training of generative models on video data. 
 - Train text-conditional diffusion models jointly on videos and images of variable durations, resolutions and aspect ratios. 
@@ -45,7 +45,6 @@
 
 ### Limitations
 -  it does not accurately model the physics of many basic interactions, like glass shattering.
-
 </details>
 
 
@@ -57,6 +56,8 @@
 ### Key points
 - These vision-language models (VLMs) can take images and text as input and generate text as output.
 
+## Engineering design
+
 ![](attachments/705993b8bde33997bfd5b8429786da8a_MD5.jpeg)
 
 ![](attachments/8c08f54111a09e90b3071de25bff0c64_MD5.jpeg)
@@ -66,4 +67,33 @@
 ![](attachments/b33819b30e4b943ad8b94e2d169170bc_MD5.jpeg)
 
 ![](attachments/e23acd949f24c6669282254a30c2abd0_MD5.jpeg)
+
+![](attachments/7ed112108ea792343b6a7b1b549e0f61_MD5.jpeg)
+
+![](attachments/3fa3d7e817536327df541f9687631dbd_MD5.jpeg)
+
+![](attachments/f589cd3461feee5f1ee52708eebf4389_MD5.jpeg)
+
+## Engineering Education Task
+
+![](attachments/0daec57dfd6d498b233ef7a548639dc9_MD5.jpeg)
+
+### Kinds of errors
+
+- Reasoning
+- Image misinterpretation
+- Imprecision
+
 </details>
+
+
+## DATA INTERPRETER: AN LLM AGENT FOR DATA SCIENCE
+
+<details>
+  <summary>Notes</summary>
+
+
+
+
+</details>
+
