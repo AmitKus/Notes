@@ -23,4 +23,12 @@ Proposed two interaction formulations for implementing language agents:
 
 - [Github link](https://github.com/geekan/MetaGPT)
 - LLM-based agent, called the Data Interpreter, designed specifically for the field of data science. This agent follows a plan-code-verify approach to fulfill human requirements by breaking down tasks, executing code, and verifying feedback.
-	
+- Dynamic planning workflow
+	1. Dynamic planning with hierarchical structure:
+	2. Tool utilization and generation:
+	3. Enhancing reasoning with logic bug aware
+
+
+![](attachments/a6d1d5c407310efb43103d58ac52330c_MD5.jpeg)
+![](attachments/6f4d49b94d155ac07aca3723e610a807_MD5.jpeg)
+![](attachments/64dd6ba4fc1d830c594ef6ed4adacc23_MD5.jpeg)
