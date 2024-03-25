@@ -15,3 +15,12 @@ Proposed two interaction formulations for implementing language agents:
 ![](../pics/lumos_framework.png)
 
 - [github repo](https://github.com/allenai/lumos?tab=readme-ov-file)
+
+
+## DATA INTERPRETER: AN LLM AGENT FOR DATA SCIENCE
+
+### Key points
+
+- [Github link](https://github.com/geekan/MetaGPT)
+- LLM-based agent, called the Data Interpreter, designed specifically for the field of data science. This agent follows a plan-code-verify approach to fulfill human requirements by breaking down tasks, executing code, and verifying feedback.
+	
