@@ -31,4 +31,4 @@ Proposed two interaction formulations for implementing language agents:
 
 ![](attachments/a6d1d5c407310efb43103d58ac52330c_MD5.jpeg)
 ![](attachments/6f4d49b94d155ac07aca3723e610a807_MD5.jpeg)
-![](attachments/64dd6ba4fc1d830c594ef6ed4adacc23_MD5.jpeg)
+![](attachments/64dd6ba4fc1d830c594ef6ed4adacc23_MD5.jpeg)![](attachments/f18f221302c4ebfe7d01c07431dd5f55_MD5.jpeg)
