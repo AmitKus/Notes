@@ -20,6 +20,14 @@
 3. TELEPROMPTERS CAN AUTOMATE PROMPTING FOR ARBITRARY PIPELINES
 ### DSPY Compiler
 
-1. St
-- While LMs can be highly unreliable, we find they can be rather efficient at searching the space of solutions for multi-stage designs.
-- 
+1. Stage 1 Candidate generation
+	- While LMs can be highly unreliable, we find they can be rather efficient at searching the space of solutions for multi-stage designs.
+2. Stage 2 Optimization
+	- Now each parameter has a discrete set of candidates: demonstrations, instructions, etc. Many hyperparameter tuning algorithms (e.g., random search or Treestructured Parzen Estimators as in HyperOpt (Bergstra et al., 2013) and Optuna (Akiba et al., 2019)) can be applied for selection among candidates.
+3. Stage 3 Higher-order program optimization
+	- A different type of optimization that the DSPy compiler supports is modifying the control flow of the program. One of the simplest forms of these is ensembles,
+
+### Goals of evaluation
+- H1 With DSPy, we can replace hand-crafted prompt strings with concise and well-defined modules, without reducing quality or expressive power. 
+- H2 Parameterizing the modules and treating prompting as an optimization problem makes DSPy better at adapting to different LMs, and it may outperform expert-written prompts. 
+- H3 The resulting modularity makes it possible to more thoroughly explore complex pipelines that have useful performance characteristics or that fit nuanced metrics.
