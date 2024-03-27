@@ -14,3 +14,12 @@
 	- Signatures abstract the input/output behavior of a module; 
 	- modules replace existing hand-prompting techniques and can be composed in arbitrary pipelines; and 
 	- teleprompters optimize all modules in the pipeline to maximize a metric.
+#### Notes
+1. NATURAL LANGUAGE SIGNATURES CAN ABSTRACT PROMPTING & FINETUNING
+2. PARAMETERIZED & TEMPLATED MODULES CAN ABSTRACT PROMPTING TECHNIQUES
+3. TELEPROMPTERS CAN AUTOMATE PROMPTING FOR ARBITRARY PIPELINES
+### DSPY Compiler
+
+1. St
+- While LMs can be highly unreliable, we find they can be rather efficient at searching the space of solutions for multi-stage designs.
+- 
