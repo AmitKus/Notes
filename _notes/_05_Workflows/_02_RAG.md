@@ -72,10 +72,16 @@ We consider the following baselines for our experiments:
 - [Fine-Tuning or Retrieval? Comparing Knowledge Injection in LLMs](https://arxiv.org/pdf/2312.05934.pdf)
 - [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/pdf/2312.10997.pdf)
 
+#### Chain of Thought (CoT)
+- Incorporating a reasoning chain that not only guides the model to the answer but also enriches the model’s understanding can improve the overall accuracy.
+
+#### Fraction of data with oracle document
+
+![](attachments/1127b96c53f7bfcd65d1fb6717bd2443_MD5.jpeg)
 
 
-
-
+#### Top-K 
+![](attachments/1bd5a432b6c4727650402d87bb938ad5_MD5.jpeg)
 ## Blogs
 
 - [Fine tuning is for form, not facts](https://www.anyscale.com/blog/fine-tuning-is-for-form-not-facts)
