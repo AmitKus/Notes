@@ -11,3 +11,8 @@
 
 **We propose a new class of selective state space models, that improves on prior work on several axes to achieve the modeling power of Transformers while scaling linearly in sequence length.**
 
+## Transformers are RNN
+
+### Key
+- we express the self-attention as a linear dot-product of kernel feature maps and make use of the associativity property of matrix products to reduce the complexity from O (N 2) to O (N ), where N is the sequence length.
+- we introduce the linear transformer model that significantly reduces the memory footprint and scales linearly with respect to the context length.
