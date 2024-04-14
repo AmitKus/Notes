@@ -16,3 +16,9 @@
 ### Key
 - we express the self-attention as a linear dot-product of kernel feature maps and make use of the associativity property of matrix products to reduce the complexity from O (N 2) to O (N ), where N is the sequence length.
 - we introduce the linear transformer model that significantly reduces the memory footprint and scales linearly with respect to the context length.
+
+### Linear transformer
+
+- $$T_l(x) = f_l(A_l(x) + x)$$
+- $A_l$: self attention function and is the only part of the transformer that acts across sequences.
+- 
