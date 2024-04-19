@@ -21,4 +21,6 @@
 
 - $$T_l(x) = f_l(A_l(x) + x)$$
 - $A_l$: self attention function and is the only part of the transformer that acts across sequences.
-- 
+
+### Basic idea
+
