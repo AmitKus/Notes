@@ -8,5 +8,4 @@
 	- **Performance goals vary widely.**
 
 
-## Evolutionary Optimization of Model Merging Recipes
 
