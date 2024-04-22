@@ -65,7 +65,18 @@ Our work systematically explores the application of evolution applied in both pa
 
 ![](attachments/6c330c59c9ab042463ad1dd1073fc70a_MD5.jpeg)
 
-#### Merging in parameter spa
+#### Merging in parameter space
+
+Model merging in the parameter space (PS) aims to integrate the weights of multiple foundational models into a unified entity with the same neural network architecture, yet outperforming the individual models.
+
+#### Merging in data flow space
+
+Unlike merging in PS, model merging in DFS preserves the original weights of each layer intact. Instead, it optimizes the inference path that tokens follow as they traverse through the neural network. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B.
+
+Assuming the total number of layers across all models is M , the size of the search space is $(M + 1)^T$ , here the extra one indicates the inclusion of a pass-through layer.
+
+Conceptually, we layout all the layers in sequential order (i.e., all layers in the i-th model followed by those in the i + 1-th model) and repeat them r times, the indicator array then manages the inclusion/exclusion of layers. If $I_i > 0$ we include the layer corresponding to index i in the slots in the merged model, otherwise we exclude it. Consequently, our search space is reduced to $2^T$ , which is still large, but tractable for evolutionary search.
+
 
 ### Resources
 - [HF: Merge models](https://huggingface.co/blog/mlabonne/merge-models)
