@@ -89,3 +89,15 @@ it is possible to first apply PS merging to a collection of models, and then put
 ### Resources
 - [HF: Merge models](https://huggingface.co/blog/mlabonne/merge-models)
 - [github: mergekit](https://github.com/arcee-ai/mergekit) 
+
+## [Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time](https://arxiv.org/pdf/2203.05482.pdf)
+
+### Key points
+- We show that averaging the weights of multiple models finetuned with different hyperparameter configurations often improves accuracy and robustness.
+- The model soup approach extends to multiple image classification and natural language processing tasks, improves out-of-distribution performance, and improves zero-shot performance on new downstream tasks.
+![](attachments/206b9888276b85cbe9ef44ceca1395a4_MD5.jpeg)
+
+### Notes
+Selecting a single model and discarding the rest has several downsides. 
+1. For one, ensembling outputs of many models can outperform the best single model, albeit at a high computational cost during inference. 
+2. fine-tuning a model on downstream tasks can sometimes reduce out-ofdistribution performance (Radford et al., 2021; Andreassen et al., 2021; Wortsman et al., 2021; Pham et al., 2021), and the best single model on the target distribution may not be the best model on out-of-distribution data.
