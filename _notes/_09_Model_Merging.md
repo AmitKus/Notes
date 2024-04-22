@@ -46,7 +46,26 @@ The passthrough method differs significantly from the previous ones. By concaten
 In this work, we present a methodology that leverages evolutionary algorithms to facilitate the merging of foundation models. Our approach is distinguished by its ability to navigate both parameter space (weights) and the data flow space (inference path), proposing a framework that integrates these two dimensions.
 
 - Automated model composition
-- 
+- Cross-domain merging
+- State-of-the-art performance
+- High Efficiency and Surprising Generalizability
+- Culturally-Aware VLM
+
+### Model merging
+
+- It allows us to combine task-specific models, each potentially fine-tuned for a particular downstream task, into a single unified model.
+- A simple method of merging multiple models is to average the weights of multiple models finetuned from the same base initial model.
+- Simple weight interpolation works well for merging image generation models that operate in a real valued latent and output space, but to our surprise, they also still work for merging language models under the right conditions, but have performance issues
+
+### Contribution
+In this work, we apply evolution to not only automate the optimization of model merging recipes in weight space, confined to a single architecture, but also explore applying evolution to optimize the stacking of layers from different models—a more involved approach that has the potential to create entirely novel neural architectures from existing building blocks. 
+Unlike weight merging optimization which confine space of models to be merged together to fine-tuned descendents of the same parent base model, layer stacking optimization has no such constraints. 
+Our work systematically explores the application of evolution applied in both parameter and layer space.
+
+
+![](attachments/6c330c59c9ab042463ad1dd1073fc70a_MD5.jpeg)
+
+#### Merging in parameter spa
 
 ### Resources
 - [HF: Merge models](https://huggingface.co/blog/mlabonne/merge-models)
