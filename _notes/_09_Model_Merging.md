@@ -77,6 +77,9 @@ Assuming the total number of layers across all models is M , the size of the sea
 
 Conceptually, we layout all the layers in sequential order (i.e., all layers in the i-th model followed by those in the i + 1-th model) and repeat them r times, the indicator array then manages the inclusion/exclusion of layers. If $I_i > 0$ we include the layer corresponding to index i in the slots in the merged model, otherwise we exclude it. Consequently, our search space is reduced to $2^T$ , which is still large, but tractable for evolutionary search.
 
+#### Merging in both spaces
+
+it is possible to first apply PS merging to a collection of models, and then put back this merged model in the collection and apply DFS merging from this enlarged collection.
 
 ### Resources
 - [HF: Merge models](https://huggingface.co/blog/mlabonne/merge-models)
