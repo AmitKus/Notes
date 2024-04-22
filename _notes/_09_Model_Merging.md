@@ -101,3 +101,8 @@ it is possible to first apply PS merging to a collection of models, and then put
 Selecting a single model and discarding the rest has several downsides. 
 1. For one, ensembling outputs of many models can outperform the best single model, albeit at a high computational cost during inference. 
 2. fine-tuning a model on downstream tasks can sometimes reduce out-ofdistribution performance (Radford et al., 2021; Andreassen et al., 2021; Wortsman et al., 2021; Pham et al., 2021), and the best single model on the target distribution may not be the best model on out-of-distribution data.
+
+
+## EDITING MODELS WITH TASK ARITHMETIC
+
+![](attachments/37ea4fed78023f42e13a9e3cadc7fa92_MD5.jpeg)
