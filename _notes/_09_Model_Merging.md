@@ -81,6 +81,11 @@ Conceptually, we layout all the layers in sequential order (i.e., all layers in 
 
 it is possible to first apply PS merging to a collection of models, and then put back this merged model in the collection and apply DFS merging from this enlarged collection.
 
+
+### Limitations
+
+- For instance, we encountered instances where the merged models produced responses that lacked logical coherence. 
+- Additionally, this study does not encompass instruction fine-tuning or alignment, raising the potential for the models to yield outputs that may be factually flawed.
 ### Resources
 - [HF: Merge models](https://huggingface.co/blog/mlabonne/merge-models)
 - [github: mergekit](https://github.com/arcee-ai/mergekit) 
