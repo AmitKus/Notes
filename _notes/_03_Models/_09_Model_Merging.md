@@ -107,3 +107,4 @@ Selecting a single model and discarding the rest has several downsides.
 
 ![](attachments/37ea4fed78023f42e13a9e3cadc7fa92_MD5.jpeg)
 
+Despite neural networks being non-linear, previous work has empirically found that interpolations between the weights of two neural networks can maintain their high accuracy, provided these two neural networks share part of their optimization trajectory
