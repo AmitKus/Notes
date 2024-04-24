@@ -33,3 +33,13 @@ To best benefit the open source community, phi-3-mini is built upon a similar bl
 Post-training. Our models went through post-training with both supervised instruction fine-tuning, and preference tuning with DPO.
 
 The model simply does not have the capacity to store too much “factual knowledge”, which can be seen for example with low performance on TriviaQA. However, we believe such weakness can be resolved by augmentation with a search engine.
+
+
+## LLama3
+
+- standard decoder-only transformer architecture in Llama 3. 
+- Llama 3 uses a tokenizer with a vocabulary of 128K tokens that encodes language much more efficiently, which leads to substantially improved model performance. 
+- To improve the inference efficiency of Llama 3 models, we’ve adopted grouped query attention (GQA) across both the 8B and 70B sizes. 
+- We trained the models on sequences of 8,192 tokens, using a mask to ensure self-attention does not cross document boundaries.
+- Trained on 15T tokens
+-  5% of the Llama 3 pretraining dataset consists of high-quality non-English data that covers over 30 languages.
