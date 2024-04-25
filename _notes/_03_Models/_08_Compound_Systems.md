@@ -37,3 +37,20 @@
 **AUTOGPT + P.**
 AutoGPT + P (Planning) is a method that addresses reasoning limitations for agents that command robots in natural language
 ![](attachments/16e8ee14115c7efb6acaf9a0de1417b9_MD5.jpeg)
+## Multi Agent Architectures
+
+- LLM Agents Learn to Cooperate in Organized Teams, DyLAN, AgentVerse, and MetaGPT.
+- Many multi-agent architectures work in stages where teams of agents are created and reorganized dynamically for each planning, execution, and evaluation phase
+
+**DyLAN** 
+- The Dynamic LLM-Agent Network (DyLAN) framework creates a dynamic agent structure that focuses on complex tasks like reasoning and code generation [18]. 
+- DyLAN has a specific step for determining how much each agent has contributed in the last round of work and only moves top contributors the next round of execution.
+
+**AgentVerse** 
+- Multi-agent architectures like AgentVerse demonstrate how distinct phases for group planning can improve an AI agent’s reasoning and problem-solving capabilities
+- AgentVerse contains four primary stages for task execution: recruitment, collaborative decision making, independent action execution, and evaluation.
+
+![](attachments/0b2b86edfa1169ec6710d08cbe80d1ed_MD5.jpeg)
+
+**MetaGPT.** 
+Many multi-agent architectures allow agents to converse with one another while collaborating on a common problem.
