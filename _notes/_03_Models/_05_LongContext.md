@@ -43,3 +43,18 @@ The model simply does not have the capacity to store too much “factual knowled
 - We trained the models on sequences of 8,192 tokens, using a mask to ensure self-attention does not cross document boundaries.
 - Trained on 15T tokens
 -  5% of the Llama 3 pretraining dataset consists of high-quality non-English data that covers over 30 languages.
+- [User guide](https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3)
+
+
+## Mixtral 8x22B
+
+![](attachments/59a34af01fe647110ac8d6f27874525f_MD5.jpeg)
+
+Mixtral 8x22B is our latest open model. It sets a new standard for performance and efficiency within the AI community. It is a sparse Mixture-of-Experts (SMoE) model that uses only 39B active parameters out of 141B, offering unparalleled cost efficiency for its size.
+
+Mixtral 8x22B comes with the following strengths:
+
+- It is **fluent in English, French, Italian, German, and Spanish**
+- It has strong mathematics and coding capabilities
+- **It is natively capable of function calling**; along with the constrained output mode implemented on la Plateforme, this enables application development and tech stack modernisation at scale
+- Its **64K tokens context window** allows precise information recall from large documents
