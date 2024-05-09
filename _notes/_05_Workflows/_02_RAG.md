@@ -2,13 +2,13 @@
 
 ## Overview of RAG Techniques
 
-![](../pics/RAG_compare.png)
+![](RAG_compare.png)
 
-![](../pics/taxonomy_RAG.png)
+![](taxonomy_RAG.png)
 
-![](../pics/ft_rag_compare.png)
+![](ft_rag_compare.png)
 
-![](../pics/rag_ecosystem.png)
+![](rag_ecosystem.png)
 
 
 ## Papers

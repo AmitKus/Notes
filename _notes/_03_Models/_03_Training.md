@@ -34,7 +34,7 @@ LLMs require a LOT of GPU vRAM to train,
 - In naive model parallelism, only 1 GPU is active a given time
 - An improvement is Pipeline Parallelism (PP), which gives you the illusion of parallelism by overlapping computation for different micro-batches of data.
 
-![](../pics/pipeline_parallelism_vs_naive.webp)
+![](pipeline_parallelism_vs_naive.webp)
 
 #### 3. Tensor parallelism
 - In tensor parallelism, each GPU processes only a slice of a tensor by horizontally slicing the model across GPU workers.
@@ -66,7 +66,7 @@ Fully-Sharded Data Parallel (FSDP) is another data-parallelism technique aimed a
 Two sharding strategies:
 1. Full-sharding: This is mostly the same as ZeRO-3 where you have parameters, optimizer state and gradients being sharded across workers/ devices.
 
-![](../pics/FSDP_diag.webp)
+![](FSDP_diag.webp)
 2. Hybrid-sharding
 
 #### Implementations
@@ -98,8 +98,8 @@ Flash attention is a
 - exact: meaning it’s not an approximation of the attention mechanism (like e.g. sparse, or low-rank matrix approximation methods) — its outputs are the same as in the “vanilla” attention mechanism.
 - IO-aware: it leverages the knowledge of the memory hierarchy of the underlying hardware
 - Attention is memory-bound
-![](../pics/attention_memory_bound.webp)
-![](../pics/standard_attention_mech.webp)
+![](attention_memory_bound.webp)
+![](standard_attention_mech.webp)
 
 #### Gradient/ Activation Checkpointing
 

@@ -12,7 +12,7 @@ Proposed two interaction formulations for implementing language agents:
 1. LUMOS-O: is an efficient formulation that generates all the subgoals and executable actions using a single inference call in a one-pass fashion. 
 2. LUMOS-I: is an iterative formulation that generates one subgoal at a time based on its previous intermediate execution results and environment updates, thereby creating a more adaptive agent.
 
-![](../pics/lumos_framework.png)
+![](lumos_framework.png)
 
 - [github repo](https://github.com/allenai/lumos?tab=readme-ov-file)
 
