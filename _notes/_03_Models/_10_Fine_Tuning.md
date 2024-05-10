@@ -20,3 +20,11 @@ We observe a distinct advantage for fine-tuned LLMs on narrowly-scoped tasks, su
 
 ### Overall, these observations are consistent with our hypothesis that narrower easier tasks are more likely to see success with fine-tuned adapters.
 
+## Performance metrics
+
+The following is a summary of relevant terminology: 
+- Total request time (ms): total time from when the request is sent to when the last token is streamed back to the client.
+- Time to first token, TTFT (ms): time from when the request is sent to the first token is received by the client
+- Token streaming time (ms): time from when the first token is received by the client to when the last token is received by the client.
+- Throughput (token/s): number of tokens generated per seconds, computed by (Token streaming time (ms) / number of output tokens)
+- Concurrent users: number of users that make requests to the LLM, wait until they receive a full response, then make another request until the end of testing time.
