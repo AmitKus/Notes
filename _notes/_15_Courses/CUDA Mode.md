@@ -27,3 +27,27 @@
 - Each SM in GA10x GPUs contain 128 CUDA Cores, four third-generation Tensor Cores, a 256 KB Register File, and 128 KB of L1/Shared Memory
 
 - In CUDA, all threads in a block have the potential to run concurrently. However, the actual concurrency depends on the number of CUDA cores per SM and the resources required by the threads.
+
+
+## Lecture 4: Compute and memory basics
+
+![](attachments/c099e90d0ed5de0e8398b905150b83fd_MD5.jpeg)
+
+![](attachments/24d4da152b10cb7be00b1fd0d19cc21f_MD5.jpeg)
+
+- Threads is a block are executed in parallel on the same SM
+- Blocks are completely independent (exceptions in new GPUs)
+- Thread block runs on an SM is divided into Warps of 32 threads
+	- Each warp run on a fixed of the SMs processing unit (FP32 cores above etc)
+	- All warps simultaneously assigned to the processing unit take turns but registers stay
+
+![](attachments/4d00f2450e0a5a024370f9f342d384c4_MD5.jpeg)
+![](attachments/7d75771f720475ec9e2cfb4d70191d6a_MD5.jpeg)
+
+```python
+p = torch.cuda.get_device_properties(0)
+print(p)
+p.regs_per_multiprocessor
+```
+[output]_CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=11938MB, multi_processor_count=28)
+
