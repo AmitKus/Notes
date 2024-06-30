@@ -70,3 +70,15 @@ print(prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=10))
 ![](attachments/8ba1d475edb127c4be077d31fc2aacef_MD5.jpeg)
 
 
+## Lecture 5
+
+![](attachments/3d034c4573b3f968ab36c5a12f6f36df_MD5.jpeg)
+
+### Numba
+
+- [# Debugging CUDA Python with the the CUDA Simulator](https://numba.pydata.org/numba-doc/dev/cuda/simulator.html#debugging-cuda-python-with-the-the-cuda-simulator "Permalink to this headline")
+  - Use to write/debug cuda and then convert to pure Cuda
+
+```python
+from numba import cuda
+```
