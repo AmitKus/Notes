@@ -48,6 +48,25 @@
 p = torch.cuda.get_device_properties(0)
 print(p)
 p.regs_per_multiprocessor
+p.max_threads_per_multi_processor
 ```
 [output]_CudaDeviceProperties(name='NVIDIA GeForce RTX 3060', major=8, minor=6, total_memory=11938MB, multi_processor_count=28)
+
+
+### Memory architecture
+
+- Kernel fusion is the key
+![](attachments/0386db23676ec5f1b40462e1b1786f58_MD5.jpeg)
+#### Profiling
+```python
+with torch.profiler.profile() as prof:
+	%timeit -n 1000 gelu(x)
+
+print(prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=10))
+```
+
+
+![](attachments/9ed55f9e87fc815e9032508af8f62d02_MD5.jpeg)
+![](attachments/8ba1d475edb127c4be077d31fc2aacef_MD5.jpeg)
+
 
