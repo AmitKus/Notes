@@ -89,3 +89,9 @@ from numba import cuda
 ![](attachments/737ccf8a5ca4d4ba55c5ff0559285f47_MD5.jpeg)
 ![](attachments/bc321db0e598769d05651f56cc0f0039_MD5.jpeg)
 ![](attachments/8243eefe644a15db2e9c846d45018c8a_MD5.jpeg)
+## Lecture 7: Quantization Cuda vs Triton
+
+- [Torch AO](https://github.com/pytorch/ao)
+![](attachments/9b7ed92615cbde9e7b79f23c86dade2a_MD5.jpeg)
+
+
