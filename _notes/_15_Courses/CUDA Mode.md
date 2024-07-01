@@ -87,3 +87,5 @@ from numba import cuda
 
 - Kernel fusing
 ![](attachments/737ccf8a5ca4d4ba55c5ff0559285f47_MD5.jpeg)
+![](attachments/bc321db0e598769d05651f56cc0f0039_MD5.jpeg)
+![](attachments/8243eefe644a15db2e9c846d45018c8a_MD5.jpeg)
