@@ -82,3 +82,8 @@ print(prof.key_averages().table(sort_by="self_cuda_time_total", row_limit=10))
 ```python
 from numba import cuda
 ```
+
+## Lecture 6: Optimizing optimizers
+
+- Kernel fusing
+![](attachments/737ccf8a5ca4d4ba55c5ff0559285f47_MD5.jpeg)
