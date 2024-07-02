@@ -93,5 +93,6 @@ from numba import cuda
 
 - [Torch AO](https://github.com/pytorch/ao)
 ![](attachments/9b7ed92615cbde9e7b79f23c86dade2a_MD5.jpeg)
-
+- Llama inference is not compute bound so need to get weights in as fast as possible so weight only is good. Activation are already in there.
+- Better to use weight only quantisation for memory-bound system.
 
