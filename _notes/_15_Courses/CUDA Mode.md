@@ -105,4 +105,24 @@ from numba import cuda
 ![](attachments/a1186b834986ebc12707b8b51e2b5301_MD5.jpeg)
 ![](attachments/776b04f4da95090fdcb18e45ad2374ed_MD5.jpeg)
 ![](attachments/7e7ef58308c6451207900e1995d313d9_MD5.jpeg)
+## Lecture 8: CUDA Performance Checklist
 
+[Good paper](https://arxiv.org/pdf/1804.06826)
+
+![](attachments/751f6fce60dc16437c426624db4b1bd6_MD5.jpeg)
+
+### Performance checklist
+
+- Coalesced Global Memory Access
+- Maximize occupancy
+- Understand if memory or compute bound
+- Minimize control divergence
+- Tiling of reused data
+- Privatization
+- Thread Coarsening
+- Rewrite your algorithm using better math
+
+### [Is latency stupid](http://www.stuartcheshire.org/rants/latency.html)
+
+- Throughput is easy, latency is not: “You can get 80 phone lines in parallel, and send one single bit over each phone line, but that 100ms latency is still there.”
+- Quantization: “For example, to reduce packet size, wherever possible Bolo uses bytes instead of 16-bit or 32-bit words.”
