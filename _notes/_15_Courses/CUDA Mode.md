@@ -86,6 +86,9 @@ from numba import cuda
 ## Lecture 6: Optimizing optimizers
 
 - Kernel fusing
+- [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), [quanto](https://huggingface.co/blog/quanto-introduction)
+- Course: [MIT Efficient ML](https://hanlab.mit.edu/courses/2023-fall-65940)
+
 ![](attachments/737ccf8a5ca4d4ba55c5ff0559285f47_MD5.jpeg)
 ![](attachments/bc321db0e598769d05651f56cc0f0039_MD5.jpeg)
 ![](attachments/8243eefe644a15db2e9c846d45018c8a_MD5.jpeg)
@@ -95,4 +98,11 @@ from numba import cuda
 ![](attachments/9b7ed92615cbde9e7b79f23c86dade2a_MD5.jpeg)
 - Llama inference is not compute bound so need to get weights in as fast as possible so weight only is good. Activation are already in there.
 - Better to use weight only quantisation for memory-bound system.
+
+- Segregate quantization based on channel's etc.
+- Outliers, non-stationary distribution effect the quantization
+
+![](attachments/a1186b834986ebc12707b8b51e2b5301_MD5.jpeg)
+![](attachments/776b04f4da95090fdcb18e45ad2374ed_MD5.jpeg)
+![](attachments/7e7ef58308c6451207900e1995d313d9_MD5.jpeg)
 
