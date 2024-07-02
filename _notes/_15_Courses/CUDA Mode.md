@@ -126,3 +126,16 @@ from numba import cuda
 
 - Throughput is easy, latency is not: “You can get 80 phone lines in parallel, and send one single bit over each phone line, but that 100ms latency is still there.”
 - Quantization: “For example, to reduce packet size, wherever possible Bolo uses bytes instead of 16-bit or 32-bit words.”
+
+![](attachments/d86ce29da607228e6db8c73f63262a98_MD5.jpeg)
+
+### Arithmetic intensity
+- [Nvidia Doc](https://developer.download.nvidia.com/video/gputechconf/gtc/2019/presentation/s9926-tensor-core-performance-the-ultimate-guide.pdf)
+![](attachments/e32e4598bd5863cb604953b49a97165e_MD5.jpeg)
+ 
+### Key takeaways
+
+- **Bandwidth Bound Kernels: Fuse, quantize, compile** 
+- **Compute Bound Kernels: Write a better algorithm**
+
+
