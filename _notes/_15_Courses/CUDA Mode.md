@@ -159,3 +159,9 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 - **Operations that reduce the output size
 - Most typical take a vector and produce a scalar
 - min, max, argmax, argmin norm, sum, prod, mean, unique**
+
+![](attachments/358b1ea28c4afc9ae3779dd55d20acc2_MD5.jpeg)
+![](attachments/374119864cd21f170449c969ed2801b6_MD5.jpeg)
+![](attachments/e736e16e618c0e3aaf41264e18b56eb7_MD5.jpeg)
+**torch.use_deterministic_algorithms(True)**: Performance penalty
+
