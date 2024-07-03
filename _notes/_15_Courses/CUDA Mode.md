@@ -138,4 +138,24 @@ from numba import cuda
 - **Bandwidth Bound Kernels: Fuse, quantize, compile** 
 - **Compute Bound Kernels: Write a better algorithm**
 
+### Privatisation
 
+- Apply partial updates to private copy of data before writing back to global or shared memory. 
+- Example: Sliding window algorithm
+- 1   2  [3] [4] [5]  6   7
+- Higher occupancy
+- Higher compute SM throughput
+- Lower DRAM throughput
+![](attachments/b614d8e862ac37fe03a9f5d54ee7a49e_MD5.jpeg)
+
+### [Online softmax](https://arxiv.org/pdf/1805.02867)
+
+Flash Attention v1 has 2 tricks: softmax(QK^T) V
+- Tile based shared memory attention computation
+- Online softmax
+
+## Lecture 9: Reductions
+
+- **Operations that reduce the output size
+- Most typical take a vector and produce a scalar
+- min, max, argmax, argmin norm, sum, prod, mean, unique**
