@@ -165,3 +165,5 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 ![](attachments/e736e16e618c0e3aaf41264e18b56eb7_MD5.jpeg)
 **torch.use_deterministic_algorithms(True)**: Performance penalty
 
+![](attachments/968d6fd4204d5e9dc7c18c4e3851ef1d_MD5.jpeg)
+
