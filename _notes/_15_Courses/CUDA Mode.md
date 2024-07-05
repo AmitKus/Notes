@@ -160,10 +160,26 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 - Most typical take a vector and produce a scalar
 - min, max, argmax, argmin norm, sum, prod, mean, unique**
 
+**![](attachments/cc6918c8a432e981f65dfc72250d7709_MD5.png)
 ![](attachments/358b1ea28c4afc9ae3779dd55d20acc2_MD5.jpeg)
 ![](attachments/374119864cd21f170449c969ed2801b6_MD5.jpeg)
 ![](attachments/e736e16e618c0e3aaf41264e18b56eb7_MD5.jpeg)
 **torch.use_deterministic_algorithms(True)**: Performance penalty
 
 ![](attachments/968d6fd4204d5e9dc7c18c4e3851ef1d_MD5.jpeg)
+
+
+## Lecture 11
+![](attachments/ac367608f82c7852da42dbd16c5c6020_MD5.jpeg)
+
+![](attachments/e3ea37efa33ad0cebb9fadaab152a2eb_MD5.jpeg)
+![](attachments/7d8cf093a28c4a5b29a1a326219f887a_MD5.jpeg)
+![](attachments/8279b81d503819a59e58e99e552629c8_MD5.jpeg)
+![](attachments/4a6c22a23ce1966fc36db02451f3f5f0_MD5.jpeg)
+![](attachments/0be6b9021650e19fdd0d6aad4d90c9ab_MD5.jpeg)
+**1.6x in practice**
+
+
+
+
 
