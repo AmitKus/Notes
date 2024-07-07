@@ -179,6 +179,16 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 ![](attachments/0be6b9021650e19fdd0d6aad4d90c9ab_MD5.jpeg)
 **1.6x in practice**
 
+![](attachments/535b2a3896eec4a12e40483e43166cee_MD5.jpeg)
+
+## Lecture 12: Flash attention
+
+![](attachments/8d41b388d8c8dba347b5db35d19418fc_MD5.jpeg)
+- Typically, 1 head is run on 1 block
+
+![](attachments/4ab2dac1c5d33c7145e6c939817b8cc0_MD5.jpeg)
+
+![](attachments/60203cf1f6e944014062d88b98af7a9b_MD5.jpeg)
 
 
 
