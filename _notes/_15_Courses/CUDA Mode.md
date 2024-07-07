@@ -189,7 +189,13 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 ![](attachments/4ab2dac1c5d33c7145e6c939817b8cc0_MD5.jpeg)
 
 ![](attachments/60203cf1f6e944014062d88b98af7a9b_MD5.jpeg)
+## Lecture 13: Ring Attention
+
+![](attachments/69d28b249070d9218e8183ebf9d611df_MD5.jpeg)
+
+![](attachments/7b35eccc50788ac143dae84ac59c731f_MD5.jpeg)
 
 
 
-
+![](attachments/c49397cad79061e9950069bf547e15cd_MD5.jpeg)
+![](attachments/b0895833948890360e24716a169b4a14_MD5.jpeg)
