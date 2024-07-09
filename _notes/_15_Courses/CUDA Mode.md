@@ -199,3 +199,5 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 
 ![](attachments/c49397cad79061e9950069bf547e15cd_MD5.jpeg)
 ![](attachments/b0895833948890360e24716a169b4a14_MD5.jpeg)
+
+![](attachments/3b0a7129897bf895568508276d96b957_MD5.jpeg)
