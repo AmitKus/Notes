@@ -201,3 +201,19 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 ![](attachments/b0895833948890360e24716a169b4a14_MD5.jpeg)
 
 ![](attachments/3b0a7129897bf895568508276d96b957_MD5.jpeg)
+
+![](attachments/f5406a6d23858f4e6bcc4d687b29e32c_MD5.jpeg)
+- Split the batch sequence-wise
+![](attachments/10c4254fa26f1b9ceeab798c94f3a1b9_MD5.jpeg)
+![](attachments/722f933044a7c18cdfd0e551aef065ad_MD5.jpeg)
+### Issues with Ring attention: idle nodes 
+
+![](attachments/9cabfd4aee21df203896b7bbcc321c5f_MD5.jpeg)
+
+
+
+![](attachments/a72f908dc6b074681720cb56fd6ff273_MD5.jpeg)
+
+### Solution: Striped attention
+
+![](attachments/8e773a016f656b100dff0e65ec4c1c43_MD5.jpeg)
