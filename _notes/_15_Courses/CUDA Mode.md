@@ -257,3 +257,17 @@ You start with your AI model.
 
 **How to run Triton**
 Unlike with CUDA, we can debug Triton kernels just like any CPU program, if we set the environment variable `TRITON_INTERPRET = 1`.
+
+### Programming model
+
+With CUDA, we decompose the computation in 2 levels: First into blocks, then each block further into threads. All threads in a block run on the same SM and share the same Shared Memory. And each thread computes on **scalars**.
+
+In Triton, we decompose the computation only in 1 level: Into blocks. There is no further decomposition into threads. **Triton requires us to perform operations on vectors**. Also, we don't need to and are not able to manage the shared memory. Triton does that automatically.
+
+Example:
+
+Let's say we want to add `x` and `y`, which are vectors of size 8, and save the output into `z` (also size 8). Let's use blocks of size 4, so we have `8 / 4 = 2` blocks.
+
+- Cuda runs 2 blocks, each with 4 threads. Each of the 8 threads computes a single position, e.g. `z[0] = x[0] + y[0]`
+
+- Triton also runs 2 blocks, which each performs vectorized addition. The vector size is the block size, which is 4. E.g. `z[0:3] = x[0:3] + y[0:3]`
