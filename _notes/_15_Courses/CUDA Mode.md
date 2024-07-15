@@ -254,3 +254,6 @@ You start with your AI model.
 4. If it's not fast enough, check which parts are slow and write custom CUDA kernel(s) for those.
 
 (In the unlikely case you know beforehand that you need absolute max performance, you can decide to directly start with CUDA.)
+
+**How to run Triton**
+Unlike with CUDA, we can debug Triton kernels just like any CPU program, if we set the environment variable `TRITON_INTERPRET = 1`.
