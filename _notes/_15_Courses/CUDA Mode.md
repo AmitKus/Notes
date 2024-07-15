@@ -217,3 +217,8 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 ### Solution: Striped attention
 
 ![](attachments/8e773a016f656b100dff0e65ec4c1c43_MD5.jpeg)
+
+## Lecture 14: Triton
+
+[Notebook](https://github.com/cuda-mode/lectures/blob/main/lecture_014/A_Practitioners_Guide_to_Triton.ipynb)
+
