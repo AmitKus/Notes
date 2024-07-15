@@ -222,3 +222,35 @@ Flash Attention v1 has 2 tricks: softmax(QK^T) V
 
 [Notebook](https://github.com/cuda-mode/lectures/blob/main/lecture_014/A_Practitioners_Guide_to_Triton.ipynb)
 
+
+**What is Triton**
+- In short: Triton is a language to program GPUs more conventiently. You write Python-ish code, which is then compiled into ptx code (the same thing cuda code is compiled into).
+- During the compilation, the Triton compiler tries to use clever tricks to rearrange the parts of your program (without changing the program's meaning!) to make it run faster.
+
+CUDA is a high-end tool with many settings for the pros.
+- full control over everything, so absolute max performance possible
+- harder to get decent performance
+- way more tedious to write and debug
+- more complicated, so harder to learn
+
+Triton is a very good tool for most users
+- you can't control everything, as some things are left to automatic optimization; so you probably won't get absolute max performance
+- way easier to get good performance
+- way easier to write and debug
+- easier to learn, as it has a Python-like syntax
+
+**Triton vs torch.compile**
+
+`torch.compile` makes your model faster by trying to use existing kernels more effectively and creating simple new kernels. This may make your model fast enough. If not, you can decide to invest time to write faster Triton kernels.
+
+(These simple new kernels that `torch.compile` creates are actually Triton kernels. So they are a good starting point for your custom kernels. See [Mark Saroufim](https://twitter.com/marksaroufim)'s [lecture 1 of cuda mode](https://www.youtube.com/watch?v=LuhJEEJQgUM&t=2200s) for how.)
+
+**When to use Triton**
+
+You start with your AI model.
+1. If it's not fast enough, `torch.compile` it.
+2. If it's not fast enough, check if you can rewrite your code to make it more suitable for `torch.compile`.
+3. If it's not fast enough, check which parts are slow and write custom Triton kernel(s) for those.
+4. If it's not fast enough, check which parts are slow and write custom CUDA kernel(s) for those.
+
+(In the unlikely case you know beforehand that you need absolute max performance, you can decide to directly start with CUDA.)
