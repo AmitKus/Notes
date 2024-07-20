@@ -314,6 +314,16 @@ https://x.com/karpathy/status/1697318534555336961?lang=en
 
 *So TLDR: this one weird trick works because LLMs are memory bound at inference time, in the "batch size 1" setting of sampling a single sequence of interest, that a large fraction of "local LLM" use cases fall into. And because most tokens are "easy".**
 
+**Speculative decoding: Why works**
+- **Inference for single request is memory bound**
+- **Producing a single token or multiple tokens with batching takes same time**
+- **What to batch?**
+	- **Choose a small model that produces next K tokens**
+	- **K Batch request to the Large model: predict kth token given k-1 tokens**
+	- **Rejection sampling: select if $p_{large}(x) > p_{small}(x)$ else accept with prob $p_{large}/p_{small}$**
+- **No loss in accuracy if rejection sampling used**
+- **Same tokenizer, same vocabulary typically**
+
 
 - Memory boundedness
 	- LLM inference in memory bound
@@ -356,3 +366,40 @@ https://x.com/karpathy/status/1697318534555336961?lang=en
 - Yes if using lossly sampling technique, e.g. Medusa’s typical acceptance (but higher acceptance rate!)
 
 Recommended reading (proof of losslessness): [Accelerating Large Language Model Decoding with Speculative Sampling](https://arxiv.org/pdf/2302.01318)**
+
+![](attachments/8f81003db5d730a4cf34859d910c8dd5_MD5.jpeg)
+
+### Medusa
+
+- [https://sites.google.com/view/medusa-llm](https://sites.google.com/view/medusa-llm) 
+- [https://arxiv.org/pdf/2305.09781](https://arxiv.org/pdf/2305.09781) 
+- [https://www.together.ai/blog/sequoia](https://www.together.ai/blog/sequoia)
+
+### Bonus token
+![](attachments/da774b4195cfef703a0ffb57d7a805bd_MD5.jpeg)
+
+### Recovered token
+
+![](attachments/ecc95e58788259d7f0ee410260ca2e41_MD5.jpeg)
+
+
+### Dynamic speculative decoding
+
+### Batch expansion
+
+![](attachments/aed401ffa8a416fc4ccc629c30cd382a_MD5.jpeg)
+
+### Future
+**- More engineering
+- Retrieval-acceleration [https://arxiv.org/html/2401.14021v1](https://arxiv.org/html/2401.14021v1) 
+- Chunked prefill + spec decode
+- Prefix caching + spec decode
+- Guided decoding + spec decode
+- Inferentia / TPU / CPU support
+-**More modeling**
+- Meta-model for speculation length
+- Meta-model for speculation type
+**-Large / mixed engineering+modeling**
+- Multi-LoRA draft model (specialize to domains)
+- Online learning draft model [https://arxiv.org/abs/2310.07177](https://arxiv.org/abs/2310.07177)
+- Batched parallel decoding [https://github.com/vllm-project/vllm/issues/4303](https://github.com/vllm-project/vllm/issues/4303)
