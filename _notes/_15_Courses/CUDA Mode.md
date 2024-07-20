@@ -330,3 +330,20 @@ https://x.com/karpathy/status/1697318534555336961?lang=en
 **vLLM is designed for throughput not for latency. Mainly for large batch size inferences**
 
 **![](attachments/29b6b243dd35e6a9ba9440c894e25ca3_MD5.png)**
+
+### How to evaluate speed-up?
+
+- Simplified version:
+	- Inter-token latency = step time / number of tokens per step in expectation
+	- Example without speculative decoding: 30ms / 1 → 1 token per 30ms
+	- Example with speculative decoding: 40ms / 2.5 → 1 token per 16ms
+
+- Key factors
+	- How long does it take to propose?
+	- How accurate are the proposals?
+	- How long does it take to verify / other spec framework overheads?
+	
+- In practice:
+	- [https://github.com/vllm-project/vllm/blob/main/vllm/spec_decode/metrics.py](https://github.com/vllm-project/vllm/blob/main/vllm/spec_decode/metrics.py) 
+	- Acceptance rate – “How aligned is the proposal method with the target model?”
+	- System efficiency – “How efficient is the deployment compared to 100% acceptance rate?”
