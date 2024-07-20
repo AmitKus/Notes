@@ -281,5 +281,52 @@ CUTLASS is a collection of CUDA C++ template abstractions for implementing high-
 ![](attachments/1179a199420321a50829fa4202ea2636_MD5.jpeg)
 
 
-## Lecture 22: Speculative Decoding
+## Lecture 22: [Speculative Decoding](https://docs.google.com/presentation/d/1p1xE-EbSAnXpTSiSI0gmy_wdwxN5XaULO3AnCWWoRe4/edit#slide=id.p)
 
+- ChatGPT was trained on RAY
+
+### vLLM's core principles
+- Ease of use
+- Great performance
+- Hardware agnostic
+
+### vLLM Performance features
+- PagedAttention/tensor parallelism
+- Optimized multi-LoRA
+- Chunked prefill
+- Automatic prefix caching
+- Guided decoding
+- Quantization (fp8 WIP, and others)
+- Pipeline-parallelism (WIP)
+- Prefill disaggregation (WIP)
+
+
+### Hardware agnostic
+- Nvidia, AMD, Inferentia, TPU (WIP), CPU
+
+### Speculative decoding
+https://x.com/karpathy/status/1697318534555336961?lang=en
+*Speculative execution for LLMs is an excellent inference-time optimization. It hinges on the following unintuitive observation: forwarding an LLM on a single input token takes about as much time as forwarding an LLM on K input tokens in a batch (for larger K than you might think). This unintuitive fact is because sampling is heavily memory bound: most of the "work" is not doing compute, it is reading in the weights of the transformer from VRAM into on-chip cache for processing. So if you're going to do all that work of reading in all those weights, you might as well apply them to a whole batch of input vectors.*
+
+*Now the clever idea is to use a small and cheap draft model to first generate a candidate sequence of K tokens - a "draft". Then we feed all of these together through the big model in a batch. This is almost as fast as feeding in just one token, per the above. Then we go from left to right over the logits predicted by the model and sample tokens. Any sample that agrees with the draft allows us to immediately skip forward to the next token. If there is a disagreement then we throw the draft away and eat the cost of doing some throwaway work (sampling the draft and the forward passing for all the later tokens).* 
+
+*The reason this works in practice is that most of the time the draft tokens get accepted, because they are easy, so even a much smaller draft model gets them. As these easy tokens get accepted, we skip through those parts in leaps. The hard tokens where the big model disagrees "fall back" to original speed, but actually a bit slower because of all the extra work.* 
+
+*So TLDR: this one weird trick works because LLMs are memory bound at inference time, in the "batch size 1" setting of sampling a single sequence of interest, that a large fraction of "local LLM" use cases fall into. And because most tokens are "easy".**
+
+
+- Memory boundedness
+	- LLM inference in memory bound
+	- The unused compute can be used, if we find a way to use it
+- Not all parameters required for every token
+	- Ex: What is the capital of California?
+- Idea:
+	- Try to predict what large model will say
+	- Get probabilities of predictions
+	- Use heuristic to accept or reject the predictions based on probabilites
+
+**Can speculative decoding help with large batch sizes which are not memory bound but compute bound?**
+
+**vLLM is designed for throughput not for latency. Mainly for large batch size inferences**
+
+**![](attachments/29b6b243dd35e6a9ba9440c894e25ca3_MD5.png)**
