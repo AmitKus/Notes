@@ -347,3 +347,12 @@ https://x.com/karpathy/status/1697318534555336961?lang=en
 	- [https://github.com/vllm-project/vllm/blob/main/vllm/spec_decode/metrics.py](https://github.com/vllm-project/vllm/blob/main/vllm/spec_decode/metrics.py) 
 	- Acceptance rate – “How aligned is the proposal method with the target model?”
 	- System efficiency – “How efficient is the deployment compared to 100% acceptance rate?”
+
+### Losslessness
+
+**Is the output of speculative decoding different than the target model?**
+- TL;DR No if using rejection sampling, subject to hardware numerics
+- Diagram [https://github.com/vllm-project/vllm/pull/2336](https://github.com/vllm-project/vllm/pull/2336) 
+- Yes if using lossly sampling technique, e.g. Medusa’s typical acceptance (but higher acceptance rate!)
+
+Recommended reading (proof of losslessness): [Accelerating Large Language Model Decoding with Speculative Sampling](https://arxiv.org/pdf/2302.01318)**
