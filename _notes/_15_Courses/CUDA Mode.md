@@ -271,3 +271,15 @@ Let's say we want to add `x` and `y`, which are vectors of size 8, and save the 
 - Cuda runs 2 blocks, each with 4 threads. Each of the 8 threads computes a single position, e.g. `z[0] = x[0] + y[0]`
 
 - Triton also runs 2 blocks, which each performs vectorized addition. The vector size is the block size, which is 4. E.g. `z[0:3] = x[0:3] + y[0:3]`
+
+
+
+## Lecture 15: CUTLASS
+
+CUTLASS is a collection of CUDA C++ template abstractions for implementing high-performance matrix-matrix multiplication (GEMM) and related computations at all levels and scales within CUDA. It incorporates strategies for hierarchical decomposition and data movement similar to those used to implement cuBLAS and cuDNN. CUTLASS decomposes these "moving parts" into reusable, modular software components abstracted by C++ template classes. Primitives for different levels of a conceptual parallelization hierarchy can be specialized and tuned via custom tiling sizes, data types, and other algorithmic policy. The resulting flexibility simplifies their use as building blocks within custom kernels and applications.
+
+![](attachments/1179a199420321a50829fa4202ea2636_MD5.jpeg)
+
+
+## Lecture 22: Speculative Decoding
+
