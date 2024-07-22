@@ -403,3 +403,8 @@ Recommended reading (proof of losslessness): [Accelerating Large Language Model 
 - Multi-LoRA draft model (specialize to domains)
 - Online learning draft model [https://arxiv.org/abs/2310.07177](https://arxiv.org/abs/2310.07177)
 - Batched parallel decoding [https://github.com/vllm-project/vllm/issues/4303](https://github.com/vllm-project/vllm/issues/4303)
+
+
+## Lecture 18: Fusing Kernels
+
+
