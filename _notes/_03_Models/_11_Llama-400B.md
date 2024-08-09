@@ -7,4 +7,15 @@ Trained on 15T multilingual tokens
 
 Pretrained using $3.8 X 10^{25}$ FLOPs
 
-Post training: supervised finetuning (SFT), rejection sampling (RS), and direct preference optimization (DPO)
+**Post training**: 
+- supervised finetuning (SFT), 
+- rejection sampling (RS), and 
+- direct preference optimization (DPO)
+
+**Capabilities:**
+- Answer questions in atleast 8 languages
+- write high-quality code
+- solve complex reasoning problmes
+- use tools out-of-box
+
+Multio
