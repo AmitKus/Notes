@@ -89,7 +89,7 @@
 
 ## Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models
 
-- Qwen-Audio is a multi-task language model conditioning on audio and text inputs, that extends the Qwen-7B language model to effectively perceive audio signals by the connection of a single audio encoder.
+- [Qwen-Audio](https://github.com/QwenLM/Qwen-Audio) is a multi-task language model conditioning on audio and text inputs, that extends the Qwen-7B language model to effectively perceive audio signals by the connection of a single audio encoder.
 - Different from previous works that primarily cater to a single type of audio such as human speech, or focus on specific tasks like speech recognition and captioning, or limit models to a single language (Wang et al., 2023a; Lyu et al., 2023; Wu et al., 2023b; Gong et al., 2023b; Shu et al., 2023), we scale up the training to dozens of datasets covering over 30 tasks, eight languages and various types of audio for advancing universal audio understanding abilities.
 - For the audio modality, there have been attempts to utilize well-trained audio foundation models as tools, such as AudioGPT (Huang et al., 2023) and HuggingGPT (Shen et al., 2023), while leveraging LLMs as a versatile interface. These endeavors involve instructing LLMs to generate commands for controlling external tools or transcribing human speech to text before inputting into the LLMs. **However, these approaches lack the inclusion of crucial information like prosody and sentiment in human speech**, and in certain cases, they fail to convert non-textual audio, such as **natural sound**.
 
@@ -105,6 +105,20 @@ $P_{\theta}(x_t \mid x_{\lt t}, \text{Encoder}_{\phi}(a))$
 - Whisper-large-v2 model (32-layer transformer model)
 - Each frame of the encoder output approximately corresponds to a 40ms segment of the original audio signal.
 
-### LLM
+#### LLM
 - Qwen-7B is a 32-layer Transformer decoder model with a hidden size of 4096, encompassing a total of 7.7B parameters.
+
+### Training
+
+![](attachments/12409929a1acbd76ec7967a03def7758_MD5.jpeg)
+
+
+### Experiments
+
+- For multi-task pre-training, we freeze the weights of LLM and only optimize the audio encoder. This trained model is referred to as Qwen-Audio. 
+- In the subsequent supervised fine-tuning stage, we fix the weights of the audio encoder and only optimize the LLM. The resulting model is denoted as Qwen-Audio-Chat.
+
+![](attachments/35262910ca87111da03e2aa7c611330d_MD5.jpeg)
+
+
 
