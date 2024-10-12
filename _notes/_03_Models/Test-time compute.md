@@ -12,6 +12,7 @@
 
 ![](attachments/eb820a5e770d6f7d00074d0a1e9dc2c8_MD5.jpeg)
 
+https://github.com/hijkzzz/Awesome-LLM-Strawberry
 
 
 
