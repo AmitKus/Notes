@@ -8,3 +8,7 @@ They are [`torch.nn`](https://pytorch.org/docs/stable/nn.html), [`torch.optim`
 ## PyTorch training steps
 
 ![](attachments/adb10957c691c02c893638a62a92db1d_MD5.jpeg)
+
+## Vision in PyTorch
+
+![](attachments/4d7fc0ddd63d8f02f60b228fc1e6b85a_MD5.jpeg)
