@@ -86,3 +86,67 @@ class Solution(object):
                     right_ptr -= 1
         return [list(o) for o in output]
 ```
+
+
+## Multiply Strings
+
+Solution
+
+Given two non-negative integers `num1` and `num2` represented as strings, return the product of `num1` and `num2`, also represented as a string.
+
+**Note:** You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+**Example 1:**
+
+**Input:** num1 = "2", num2 = "3"
+**Output:** "6"
+
+**Example 2:**
+
+**Input:** num1 = "123", num2 = "456"
+**Output:** "56088"
+
+
+```python
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+
+        if num1 == '0' or num2 == '0':
+            return '0'
+		## Line not required
+        if len(num1) < len(num2):
+            num1, num2 = num2, num1
+            
+        # Reverse the strings to ease multiplication
+        num1 = num1[::-1]
+        num2 = num2[::-1]
+        
+        n1 = len(num1)
+        n2 = len(num2)
+        
+        # Initialize the max output size
+        output = [0] * (n1 + n2)
+        
+        for j in range(n2):
+            carry = 0
+            for i in range(n1):
+                tmp_output = int(num1[i]) * int(num2[j]) + carry + output[i + j]
+                output[i + j] = tmp_output % 10  # Remainder stays at position
+                carry = tmp_output // 10  # Carry for the next position
+                
+            # Add remaining carry to the next position
+            if carry > 0:
+                output[j + n1] += carry
+
+        # Remove leading zeros and reverse to form the final result
+        while len(output) > 1 and output[-1] == 0:
+            output.pop()
+
+        return ''.join(map(str, output[::-1]))
+
+```
