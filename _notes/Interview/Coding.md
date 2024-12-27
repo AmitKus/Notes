@@ -179,3 +179,73 @@ class Solution(object):
         for i in range(n):
             matrix[i][:] = matrix[i][::-1]
 ```
+
+## Minimum Window Substring
+
+Solution
+
+Given two strings `s` and `t` of lengths `m` and `n` respectively, return _the **minimum window**_ **_substring_** _of_ `s` _such that every character in_ `t` _(**including duplicates**) is included in the window_. If there is no such substring, return _the empty string_ `""`.
+
+The testcases will be generated such that the answer is **unique**.
+
+**Example 1:**
+
+**Input:** s = "ADOBECODEBANC", t = "ABC"
+**Output:** "BANC"
+**Explanation:** The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+
+**Example 2:**
+
+**Input:** s = "a", t = "a"
+**Output:** "a"
+**Explanation:** The entire string s is the minimum window.
+
+### Two pointer approach
+- Start with (0,0) and extend the right pointer to capture all the chars in t
+- Then start moving left pointer and keep track of min window size
+- Hops between incrementing right and left pointer
+- When all chars in t are captured then left pointer moves
+- Once chars are missing the right pointer moves until all the chars captured again
+```python
+from collections import Counter
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if not s or not t:
+            return ''
+        
+        t_dict = Counter(t)
+        s_dict = {}
+        
+        l_ptr = 0
+        minwindow = float('inf')
+        minwin_index = (0, 0)
+        required = len(t_dict)
+        formed = 0
+        
+        for r_ptr in range(len(s)):
+            r_char = s[r_ptr]
+            s_dict[r_char] = s_dict.get(r_char, 0) + 1
+            
+            if r_char in t_dict and s_dict[r_char] == t_dict[r_char]:
+                formed += 1
+            
+            while l_ptr <= r_ptr and formed == required:
+                l_char = s[l_ptr]
+                
+                if (r_ptr - l_ptr + 1) < minwindow:
+                    minwindow = r_ptr - l_ptr + 1
+                    minwin_index = (l_ptr, r_ptr + 1)
+                
+                s_dict[l_char] -= 1
+                if l_char in t_dict and s_dict[l_char] < t_dict[l_char]:
+                    formed -= 1
+                
+                l_ptr += 1
+        
+        if minwindow == float('inf'):
+            return ''
+        else:
+            return s[minwin_index[0]:minwin_index[1]]
+
+```
