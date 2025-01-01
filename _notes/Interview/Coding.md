@@ -35,6 +35,52 @@ class Solution(object):
         return maxlen
 ```
 
+## Longest Substring with At Most Two Distinct Characters
+
+Given a string `s`, return _the length of the longest_ _substring_ _that contains at most **two distinct characters**_.
+
+**Example 1:**
+**Input:** s = "eceba"
+**Output:** 3
+**Explanation:** The substring is "ece" which its length is 3.
+
+**Example 2:**
+**Input:** s = "ccaabbb"
+**Output:** 5
+**Explanation:** The substring is "aabbb" which its length is 5.
+
+
+```python
+class Solution:
+    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
+        # Sliding window approach
+        n = len(s)
+        if n <= 2:
+            return n
+
+        # Dictionary to store character frequencies
+        char_count = {}
+        left_ptr = 0
+        maxlen = 0
+
+        for right_ptr in range(n):
+            # Add the current character to the window
+            char_count[s[right_ptr]] = char_count.get(s[right_ptr], 0) + 1
+
+            # Shrink the window if there are more than 2 distinct characters
+            while len(char_count) > 2:
+                char_count[s[left_ptr]] -= 1
+                if char_count[s[left_ptr]] == 0:
+                    del char_count[s[left_ptr]]
+                left_ptr += 1
+
+            # Update the maximum length of the substring
+            maxlen = max(maxlen, right_ptr - left_ptr + 1)
+
+        return maxlen
+```
+
+
 ## 3Sum
 
 **Example 1:**
