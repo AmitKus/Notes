@@ -249,3 +249,42 @@ class Solution:
             return s[minwin_index[0]:minwin_index[1]]
 
 ```
+
+###   Read N Characters Given Read4 II - Call multiple times
+
+**Example 1:**
+**Input:** file = "abc", queries = [1,2,1]
+**Output:** [1,2,0]
+**Explanation:** The test case represents the following scenario:
+File file("abc");
+Solution sol;
+sol.read(buf, 1); // After calling your read method, buf should contain "a". We read a total of 1 character from the file, so return 1.
+sol.read(buf, 2); // Now buf should contain "bc". We read a total of 2 characters from the file, so return 2.
+sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
+Assume buf is allocated and guaranteed to have enough space for storing all characters from the file.
+
+```python
+# The read4 API is already defined for you.
+# def read4(buf4: List[str]) -> int:
+
+class Solution:
+    
+    def __init__(self):
+        self.extra_reads = []
+        
+    def read(self, buf: List[str], n: int) -> int:
+        buf4 = ['']*4
+        while (n > len(self.extra_reads)):
+            new_reads = read4(buf4)
+            self.extra_reads.extend(buf4[:new_reads])
+            
+            #Indicates EOF
+            if new_reads < 4:
+                break
+        
+        return_val = min(len(self.extra_reads), n)
+        for ind in range(return_val):
+            buf[ind] = self.extra_reads.pop(0)
+        return return_val
+```
+
