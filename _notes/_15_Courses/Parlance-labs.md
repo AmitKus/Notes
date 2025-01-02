@@ -12,3 +12,8 @@ https://parlance-labs.com/education/
 ### Choosing appropriate model
 
 ![](attachments/00b8ad6d9f5c5739cbdecb21d06b193d_MD5.jpeg)
+
+
+![](attachments/e9e60f4fdb1ef5717688fae0fda56e61_MD5.jpeg)
+
+
