@@ -34,3 +34,15 @@ https://parlance-labs.com/education/
 
 ## How to fine-tune
 
+### Mistral models
+
+
+
+
+
+
+## Resources
+
+- [Argilla](https://argilla.io/) is a collaboration platform for AI engineers and domain experts that strive for quality, time-to-value, and ownership.
+- https://github.com/dennisbakhuis/pigeonXT: Data annotation
+- [Lilac](https://github.com/databricks/lilac): Human annotation
