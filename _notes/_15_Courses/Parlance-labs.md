@@ -36,8 +36,11 @@ https://parlance-labs.com/education/
 
 ### Mistral models
 
+![](attachments/42bccda10ca0366d6917964343fa9a03_MD5.jpeg)
 
-
+- [Fine-tuning notebook](https://github.com/mistralai/cookbook/blob/main/mistral/fine_tune/mistral_finetune_api.ipynb)
+- [Fine-tuning](https://github.com/mistralai/mistral-finetune)
+- 
 
 
 
