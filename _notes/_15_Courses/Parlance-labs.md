@@ -25,3 +25,12 @@ https://parlance-labs.com/education/
  - Quality vs latency tradeoff
  - Extremely narrow problem
  - Prompt engineering is impractical
+
+## DPO
+
+
+![](attachments/b82f42283a6a210515367d7446f1e32d_MD5.jpeg)
+
+
+## How to fine-tune
+
