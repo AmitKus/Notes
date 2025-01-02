@@ -17,3 +17,11 @@ https://parlance-labs.com/education/
 ![](attachments/e9e60f4fdb1ef5717688fae0fda56e61_MD5.jpeg)
 
 
+![](attachments/741c20d14dc33800542e53ffe79983bd_MD5.jpeg)
+
+
+### Reasons to fine-tune
+ - Data privacy
+ - Quality vs latency tradeoff
+ - Extremely narrow problem
+ - Prompt engineering is impractical
