@@ -225,6 +225,15 @@ The following method shows how to approximate the GPU VRAM needed to fine-tune a
 
 #### Integrating Accelerate in Training[](https://parlance-labs.com/education/fine_tuning_course/workshop_2.html#integrating-accelerate-in-training)
 
+Uses accelerate:
+- Nearly all of HF
+- axolotl
+- fastai
+- FastChat
+- lucidrains
+- kornia
+
+
 Accelerate can be used in the training loop to make the training hardware agnostic. It can be done using the following code:
 
 ```
@@ -256,3 +265,5 @@ for batch in dataloader:
 - [Argilla](https://argilla.io/) is a collaboration platform for AI engineers and domain experts that strive for quality, time-to-value, and ownership.
 - https://github.com/dennisbakhuis/pigeonXT: Data annotation
 - [Lilac](https://github.com/databricks/lilac): Human annotation
+- [Tests and evals](https://hamel.dev/blog/posts/evals/#level-1-unit-tests)
+- 
