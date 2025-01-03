@@ -266,4 +266,5 @@ for batch in dataloader:
 - https://github.com/dennisbakhuis/pigeonXT: Data annotation
 - [Lilac](https://github.com/databricks/lilac): Human annotation
 - [Tests and evals](https://hamel.dev/blog/posts/evals/#level-1-unit-tests)
+- [Modal](https://modal.com/docs)
 - 
