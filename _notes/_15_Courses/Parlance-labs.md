@@ -40,7 +40,18 @@ https://parlance-labs.com/education/
 
 - [Fine-tuning notebook](https://github.com/mistralai/cookbook/blob/main/mistral/fine_tune/mistral_finetune_api.ipynb)
 - [Fine-tuning](https://github.com/mistralai/mistral-finetune)
-- 
+
+
+### Huggingface
+
+- https://huggingface.co/autotrain
+- [Autotrain github](https://github.com/huggingface/autotrain-advanced?tab=readme-ov-file)
+
+
+## OpenAI
+
+![](attachments/f6e8ac2b732d46c132864e23f9f95d3c_MD5.jpeg)
+
 
 
 
