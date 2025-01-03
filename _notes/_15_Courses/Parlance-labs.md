@@ -129,7 +129,7 @@ QLoRA operates on the same principle as LoRA but uses reduced precision, further
 
 ### Getting Started with Axolotl[](https://parlance-labs.com/education/fine_tuning_course/workshop_2.html#getting-started-with-axolotl)
 
-Axolotl is a framework that makes it easier to fine-tune the latest LLMs using different techniques.
+**Axolotl is a framework that makes it easier to fine-tune the latest LLMs using different techniques.**
 
 To fine-tune a model using Axolotl, you can modify one of the premade [config files](https://github.com/axolotl-ai-cloud/axolotl/blob/main/examples/mistral/qlora.yml) with your dataset and instructions.
 
@@ -246,6 +246,11 @@ for batch in dataloader:
     scheduler.step()
 ```
 
+
+### Sample input
+- Red: do not train or update weights
+- Green: used to update weights
+![](attachments/06c846ea7d98680250f3e528e7e4fe6e_MD5.jpeg)
 ## Resources
 
 - [Argilla](https://argilla.io/) is a collaboration platform for AI engineers and domain experts that strive for quality, time-to-value, and ownership.
