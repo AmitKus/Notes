@@ -290,7 +290,14 @@ Space taken during full fine-tuning
 - Smaller batch size
 - Smaller model
 
+- [Great slides](https://docs.google.com/presentation/d/1Iw0gw3U8yjyox5Vt6fTjohXk3f_aW2QKIFGPENUmqGU/edit#slide=id.p)
 
+![](attachments/13b59a885e6969d2e0b241641ae20fb8_MD5.jpeg)
+
+![](attachments/5edd627c83102ffbbe023b27d93cffd6_MD5.jpeg)
+
+
+![](attachments/c5d929fe8cee92a8615dc69abfb4de4b_MD5.jpeg)
 
 
 
