@@ -260,6 +260,21 @@ for batch in dataloader:
 - Red: do not train or update weights
 - Green: used to update weights
 ![](attachments/06c846ea7d98680250f3e528e7e4fe6e_MD5.jpeg)
+
+
+
+## Napkin math for Fine Tuning
+
+[Slides](https://docs.google.com/presentation/d/1Ye_6zeatCWkq-fx8A--yK34uwU8oC2YQtMSTV1DgkSI/edit#slide=id.p)
+
+
+
+
+
+
+
+
+
 ## Resources
 
 - [Argilla](https://argilla.io/) is a collaboration platform for AI engineers and domain experts that strive for quality, time-to-value, and ownership.
@@ -267,4 +282,5 @@ for batch in dataloader:
 - [Lilac](https://github.com/databricks/lilac): Human annotation
 - [Tests and evals](https://hamel.dev/blog/posts/evals/#level-1-unit-tests)
 - [Modal](https://modal.com/docs)
+- https://chainforge.ai/pla
 - 
