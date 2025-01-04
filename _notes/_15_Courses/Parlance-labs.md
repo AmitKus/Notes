@@ -285,6 +285,10 @@ Space taken during full fine-tuning
 [Slides](https://docs.google.com/presentation/d/1Ye_6zeatCWkq-fx8A--yK34uwU8oC2YQtMSTV1DgkSI/edit#slide=id.p)
 
 
+## How to deal with OOM
+
+- Smaller batch size
+- Smaller model
 
 
 
