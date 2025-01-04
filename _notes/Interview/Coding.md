@@ -296,7 +296,7 @@ class Solution:
 
 ```
 
-###   Read N Characters Given Read4 II - Call multiple times
+##   Read N Characters Given Read4 II - Call multiple times
 
 **Example 1:**
 **Input:** file = "abc", queries = [1,2,1]
@@ -334,3 +334,78 @@ class Solution:
         return return_val
 ```
 
+
+## Given a `time` represented in the format `"HH:MM"`, form the next closest time by reusing the current digits. There is no limit on how many times a digit can be reused.
+
+You may assume the given input string is always valid. For example, `"01:34"`, `"12:09"` are all valid. `"1:34"`, `"12:9"` are all invalid.
+
+**Example 1:**
+**Input:** time = "19:34"
+**Output:** "19:39"
+**Explanation:** The next closest time choosing from digits **1**, **9**, **3**, **4**, is **19:39**, which occurs 5 minutes later.
+It is not **19:33**, because this occurs 23 hours and 59 minutes later.
+
+**Example 2:**
+
+**Input:** time = "23:59"
+**Output:** "22:22"
+**Explanation:** The next closest time choosing from digits **2**, **3**, **5**, **9**, is **22:22**.
+It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
+
+
+**Brute-force but works on leetcode**
+```python
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        digits = set()
+        for t in time:
+            if t == ':':
+                continue
+            digits.add(t)
+
+        hours = int(time[:2])
+        minutes = int(time[3:])
+
+        hrs_counter = hours
+        min_counter = minutes + 1
+        while True:
+            num1 = str(hrs_counter // 10)
+            num2 = str(hrs_counter % 10)
+            if (num1 in digits) and (num2 in digits):
+                for mins in range(min_counter, 60):
+                    num3 = str(mins // 10)
+                    num4 = str(mins % 10)
+                    if (num3 in digits) and (num4 in digits):
+                        return num1 + num2 + ':' + num3 + num4
+
+            hrs_counter += 1
+            hrs_counter = hrs_counter % 24
+            min_counter = 0
+
+```
+
+- Convert to minutes and increment
+- Use isdigit for set creations
+- Use issubset for checking in one go
+
+```python
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        # Extract the digits and convert them to integers
+        digits = {int(c) for c in time if c.isdigit()}
+        
+        # Convert the current time to minutes
+        current_minutes = int(time[:2]) * 60 + int(time[3:])
+        
+        while True:
+            # Increment the time by 1 minute
+            current_minutes = (current_minutes + 1) % (24 * 60)
+            # Convert the time back to hours and minutes
+            hours, minutes = divmod(current_minutes, 60)
+            # Split the time into individual digits
+            next_time_digits = {hours // 10, hours % 10, minutes // 10, minutes % 10}
+            # Check if all digits are valid
+            if next_time_digits.issubset(digits):
+                return f"{hours:02}:{minutes:02}"
+
+```
