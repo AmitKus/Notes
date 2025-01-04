@@ -265,6 +265,23 @@ for batch in dataloader:
 
 ## Napkin math for Fine Tuning
 
+Space taken during full fine-tuning
+- Model parameters
+- Gradients
+- Optimiser
+
+Space taken during full fine-tuning
+- Model parameters (frozen) + LoRA
+- LoRA gradients (small fraction)
+- LoRA optimiser (small fraction)
+
+**Memory tracking**
+- ```torch.cuda.memory._record_memory_history()```
+- https://pytorch.org/memory_viz
+- https://github.com/AnswerDotAI/fsdp_qlora/blob/main/benchmarks_03_2024.md
+
+
+
 [Slides](https://docs.google.com/presentation/d/1Ye_6zeatCWkq-fx8A--yK34uwU8oC2YQtMSTV1DgkSI/edit#slide=id.p)
 
 
