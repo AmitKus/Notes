@@ -290,6 +290,13 @@ Space taken during full fine-tuning
 - Smaller batch size
 - Smaller model
 
+
+**Most important figure**
+Memory usage from left to right on a GPU while training
+
+![](attachments/57787afc29c2b85eae7774e8094ddd8c_MD5.jpeg)
+
+
 - [Great slides](https://docs.google.com/presentation/d/1Iw0gw3U8yjyox5Vt6fTjohXk3f_aW2QKIFGPENUmqGU/edit#slide=id.p)
 
 ![](attachments/13b59a885e6969d2e0b241641ae20fb8_MD5.jpeg)
@@ -300,7 +307,54 @@ Space taken during full fine-tuning
 ![](attachments/c5d929fe8cee92a8615dc69abfb4de4b_MD5.jpeg)
 
 
+![](attachments/32958e19c5abda3bf343eeca30b3727e_MD5.jpeg)
 
+![](attachments/b10208ec09ec4fb0cd475438d82602a6_MD5.jpeg)
+![](attachments/8b49c227c0dac92c07e3730dc8e22a2a_MD5.jpeg)
+
+![](attachments/cfab42757ed59b5c313b3c596096a672_MD5.jpeg)
+
+**Data parallel**
+![](attachments/24af92ba9abb4e996498ae41598b1803_MD5.jpeg)
+
+**FSDP**
+
+![](attachments/001a56911940cf39cf97433e57065946_MD5.jpeg)
+
+![](attachments/f01a2f35c27bf824148ba58f95e7c867_MD5.jpeg)
+![](attachments/86034691c72229f24f0bdc800895bb0e_MD5.jpeg)
+![](attachments/f1e2534ad1b2f16be22729b3758a6199_MD5.jpeg)
+
+
+
+## Fine-tuning LLMs for function calling
+
+![](attachments/5eebab54790f22b364d8c0767aa17561_MD5.jpeg)
+
+![](attachments/f8e37f1a0bc6c3f3335af0dad2a35526_MD5.jpeg)
+
+![](attachments/7463cfd421fb0b533a56daef0d292279_MD5.jpeg)
+
+![](attachments/788b045e78581e2056adc9a06a2b02d5_MD5.jpeg)
+
+**Python vs json format**
+![](attachments/18254e399b8df7aede3f116f215d7a9e_MD5.jpeg)
+
+**Pick an instruct model as the base**
+![](attachments/ebc07efdabd02a03d6ee3dfcbae81b4c_MD5.jpeg)
+
+**LoRA is better for function call fine-tuning**
+![](attachments/2a728597764e89d999434e58e5ad1041_MD5.jpeg)
+
+**Efficient batching possible: all request go through the base computations**
+![](attachments/31c6f61dd5b4702bf0d7ef15079abb19_MD5.jpeg)
+
+**Fireworks offer constrained generation**
+**Inspired/customised by open-source context-free grammar solutions**
+![](attachments/24618e918712aaf532c776036468315b_MD5.jpeg)
+
+**Based on Llama3-70B**
+![](attachments/32b31238499c18f73b3ee4e7e2c65197_MD5.jpeg)
 
 
 ## Resources
