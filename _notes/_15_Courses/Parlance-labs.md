@@ -365,4 +365,5 @@ Memory usage from left to right on a GPU while training
 - [Tests and evals](https://hamel.dev/blog/posts/evals/#level-1-unit-tests)
 - [Modal](https://modal.com/docs)
 - https://chainforge.ai/pla
+- [function calling model](https://huggingface.co/glaiveai/glaive-function-calling-v1)
 - 
