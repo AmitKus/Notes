@@ -357,6 +357,11 @@ Memory usage from left to right on a GPU while training
 ![](attachments/32b31238499c18f73b3ee4e7e2c65197_MD5.jpeg)
 
 
+## FSDP, DeepSpeed and Accelerate
+
+
+
+
 ## Resources
 
 - [Argilla](https://argilla.io/) is a collaboration platform for AI engineers and domain experts that strive for quality, time-to-value, and ownership.
