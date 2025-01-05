@@ -408,3 +408,102 @@ class Solution:
                 return f"{hours:02}:{minutes:02}"
 
 ```
+
+## Add Two Numbers
+You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse order**, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+**Example 1:**
+
+![](attachments/6d807a9b7486c05db0d3ae91d4dec327_MD5.jpg)
+
+**Input:** l1 = [2,4,3], l2 = [5,6,4]
+**Output:** [7,0,8]
+**Explanation:** 342 + 465 = 807.
+
+**Example 2:**
+
+**Input:** l1 = [0], l2 = [0]
+**Output:** [0]
+
+**Example 3:**
+
+**Input:** l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+**Output:** [8,9,9,9,0,0,0,1]
+
+
+**Original code**
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        
+        l1_ptr = l1
+        l2_ptr = l2
+        l1_l2_head = l1_l2_ptr = ListNode()
+        carry = 0
+        while (l1_ptr is not None) or (l2_ptr is not None):
+
+            suml1l2 = carry
+            
+            if l1_ptr is not None:
+                suml1l2 += l1_ptr.val
+                l1_ptr = l1_ptr.next
+                
+            if l2_ptr is not None:
+                suml1l2 += l2_ptr.val
+                l2_ptr = l2_ptr.next
+            
+            l1_l2_ptr.val = suml1l2%10
+            carry = suml1l2//10
+            
+            if (l1_ptr is not None) or (l2_ptr is not None):
+                l1_l2_ptr.next = ListNode()
+                l1_l2_ptr = l1_l2_ptr.next
+            elif carry > 0:
+                l1_l2_ptr.next = ListNode(carry)
+                l1_l2_ptr = l1_l2_ptr.next
+
+            
+        return l1_l2_head
+            
+            
+```
+
+**Cleaned code**
+```python
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # Dummy node to simplify edge cases
+        dummy_head = ListNode()
+        current = dummy_head
+        carry = 0
+
+        # Traverse both lists
+        while l1 or l2 or carry:
+            # Compute sum for the current digits + carry
+            val1 = l1.val if l1 else 0
+            val2 = l2.val if l2 else 0
+            total = val1 + val2 + carry
+
+            # Update carry and current node
+            carry = total // 10
+            current.next = ListNode(total % 10)
+
+            # Move pointers forward
+            current = current.next
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+
+        return dummy_head.next
+
+```
+
+

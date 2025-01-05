@@ -357,7 +357,10 @@ Memory usage from left to right on a GPU while training
 ![](attachments/32b31238499c18f73b3ee4e7e2c65197_MD5.jpeg)
 
 
-## FSDP, DeepSpeed and Accelerate
+## Deploying fine-tuned models
+![](attachments/1b67cd4215f72935382ee3f138a4220f_MD5.jpeg)
+![](attachments/e7edcc6b881797eb98b83ae11d64c37f_MD5.jpeg)
+
 
 
 
