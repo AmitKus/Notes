@@ -589,3 +589,87 @@ Alternative method: Dictionary + Doubly-linked list
 {key} = Node(key,val,prev,next)
 LRU->.....Nodes------>MRU
 Keep moving to MRU if used and pop LRU to maintain capability
+
+
+## Median of Two Sorted Arrays
+
+Solution
+
+Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return **the median** of the two sorted arrays.
+
+The overall run time complexity should be `O(log (m+n))`.
+
+**Example 1:**
+
+**Input:** nums1 = [1,3], nums2 = [2]
+**Output:** 2.00000
+**Explanation:** merged array = [1,2,3] and median is 2.
+
+**Example 2:**
+
+**Input:** nums1 = [1,2], nums2 = [3,4]
+**Output:** 2.50000
+**Explanation:** merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+
+Brute-force: Two ptr approach walking over the two given arrays
+- Time: O(M+N)
+- Space: O(1)
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        
+        n1 = len(nums1)
+        n2 = len(nums2)
+        
+        if (n1+n2)%2 == 0:
+            med_ind1 = (n1+n2)//2 - 1
+            med_ind2 = (n1+n2)//2 
+        else:
+            med_ind1 = med_ind2 = (n1+n2+1)//2 - 1
+            
+        if n1 == 0:
+            return 0.5*(nums2[med_ind1] + nums2[med_ind2])
+        if n2 == 0:
+            return 0.5*(nums1[med_ind1] + nums1[med_ind2])            
+            
+            
+        result_median = 0    
+        
+        n1_ptr = 0
+        n2_ptr = 0
+        n3_ptr = 0
+        while (n3_ptr <= med_ind2):
+            
+            if (n1_ptr < n1) and (n2_ptr < n2):
+                if (nums1[n1_ptr] <= nums2[n2_ptr]):
+                    current_num = nums1[n1_ptr]
+                    n1_ptr += 1
+                else:
+                    current_num = nums2[n2_ptr]
+                    n2_ptr += 1
+            elif (n1_ptr < n1):
+                current_num = nums1[n1_ptr]
+                n1_ptr += 1
+            elif (n2_ptr < n2):
+                current_num = nums2[n2_ptr]
+                n2_ptr += 1
+            
+            # print(n1_ptr, n2_ptr, current_num)
+            if (n1+n2)%2 == 0:
+                if (n3_ptr == med_ind1) or (n3_ptr == med_ind2):
+                    result_median += 0.5*(current_num)
+            else:
+                if (n3_ptr == med_ind1):
+                    result_median = current_num
+                    
+            n3_ptr += 1
+            
+        return result_median
+```
+
+**Optimised approach: Using binary search -> search for indices where two halfs are balanced a**
+
+
+
+For dynamic computation of median: Use min and max heap approach
