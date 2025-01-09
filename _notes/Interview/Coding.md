@@ -716,7 +716,4 @@ class Solution:
 ```
 
 
-
-
-
 For dynamic computation of median: Use min and max heap approach
