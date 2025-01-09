@@ -668,7 +668,54 @@ class Solution:
         return result_median
 ```
 
-**Optimised approach: Using binary search -> search for indices where two halfs are balanced a**
+**Optimised approach: Binary search O(log(min(m,n)))
+- Choose smaller array
+- Run binary search on it: low = 0, high = m, i = (low+high)//2,
+- j = (m+n+1)//2 - i  (in other array)
+![](attachments/52e840956467f7e54b9e10384a9af062_MD5.jpeg)
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        m = len(nums1)
+        n = len(nums2)
+        
+        # Ensure nums1 is the smaller array
+        if m > n:
+            nums1, nums2 = nums2, nums1
+            m, n = n, m
+            
+        low = 0
+        high = m
+        num_half = (m + n + 1) // 2  # The size of the left partition
+        
+        while low <= high:
+            i = (low + high) // 2  # Partition index for nums1
+            j = num_half - i      # Partition index for nums2
+            
+            # Calculate boundary values for the partitions
+            maxleft1 = -float('inf') if i == 0 else nums1[i - 1]
+            minright1 = float('inf') if i == m else nums1[i]
+            maxleft2 = -float('inf') if j == 0 else nums2[j - 1]
+            minright2 = float('inf') if j == n else nums2[j]
+            
+            # Check if the partition is valid
+            if maxleft1 <= minright2 and maxleft2 <= minright1:
+                # Median calculation
+                if (m + n) % 2 == 0:  # Even length
+                    return 0.5 * (max(maxleft1, maxleft2) + min(minright1, minright2))
+                else:  # Odd length
+                    return max(maxleft1, maxleft2)
+            
+            # Adjust binary search bounds
+            if maxleft1 > minright2:
+                high = i - 1  # Move left in nums1
+            else:
+                low = i + 1   # Move right in nums1
+
+```
+
+
 
 
 
