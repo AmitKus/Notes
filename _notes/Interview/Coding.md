@@ -717,3 +717,66 @@ class Solution:
 
 
 For dynamic computation of median: Use min and max heap approach
+## Binary Tree Maximum Path Sum
+
+Solution
+
+A **path** in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence **at most once**. Note that the path does not need to pass through the root.
+
+The **path sum** of a path is the sum of the node's values in the path.
+
+Given the `root` of a binary tree, return _the maximum **path sum** of any **non-empty** path_.
+
+**Example 1:**
+
+![](attachments/6d575c4ce9b534b980c2ee376508e084_MD5.jpg)
+
+**Input:** root = [1,2,3]
+**Output:** 6
+**Explanation:** The optimal path is 2 -> 1 -> 3 with a path sum of 2 + 1 + 3 = 6.
+
+**Example 2:**
+
+![](attachments/d29a334361627eba646e84254604f53a_MD5.jpg)
+
+**Input:** root = [-10,9,20,null,null,15,7]
+**Output:** 42
+**Explanation:** The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
+
+
+- Path from a node is: node.val + left_sum + right_sum 
+	- Path goes from left branch to right_branch through the node
+- Return from function is node.val + max(left_sum, right_sum) 
+	- Going either branch but starts above the node
+- Note the difference between pathmax computation and the return value
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        # Initialize the maximum path sum as a class attribute
+        self.pathmax = float('-inf')
+        
+        def get_node_lr_sum(node: Optional[TreeNode]) -> int:
+            if node is None:
+                return 0
+            
+            # Recurse into left and right subtrees
+            left_sum = max(0, get_node_lr_sum(node.left))  # Ignore negative paths
+            right_sum = max(0, get_node_lr_sum(node.right))
+            
+            # Update the global maximum path sum
+            self.pathmax = max(self.pathmax, left_sum + right_sum + node.val)
+            
+            # Return the maximum sum of a path passing through this node
+            return node.val + max(left_sum, right_sum)
+        
+        # Start the recursion
+        get_node_lr_sum(root)
+        return self.pathmax
+
+```
