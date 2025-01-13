@@ -780,3 +780,58 @@ class Solution:
         return self.pathmax
 
 ```
+
+
+
+Poor implementation:
+	- Loop over word in wordList and check if next word
+		- if yes recurse with next word as the beginWord
+	- Some caching related stuff: frozenset etc
+
+```python
+from typing import List, Set
+
+class Solution:
+    def __init__(self):
+        self.cache = {}
+        self.cache_larger = {}
+    
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordSet = set(wordList)  # Convert word list to a set for O(1) lookups
+        if endWord not in wordSet:
+            return 0
+
+        def is_valid_next_word(current_word: str, target_word: str) -> bool:
+            """Check if two words differ by exactly one character."""
+            if (current_word, target_word) in self.cache:
+                return self.cache[(current_word, target_word)]
+            
+            char_diff = sum(a != b for a, b in zip(current_word, target_word))
+            result = char_diff == 1
+            self.cache[(current_word, target_word)] = result
+            return result
+
+        def helper(beginWord: str, endWord: str, wordSet: Set[str]) -> int:
+            """Recursive helper to find the shortest path."""
+            if beginWord == endWord:
+                return 1
+            if (beginWord, endWord, frozenset(wordSet)) in self.cache_larger:
+                return self.cache_larger[(beginWord, endWord, frozenset(wordSet))]
+            
+            min_length = float('inf')
+            for word in list(wordSet):  # Iterate over the current word set
+                if is_valid_next_word(beginWord, word):
+                    wordSet.remove(word)  # Remove the word from the set
+                    result = helper(word, endWord, wordSet)
+                    if result != float('inf'):
+                        min_length = min(min_length, 1 + result)
+                    wordSet.add(word)  # Add the word back to the set
+            
+            self.cache_larger[(beginWord, endWord, frozenset(wordSet))] = min_length
+            return min_length
+
+        # Compute the ladder length
+        ladder_length = helper(beginWord, endWord, wordSet)
+        return 0 if ladder_length == float('inf') else ladder_length
+
+```
