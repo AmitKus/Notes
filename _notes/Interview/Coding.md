@@ -835,3 +835,78 @@ class Solution:
         return 0 if ladder_length == float('inf') else ladder_length
 
 ```
+
+## Word Ladder
+
+Solution
+
+A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words `beginWord -> s1 -> s2 -> ... -> sk` such that:
+
+- Every adjacent pair of words differs by a single letter.
+- Every `si` for `1 <= i <= k` is in `wordList`. Note that `beginWord` does not need to be in `wordList`.
+- `sk == endWord`
+
+Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return _the **number of words** in the **shortest transformation sequence** from_ `beginWord` _to_ `endWord`_, or_ `0` _if no such sequence exists._
+
+**Example 1:**
+
+**Input:** beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+**Output:** 5
+**Explanation:** One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
+
+- **Time Complexity: $O(N*M^2)$**
+- **Space Complexity: $O(N*M)$**
+- N: number of words, M: length of words
+
+```python
+from collections import deque
+from typing import List
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordSet = set(wordList)  # Convert wordList to a set for quick lookups
+        
+        # Early exits for invalid cases
+        if endWord not in wordSet:
+            return 0
+        if len(beginWord) != len(endWord):
+            return 0
+        if len(beginWord) == 1:
+            return 2
+
+        # Remove beginWord from the set (if it exists)
+        wordSet.discard(beginWord)
+
+        # Create a pattern dictionary for all words in wordSet
+        wordlen = len(beginWord)
+        pattern_dict = {}
+        for word in wordSet:
+            for i in range(wordlen):
+                pattern = word[:i] + '*' + word[i+1:]
+                pattern_dict.setdefault(pattern, []).append(word)
+
+        # Perform BFS for the shortest path
+        ladder = deque([(beginWord, 1)])  # (current word, current level)
+        visited = set()  # Track visited words to avoid cycles
+
+        while ladder:
+            word, level = ladder.popleft()  # Process the front of the deque
+            visited.add(word)
+
+            for i in range(wordlen):
+                pattern = word[:i] + '*' + word[i+1:]
+                
+                # Skip patterns not in the dictionary
+                if pattern not in pattern_dict:
+                    continue
+
+                for neighbor in pattern_dict[pattern]:
+                    if neighbor == endWord:
+                        return level + 1  # Found the shortest path
+                    if neighbor not in visited:
+                        ladder.append((neighbor, level + 1))
+                        visited.add(neighbor)  # Mark as visited
+
+        return 0  # If no path is found
+
+```
