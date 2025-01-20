@@ -910,3 +910,61 @@ class Solution:
         return 0  # If no path is found
 
 ```
+
+## Word Squares
+
+Solution
+
+Given an array of **unique** strings `words`, return _all the_ **[word squares](https://en.wikipedia.org/wiki/Word_square)** _you can build from_ `words`. The same word from `words` can be used **multiple times**. You can return the answer in **any order**.
+
+A sequence of strings forms a valid **word square** if the `kth` row and column read the same string, where `0 <= k < max(numRows, numColumns)`.
+
+- For example, the word sequence `["ball","area","lead","lady"]` forms a word square because each word reads the same both horizontally and vertically.
+
+**Example 1:**
+
+**Input:** words = ["area","lead","wall","lady","ball"]
+**Output:** [["ball","area","lead","lady"],["wall","area","lead","lady"]]
+**Explanation:**
+The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters).
+
+- Solution: 
+	- Create a dict with prefix -> allowed_words
+	- Recurse over combinations
+- 
+	-![](attachments/a43da186a773d5f61cf64dfe7d9675cd_MD5.jpeg)
+
+
+```python
+from typing import List, Dict
+from collections import defaultdict
+
+class Solution:
+    def wordSquares(self, words: List[str]) -> List[List[str]]:
+        if not words or len(set(len(w) for w in words)) > 1:
+            return []
+        
+        wordlen = len(words[0])
+        prefix_dict = defaultdict(list)
+        
+        for w in words:
+            for ind in range(len(w) + 1):
+                prefix_dict[w[:ind]].append(w)
+
+        def _backtrack(step: int, current_words: List[str], results: List[List[str]]) -> None:
+            if step == wordlen:
+                results.append(current_words[:])  # Add a copy of the current words
+                return
+            
+            prefix = ''.join(w[step] for w in current_words)
+            for allowed_word in prefix_dict.get(prefix, []):
+                _backtrack(step + 1, current_words + [allowed_word], results)
+              
+        results = []
+        for w in words:
+            _backtrack(1, [w], results)
+        
+        return results
+
+```
+
