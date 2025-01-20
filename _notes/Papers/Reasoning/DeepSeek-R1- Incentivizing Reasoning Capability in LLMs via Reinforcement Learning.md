@@ -8,3 +8,9 @@
 ![](attachments/c5654d6387356bf4d8068a9e69df22e2_MD5.jpeg)
 
 
+![](attachments/dc6843fc9c6e9174ac29ecb7f94551ef_MD5.jpeg)
+- Dsitilled models: Qwen2.5-Math-1.5B, Qwen2.5-Math-7B, Qwen2.514B, Qwen2.5-32B, Llama-3.1-8B, and Llama-3.3-70B-Instruct.
+
+#### Limitations
+- General Capability: Currently, the capabilities of DeepSeek-R1 fall short of DeepSeekV3 in tasks such as function calling, multi-turn, complex role-playing, and json output.
+- Prompting Engineering: When evaluating DeepSeek-R1, we observe that it is sensitive to prompts. Few-shot prompting consistently degrades its performance.
