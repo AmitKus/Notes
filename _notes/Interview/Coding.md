@@ -968,3 +968,65 @@ class Solution:
 
 ```
 
+## Strobogrammatic Number II
+
+Solution
+
+Given an integer `n`, return all the **strobogrammatic numbers** that are of length `n`. You may return the answer in **any order**.
+
+A **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).
+
+**Example 1:**
+
+**Input:** n = 2
+**Output:** ["11","69","88","96"]
+
+**Example 2:**
+
+**Input:** n = 1
+**Output:** ["0","1","8"]
+
+
+Solution:
+	- start_num + _backtrack + end_num
+	- Important line: **if n != total_len:**
+```python
+from typing import List
+
+class Solution:
+    def findStrobogrammatic(self, n: int) -> List[str]:
+        def _backtrack(n: int, total_len: int) -> List[str]:
+            # Base cases
+            if n == 0:
+                return [""]
+            if n == 1:
+                return ["0", "1", "8"]
+
+            # Get strobogrammatic numbers of length n-2
+            middle_numbers = _backtrack(n - 2, total_len)
+            results = []
+
+            # Add strobogrammatic pairs around the middle numbers
+            for mid in middle_numbers:
+                # Avoid adding leading zeros for numbers with more than one digit
+                if n != total_len:
+                    results.append("0" + mid + "0")
+                results.append("1" + mid + "1")
+                results.append("6" + mid + "9")
+                results.append("8" + mid + "8")
+                results.append("9" + mid + "6")
+            
+            return results
+        
+        return _backtrack(n, n)
+```
+
+### **Key Differences**
+
+|Feature|Recursive Approach|Backtracking Approach|
+|---|---|---|
+|**How recursion is used**|Combines smaller results into bigger results.|Dynamically explores paths, pruning invalid ones.|
+|**Construction style**|Generates all solutions in one pass.|Builds solutions step by step, character by character.|
+|**Intermediate filtering**|No dynamic filtering, just avoids leading zeroes in results.|Dynamically stops invalid paths (e.g., leading zero).|
+|**Focus**|Solve smaller problems and combine solutions.|Explore all possibilities with constraints.|
+|**Flexibility**|Less flexible for adding new constraints.|Very flexible and interactive.|
