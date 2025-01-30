@@ -1030,3 +1030,41 @@ class Solution:
 |**Intermediate filtering**|No dynamic filtering, just avoids leading zeroes in results.|Dynamically stops invalid paths (e.g., leading zero).|
 |**Focus**|Solve smaller problems and combine solutions.|Explore all possibilities with constraints.|
 |**Flexibility**|Less flexible for adding new constraints.|Very flexible and interactive.|
+
+
+## Min Stack
+
+Solution
+
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+Implement the `MinStack` class:
+
+- `MinStack()` initializes the stack object.
+- `void push(int val)` pushes the element `val` onto the stack.
+- `void pop()` removes the element on the top of the stack.
+- `int top()` gets the top element of the stack.
+- `int getMin()` retrieves the minimum element in the stack.
+
+You must implement a solution with `O(1)` time complexity for each function.
+
+```python
+class MinStack:
+    def __init__(self):
+        self.vals = []
+
+    def push(self, val: int) -> None:
+        min_val = val if not self.vals else min(val, self.vals[-1][1])
+        self.vals.append((val, min_val))
+
+    def pop(self) -> None:
+        if self.vals:
+            self.vals.pop()
+
+    def top(self) -> int:
+        return self.vals[-1][0] if self.vals else None  # Handle empty case
+
+    def getMin(self) -> int:
+        return self.vals[-1][1] if self.vals else None  # Handle empty case
+```
+
