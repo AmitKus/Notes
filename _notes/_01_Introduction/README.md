@@ -54,7 +54,7 @@ This section delves into the intricacies of AI models, covering everything from 
 
 Discover the tools that drive AI innovation, including LlamaIndex for complex query resolution and more. Each tool is detailed with its use case, benefits, and links to additional resources.
 
-[Explore Tools](_04_Tools/README.md)
+[Explore Tools](LLamaIndex.md)
 
 ## Workflows
 

@@ -9,7 +9,7 @@
    - [Performance](_03_Models/_02_Performance.md)
    - [Training](_03_Models/_03_Training.md)
    - [Visions](_03_Models/_04_Visions.md)
-4. [Tools](./_04_Tools/README.md)
+4. [Tools](LLamaIndex.md)
 5. [Workflows](./_05_Workflows/README.md)
    - [Agents](_05_Workflows/_01_Agents.md)
    - [RAG (Retrieval-Augmented Generation)](_05_Workflows/_02_RAG.md)
@@ -51,7 +51,7 @@ This section delves into the intricacies of AI models, covering everything from 
 
 Discover the tools that drive AI innovation, including LlamaIndex for complex query resolution and more. Each tool is detailed with its use case, benefits, and links to additional resources.
 
-[Explore Tools](_04_Tools/README.md)
+[Explore Tools](LLamaIndex.md)
 
 ## Workflows
 
