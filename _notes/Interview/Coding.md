@@ -1068,3 +1068,89 @@ class MinStack:
         return self.vals[-1][1] if self.vals else None  # Handle empty case
 ```
 
+
+## Longest Palindromic Substring
+
+Solution
+
+Given a string `s`, return _the longest_ _palindromic_ _substring_ in `s`.
+
+**Example 1:**
+
+**Input:** s = "babad"
+**Output:** "bab"
+**Explanation:** "aba" is also a valid answer.
+
+**Example 2:**
+
+**Input:** s = "cbbd"
+**Output:** "bb"
+
+
+- Solution: Expand around center for odd and even $O(N^2)$
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if not s:
+            return ""
+
+        def expand_around_center(left: int, right: int) -> str:
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return s[left+1:right]  # Return the valid palindrome
+
+        longest = ""
+        for i in range(len(s)):
+            # Odd-length palindrome
+            odd_palindrome = expand_around_center(i, i)
+            # Even-length palindrome
+            even_palindrome = expand_around_center(i, i+1)
+
+            # Choose the longer palindrome
+            longest = max(longest, odd_palindrome, even_palindrome, key=len)
+
+        return longest
+
+```
+
+- Dynamic programming solution: Time and Space $O(N^2)$
+- $dp[i][j] = True$ if $s[i:j+1]$ is palindrome
+- $dp[i][i] = True$
+- **Time Complexity:** O(n2) due to the nested loops.
+- **Space Complexity:** O(n2) due to the DP table.
+
+This method is useful when you need to **retrieve all palindromic substrings**, but **expand-around-center** is usually faster for just finding the longest one.
+
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        if n == 0:
+            return ""
+        
+        dp = [[False] * n for _ in range(n)]
+        start, max_length = 0, 1  # Store the start index and max length of the palindrome
+        
+        # Every single character is a palindrome
+        for i in range(n):
+            dp[i][i] = True
+        
+        # Check for two-character palindromes
+        for i in range(n-1):
+            if s[i] == s[i+1]:
+                dp[i][i+1] = True
+                start, max_length = i, 2
+        
+        # Fill DP table for substrings of length 3 and more
+        for length in range(3, n+1):  # Length of substring
+            for i in range(n - length + 1):
+                j = i + length - 1  # Ending index
+                if s[i] == s[j] and dp[i+1][j-1]:  # Check if inner substring is palindrome
+                    dp[i][j] = True
+                    start, max_length = i, length
+        
+        return s[start:start + max_length]
+
+```
