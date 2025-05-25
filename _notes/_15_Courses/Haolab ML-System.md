@@ -42,6 +42,11 @@ RECAP
 ![](attachments/27b1d5159d51f37a314f30792c6c9816_MD5.jpeg)
 ![](attachments/163c3bd6967864c4c8f52c84424fc240_MD5.jpeg)
 
+![](attachments/b26bb9554b4ca778e42595252a477a0a_MD5.jpeg)
+
+![](attachments/8b8c88b087678f24d42610861e97bcbc_MD5.jpeg)
+
 ![](attachments/801db9a933b5f205b28e18c14f2d774e_MD5.jpeg)
 
 
+![](attachments/810a9eb84b7ebddb74473f9656e2819c_MD5.jpeg)
