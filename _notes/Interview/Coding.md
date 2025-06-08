@@ -1154,3 +1154,85 @@ class Solution:
         return s[start:start + max_length]
 
 ```
+
+## Maximum Product Subarray
+
+Solution
+
+Given an integer array `nums`, find a subarray that has the largest product, and return _the product_.
+
+The test cases are generated so that the answer will fit in a **32-bit** integer.
+
+**Example 1:**
+
+**Input:** nums = [2,3,-2,4]
+**Output:** 6
+**Explanation:** [2,3] has the largest product 6.
+
+**Example 2:**
+
+**Input:** nums = [-2,0,-1]
+**Output:** 0
+**Explanation:** The result cannot be 2, because [-2,-1] is not a subarray.
+
+**Constraints:**
+
+- `1 <= nums.length <= 2 * 104`
+- `-10 <= nums[i] <= 10`
+- The product of any subarray of `nums` is **guaranteed** to fit in a **32-bit** integer.
+
+
+TIPS:
+- Keep track of min and max as negative number can flip.
+- Every step we have two options:
+	- 1 Continue with running product
+	- 2. Start with new num
+
+```python
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        
+        min_prod = 1
+        max_prod = 1
+        result = -float('inf')
+        
+        for num in nums:
+            # If the current number is negative, swap min_prod and max_prod
+            if num < 0:
+                min_prod, max_prod = max_prod, min_prod
+            
+            # Update the current min_prod and max_prod
+            min_prod = min(num, min_prod * num)
+            max_prod = max(num, max_prod * num)
+            
+            # Update the result
+            result = max(result, max_prod)
+        
+        return result
+
+```
+
+Dynamic programming implementations
+
+```python
+
+    def maxProduct(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        min_dp = [0]*(n)
+        max_dp = [0]*(n)
+        
+        min_dp[0] = max_dp[0] = result = nums[0]
+        
+        for i in range(1,n):
+            
+            max_dp[i] = max(nums[i], max_dp[i-1]*nums[i], min_dp[i-1]*nums[i])
+            min_dp[i] = min(nums[i], max_dp[i-1]*nums[i], min_dp[i-1]*nums[i])
+            result = max(result, max_dp[i])
+        
+        return result
+        
+
+```
