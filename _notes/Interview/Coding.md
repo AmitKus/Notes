@@ -1236,3 +1236,87 @@ Dynamic programming implementations
         
 
 ```
+
+
+## Design Search Autocomplete System
+
+Solution
+
+Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a special character `'#'`).
+
+You are given a string array `sentences` and an integer array `times` both of length `n` where `sentences[i]` is a previously typed sentence and `times[i]` is the corresponding number of times the sentence was typed. For each input character except `'#'`, return the top `3` historical hot sentences that have the same prefix as the part of the sentence already typed.
+
+Here are the specific rules:
+
+- The hot degree for a sentence is defined as the number of times a user typed the exactly same sentence before.
+- The returned top `3` hot sentences should be sorted by hot degree (The first is the hottest one). If several sentences have the same hot degree, use ASCII-code order (smaller one appears first).
+- If less than `3` hot sentences exist, return as many as you can.
+- When the input is a special character, it means the sentence ends, and in this case, you need to return an empty list.
+
+Implement the `AutocompleteSystem` class:
+
+- `AutocompleteSystem(String[] sentences, int[] times)` Initializes the object with the `sentences` and `times` arrays.
+- `List<String> input(char c)` This indicates that the user typed the character `c`.
+    - Returns an empty array `[]` if `c == '#'` and stores the inputted sentence in the system.
+    - Returns the top `3` historical hot sentences that have the same prefix as the part of the sentence already typed. If there are fewer than `3` matches, return them all.
+
+#### Solution:
+- Use trie data structure
+
+```python
+from typing import List
+
+class AutocompleteSystem:
+
+    def __init__(self, sentences: List[str], times: List[int]):
+        self.trie_struct = self.populate_trie(sentences, times)
+        self.running_prefix = ''
+        self.running_node = self.trie_struct
+
+    def populate_trie(self, sentences, times):
+        root = {}
+        for s, t in zip(sentences, times):
+            self.add_sentence_to_trie(root, s, t)
+        return root
+
+    def add_sentence_to_trie(self, node, s, frequency):
+        for i, c in enumerate(s):
+            if c not in node:
+                node[c] = {}
+            node = node[c]
+        if '#' in node:
+            node['#'] += frequency
+        else:
+            node['#'] = frequency
+
+    def input(self, c: str) -> List[str]:
+        if c == '#':
+            self.add_sentence_to_trie(self.trie_struct, self.running_prefix, 1)
+            self.running_prefix = ''
+            self.running_node = self.trie_struct
+            return []
+
+        self.running_prefix += c
+
+        if self.running_node is None or c not in self.running_node:
+            self.running_node = None
+            return []
+
+        self.running_node = self.running_node[c]
+
+        result = []
+        stack = [(self.running_node, self.running_prefix)]
+
+        while stack:
+            node, path = stack.pop()
+            if '#' in node:
+                result.append((path, node['#']))
+            for k in node:
+                if k != '#':
+                    stack.append((node[k], path + k))
+
+        # Sort by frequency desc, then lex order
+        result.sort(key=lambda x: (-x[1], x[0]))
+        return [s for s, _ in result[:3]]
+
+```
