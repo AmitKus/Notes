@@ -1322,3 +1322,83 @@ class AutocompleteSystem:
 ```
 
 
+## Word Search II
+
+Solution
+
+Given an `m x n` `board` of characters and a list of strings `words`, return _all words on the board_.
+
+Each word must be constructed from letters of sequentially adjacent cells, where **adjacent cells** are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+
+**Example 1:**
+
+![](attachments/20bdce6d6c73c72bfb213f6ff7fb3b23_MD5.jpg)
+
+**Input:** board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+**Output:** ["eat","oath"]
+
+**Example 2:**
+
+![](attachments/6e13fc60880d43e4985e4e2c7ca4ec9b_MD5.jpg)
+
+**Input:** board = [["a","b"],["c","d"]], words = ["abcb"]
+**Output:** []
+
+#### Solution
+- Without Trie but Time Out Error
+- Store the words in Trie and use that to traverse the board to not repea
+- **Time:** O(m × n × 4^L), where L is the max word length.
+	- Starting with any cell on board mxn
+	- First char: 1 cell
+	- Second char: 4 neighbors
+	- Third char onward: 3 neighbors
+- **Space:** O(k × L) for the Trie (`k` = number of words).
+
+```python
+from typing import List
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = None  # Store complete word at the end node
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+
+        # Step 1: Build Trie from the word list
+        root = TrieNode()
+        for word in words:
+            node = root
+            for char in word:
+                if char not in node.children:
+                    node.children[char] = TrieNode()
+                node = node.children[char]
+            node.word = word  # mark the end of a word
+
+        m, n = len(board), len(board[0])
+        res = []
+        
+        def dfs(i, j, node):
+            if i < 0 or i >= m or j < 0 or j >= n:
+                return
+            char = board[i][j]
+            if char not in node.children:
+                return
+
+            next_node = node.children[char]
+            if next_node.word:
+                res.append(next_node.word)
+                next_node.word = None  # avoid duplicates
+
+            board[i][j] = "#"  # mark visited
+            for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
+                dfs(i + dx, j + dy, next_node)
+            board[i][j] = char  # backtrack          
+        
+        # Step 2: Search from every cell
+        for i in range(m):
+            for j in range(n):
+                dfs(i, j, root)
+
+        return res
+```
