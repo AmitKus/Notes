@@ -1402,3 +1402,52 @@ class Solution:
 
         return res
 ```
+
+
+## Generate Parentheses
+
+Solution
+
+Given `n` pairs of parentheses, write a function to _generate all combinations of well-formed parentheses_.
+
+**Example 1:**
+
+**Input:** n = 3
+**Output:** ["((()))","(()())","(())()","()(())","()()()"]
+
+**Example 2:**
+
+**Input:** n = 1
+**Output:** ["()"]
+
+**Constraints:**
+
+- `1 <= n <= 8`
+
+#### Solution
+- Backtrack: This is very generic
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        
+        res = []
+        def helper_func(path, open_count, close_count):
+            
+            if len(path) == 2*n:
+                res.append(''.join(path))
+                return
+                
+            if open_count < n:
+                path.append('(')
+                helper_func(path, open_count+1, close_count)
+                path.pop()
+                
+            if close_count < open_count:
+                path.append(')')
+                helper_func(path, open_count, close_count+1)
+                path.pop()
+               
+        helper_func([], 0, 0)  
+        return res
+```
