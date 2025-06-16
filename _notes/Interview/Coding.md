@@ -1557,3 +1557,138 @@ class Solution:
         
 ```
 
+## Count Complete Tree Nodes
+
+Solution
+
+Given the `root` of a **complete** binary tree, return the number of the nodes in the tree.
+
+According to **[Wikipedia](http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees)**, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between `1` and `2h` nodes inclusive at the last level `h`.
+
+Design an algorithm that runs in less than `O(n)` time complexity.
+
+
+## 🔢 Given Tree Structure
+
+A complete binary tree built from `[1, 2, 3, 4, 5]` using level-order would look like this:
+
+markdown
+
+CopyEdit
+
+        `1       /   \      2     3     / \       4   5`
+
+- Root = `1`
+    
+- Left subtree of `1`: rooted at `2`, with children `4` and `5`
+    
+- Right subtree of `1`: just `3`, with no children
+    
+
+---
+
+## 🧮 Let's Step Through `countNodes(root)`
+
+We’ll use the optimized version:
+
+python
+
+CopyEdit
+
+`def countNodes(root):     def get_height(node):         height = 0         while node:             height += 1             node = node.left         return height      if not root:         return 0      left_height = get_height(root.left)     right_height = get_height(root.right)      if left_height == right_height:         return (1 << left_height) + countNodes(root.right)     else:         return (1 << right_height) + countNodes(root.left)`
+
+---
+
+### 🟢 First call: `countNodes(1)`
+
+- `left_height = get_height(2)` → follows `2 → 4 → None` → height = `2`
+    
+- `right_height = get_height(3)` → follows `3 → None` → height = `1`
+    
+
+So `left_height ≠ right_height`  
+➡️ Right subtree (3) is a **perfect tree of height 1**
+
+Now apply:
+
+python
+
+CopyEdit
+
+`return (1 << right_height) + countNodes(root.left) = (1 << 1) + countNodes(2) = 2 + ?`
+
+---
+
+### 🟢 Second call: `countNodes(2)`
+
+- `left_height = get_height(4)` → height = 1
+    
+- `right_height = get_height(5)` → height = 1
+    
+
+So `left_height == right_height`  
+➡️ Left subtree is perfect.
+
+python
+
+CopyEdit
+
+`return (1 << left_height) + countNodes(root.right) = (1 << 1) + countNodes(5) = 2 + ?`
+
+---
+
+### 🟢 Third call: `countNodes(5)`
+
+- `left = None`, `right = None`
+    
+- `left_height = 0`, `right_height = 0`
+    
+
+They’re equal → it's a leaf:
+
+python
+
+CopyEdit
+
+`return (1 << 0) + countNodes(None) = 1 + 0 = 1`
+
+---
+
+### 🔄 Backtrack:
+
+- `countNodes(2)` → `2 + 1 = 3`
+    
+- `countNodes(1)` → `2 + 3 = 5`
+    
+
+---
+
+## ✅ Final Result:
+
+**Output:** `5`  
+Which matches the number of nodes in the tree.
+
+```python
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        
+        def get_height(node):
+            height = 0
+            while node:
+                height += 1
+                node = node.left
+            return height
+
+        if root is None:
+            return 0
+        
+        left_height = get_height(root.left)
+        right_height = get_height(root.right)
+        
+        # Left subtree is a perfect tree	2^left_height (left + root)
+        if left_height == right_height:
+            return (1 << left_height) + self.countNodes(root.right)
+        # Right subtree is a perfect tree of smaller height 2^right_height (right + root)
+        else:
+            return (1 << right_height) + self.countNodes(root.left)
+```
