@@ -95,3 +95,50 @@ To the right of 1 there is **0** smaller element.
 - BST for a simple solution but times-out
 
 
+## Android Unlock Patterns
+
+- Solution:
+	- Backtracking
+	- Use ```visited = [False]*10```
+		- Use 1-9 for tracking and leave 0 unused
+	- Symmetry:
+		- Starting from 1 times 4 for all corners
+		- Starting from 2 times 4 for all middle numbers
+		- Starting with 5 times 1 as its unique starting position
+
+```python
+class Solution:
+    def numberOfPatterns(self, m: int, n: int) -> int:
+        
+        # Initialize skips
+        skip = [[0]*10 for _ in range(10)]
+        
+        skip[1][3] = skip[3][1] = 2
+        skip[4][6] = skip[6][4] = 5
+        skip[7][9] = skip[9][7] = 8
+        skip[2][8] = skip[8][2] = 5
+        skip[1][7] = skip[7][1] = 4
+        skip[3][9] = skip[9][3] = 6
+        skip[1][9] = skip[9][1] = 5
+        skip[3][7] = skip[7][3] = 5
+        
+        visited = [False]*10
+        
+        def backtrack(curr: int, length: int) -> int:
+            
+            if length > n:
+                return 0
+            count = 0
+            if length > m:
+                count += 1
+                
+            visited[curr] = True
+            for next in range(1, 10):
+                if not visited[next] and (skip[curr][next] == 0 or visited[skip[curr][next]]):
+                    count += backtrack(next, length + 1)
+            visited[curr] = False
+            return count
+        
+        return (backtrack(1, 1) * 4 + backtrack(2, 1) * 4 + backtrack(5, 1))
+```
+
