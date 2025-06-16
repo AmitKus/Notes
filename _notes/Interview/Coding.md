@@ -1692,3 +1692,51 @@ class Solution:
         else:
             return (1 << right_height) + self.countNodes(root.left)
 ```
+
+
+## Longest Increasing Path in a Matrix
+
+Solution
+
+Given an `m x n` integers `matrix`, return _the length of the longest increasing path in_ `matrix`.
+
+From each cell, you can either move in four directions: left, right, up, or down. You **may not** move **diagonally** or move **outside the boundary** (i.e., wrap-around is not allowed).
+
+**Example 1:**
+
+![](attachments/e53d9a438bcfb58461983349768794e7_MD5.jpg)
+
+**Input:** matrix = [[9,9,4],[6,6,8],[2,1,1]]
+**Output:** 4
+**Explanation:** The longest increasing path is `[1, 2, 6, 9]`.
+
+
+-Solution:
+	- Required @lru_cache(None)
+	- Time: O(mn)
+	- Space: O(mn)
+
+```python
+from functools import lru_cache
+
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        if not matrix or not matrix[0]:
+            return 0
+        
+        m, n = len(matrix), len(matrix[0])
+        
+        @lru_cache(None)
+        def dfs(i, j):
+            val = matrix[i][j]
+            max_len = 1
+            for di, dj in [(-1,0),(1,0),(0,-1),(0,1)]:
+                ni, nj = i + di, j + dj
+                if 0 <= ni < m and 0 <= nj < n and matrix[ni][nj] > val:
+                    max_len = max(max_len, 1 + dfs(ni, nj))
+            return max_len
+        
+        return max(dfs(i, j) for i in range(m) for j in range(n))
+
+```
+
