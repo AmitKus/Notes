@@ -1740,3 +1740,69 @@ class Solution:
 
 ```
 
+## Decode String
+
+Solution
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is being repeated exactly `k` times. Note that `k` is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, `k`. For example, there will not be input like `3a` or `2[4]`.
+
+The test cases are generated so that the length of the output will never exceed `105`.
+
+**Example 1:**
+
+**Input:** s = "3[a]2[bc]"
+**Output:** "aaabcbc"
+
+**Example 2:**
+
+**Input:** s = "3[a2[c]]"
+**Output:** "accaccacc"
+
+- Solution:
+	- num_stack
+	- str_stack
+	- current_str
+- Time: O(n)
+- Space: O(n)
+
+```python
+from collections import deque
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        queue = deque(s)
+        num_stack = []
+        str_stack = []
+        current_str = ''
+        
+        while queue:
+            char = queue.popleft()
+            
+            if char.isdigit():
+                # handle multi-digit numbers
+                num = char
+                while queue and queue[0].isdigit():
+                    num += queue.popleft()
+                num_stack.append(int(num))
+            
+            elif char == '[':
+                # push current_str to stack and reset
+                str_stack.append(current_str)
+                current_str = ''
+                
+            elif char == ']':
+                # build the repeated string
+                prev_str = str_stack.pop()
+                repeat_count = num_stack.pop()
+                current_str = prev_str + current_str * repeat_count
+                
+            else:
+                current_str += char
+                            
+        return current_str
+
+```
