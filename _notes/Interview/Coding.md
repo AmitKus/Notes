@@ -1836,3 +1836,103 @@ note: x is undefined => -1.0
 - N: number of equations, M: number of queries
 - Time: O(M*N)
 - Space: O(N)
+
+
+```python
+from collections import defaultdict
+from typing import List
+
+class Solution:
+    def calcEquation(
+        self, 
+        equations: List[List[str]], 
+        values: List[float], 
+        queries: List[List[str]]
+    ) -> List[float]:
+        
+        graph = defaultdict(dict)
+        
+        # Build bidirectional graph
+        for (a, b), value in zip(equations, values):
+            graph[a][b] = value
+            graph[b][a] = 1 / value
+
+        def dfs(curr: str, target: str, acc_product: float) -> float:
+            if curr == target:
+                return acc_product
+            
+            for neighbor in graph[curr]:
+                if (curr, neighbor) not in visited:
+                    visited.add((curr, neighbor))
+                    result = dfs(neighbor, target, acc_product * graph[curr][neighbor])
+                    visited.remove((curr, neighbor))
+                    if result != -1:
+                        return result
+
+            return -1.0
+
+        results = []
+        for start, end in queries:
+            if start not in graph or end not in graph:
+                results.append(-1.0)
+            else:
+                visited = set()
+                results.append(dfs(start, end, 1.0))
+        
+        return results
+```
+
+
+## Diameter of Binary Tree
+
+Solution
+
+Given the `root` of a binary tree, return _the length of the **diameter** of the tree_.
+
+The **diameter** of a binary tree is the **length** of the longest path between any two nodes in a tree. This path may or may not pass through the `root`.
+
+The **length** of a path between two nodes is represented by the number of edges between them.
+
+**Example 1:**
+
+![](attachments/82ce415ac3c0bda09c060f67c3364798_MD5.jpg)
+
+**Input:** root = [1,2,3,4,5]
+**Output:** 3
+**Explanation:** 3 is the length of the path [4,2,1,3] or [5,2,1,3].
+
+
+- Solution
+	- Compute max of left and right
+	- nonlocal keep track of max_dia
+
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        max_diameter = 0
+
+        def depth(node: Optional[TreeNode]) -> int:
+            nonlocal max_diameter
+            if not node:
+                return 0
+            
+            left_depth = depth(node.left)
+            right_depth = depth(node.right)
+            
+            # Update diameter: longest path through this node
+            max_diameter = max(max_diameter, left_depth + right_depth)
+            
+            # Return height of subtree
+            return 1 + max(left_depth, right_depth)
+        
+        depth(root)
+        return max_diameter
+```
