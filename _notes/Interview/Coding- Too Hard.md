@@ -142,3 +142,32 @@ class Solution:
         return (backtrack(1, 1) * 4 + backtrack(2, 1) * 4 + backtrack(5, 1))
 ```
 
+
+## Cracking the Safe
+
+There is a safe protected by a password. The password is a sequence of `n` digits where each digit can be in the range `[0, k - 1]`.
+
+The safe has a peculiar way of checking the password. When you enter in a sequence, it checks the **most recent** `n` **digits** that were entered each time you type a digit.
+
+- For example, the correct password is `"345"` and you enter in `"012345"`:
+    - After typing `0`, the most recent `3` digits is `"0"`, which is incorrect.
+    - After typing `1`, the most recent `3` digits is `"01"`, which is incorrect.
+    - After typing `2`, the most recent `3` digits is `"012"`, which is incorrect.
+    - After typing `3`, the most recent `3` digits is `"123"`, which is incorrect.
+    - After typing `4`, the most recent `3` digits is `"234"`, which is incorrect.
+    - After typing `5`, the most recent `3` digits is `"345"`, which is correct and the safe unlocks.
+
+Return _any string of **minimum length** that will unlock the safe **at some point** of entering it_.
+
+**Background**:
+- De Bruijn Sequence: size n (digits) and base k (0...k-1)
+	- n = 2, k =2
+		- 00, 01, 11, 10
+**Algo**:
+	- Use graph
+	- Nodes are the n possible substring (00, 01, 10)
+	- Edges only when last n-1 digits append with (0,k-1) transform Node A to Node B
+	- Building all combinations:
+		- '0', '1'
+		- '00', '01', '10', '11'
+	- 
