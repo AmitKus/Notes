@@ -169,5 +169,45 @@ Return _any string of **minimum length** that will unlock the safe **at some
 	- Edges only when last n-1 digits append with (0,k-1) transform Node A to Node B
 	- Building all combinations:
 		- '0', '1'
-		- '00', '01', '10', '11'
-	- 
+		- graph['0'] = ['0','1']
+		- graph['1'] = ['0','1']
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def crackSafe(self, n: int, k: int) -> str:
+
+        def all_combinations(n, k):
+            digits = [str(i) for i in range(k)]
+            results = ['']
+            for _ in range(n):
+                next_results = []
+                for prefix in results:
+                    for d in digits:
+                        next_results.append(prefix + d)
+                results = next_results
+            return results
+
+        # nodes are length n - 1
+        nodes = all_combinations(n - 1, k)
+
+        graph = defaultdict(list)
+        for node in nodes:
+            for d in range(k):
+                graph[node].append(str(d))
+
+        res = []
+        def dfs(node):
+            while graph[node]:
+                digit = graph[node].pop()
+                next_node = node[1:] + digit
+                dfs(next_node)
+                res.append(digit)  # append AFTER recursion (post-order)
+
+        start = '0' * (n - 1)
+        dfs(start)
+
+        return start + ''.join(reversed(res))
+
+```
