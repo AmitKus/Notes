@@ -212,3 +212,54 @@ class Solution:
 
 ```
 
+## [Robot Room Cleaner](https://leetcode.com/problems/robot-room-cleaner/)
+
+Solved
+
+Hard
+
+Topics
+
+![conpanies icon](attachments/4b834bdc05b266826a5de87b0fefe59c_MD5.svg)Companies
+
+You are controlling a robot that is located somewhere in a room. The room is modeled as an `m x n` binary grid where `0` represents a wall and `1` represents an empty slot.
+
+The robot starts at an unknown location in the room that is guaranteed to be empty, and you do not have access to the grid, but you can move the robot using the given API `Robot`.
+
+You are tasked to use the robot to clean the entire room (i.e., clean every empty cell in the room). The robot with the four given APIs can move forward, turn left, or turn right. Each turn is `90` degrees.
+
+When the robot tries to move into a wall cell, its bumper sensor detects the obstacle, and it stays on the current cell.
+
+Design an algorithm to clean the entire room using the following APIs:
+
+```python
+class Solution:
+    def cleanRoom(self, robot):
+        visited = set()
+        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # up, right, down, left
+
+        def go_back():
+            robot.turnLeft()
+            robot.turnLeft()
+            robot.move()
+            robot.turnLeft()
+            robot.turnLeft()
+
+        def dfs(x, y, d):
+            robot.clean()
+            visited.add((x, y))
+
+            for i in range(4):
+                new_d = (d + i) % 4
+                dx, dy = directions[new_d]
+                nx, ny = x + dx, y + dy
+
+                if (nx, ny) not in visited:
+                    if robot.move():
+                        dfs(nx, ny, new_d)
+                        go_back()
+                robot.turnRight()
+
+        dfs(0, 0, 0)
+
+```
