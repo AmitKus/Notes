@@ -1936,3 +1936,4 @@ class Solution:
         depth(root)
         return max_diameter
 ```
+
