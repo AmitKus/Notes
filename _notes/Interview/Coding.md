@@ -1937,3 +1937,66 @@ class Solution:
         return max_diameter
 ```
 
+
+
+## Most Stones Removed with Same Row or Column
+
+Solution
+
+On a 2D plane, we place `n` stones at some integer coordinate points. Each coordinate point may have at most one stone.
+
+A stone can be removed if it shares either **the same row or the same column** as another stone that has not been removed.
+
+Given an array `stones` of length `n` where `stones[i] = [xi, yi]` represents the location of the `ith` stone, return _the largest possible number of stones that can be removed_.
+
+**Example 1:**
+
+**Input:** stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]
+**Output:** 5
+**Explanation:** One way to remove 5 stones is as follows:
+1. Remove stone [2,2] because it shares the same row as [2,1].
+2. Remove stone [2,1] because it shares the same column as [0,1].
+3. Remove stone [1,2] because it shares the same row as [1,0].
+4. Remove stone [1,0] because it shares the same column as [0,0].
+5. Remove stone [0,1] because it shares the same row as [0,0].
+Stone [0,0] cannot be removed since it does not share a row/column with another stone still on the plane.
+
+
+Solution:
+- Like the connected island problem.
+- Count the number of connected components and in each component we will have one stone left.
+
+
+```python
+from collections import defaultdict, deque
+from typing import List
+
+class Solution:
+    def removeStones(self, stones: List[List[int]]) -> int:
+        graph = defaultdict(list)
+        for i, j in stones:
+            for m, n in stones:
+                if (i == m or j == n) and (i != m or j != n):
+                    graph[(i, j)].append((m, n))
+        
+        visited = set()
+
+        def bfs(start):
+            queue = deque([start])
+            visited.add(start)
+            while queue:
+                node = queue.popleft()
+                for neighbor in graph[node]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append(neighbor)
+
+        components = 0
+        for stone in stones:
+            node = tuple(stone)
+            if node not in visited:
+                bfs(node)
+                components += 1
+
+        return len(stones) - components
+```
