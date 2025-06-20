@@ -263,3 +263,51 @@ class Solution:
         dfs(0, 0, 0)
 
 ```
+
+##   Minimum Cost to Hire K Workers
+
+
+
+There are `n` workers. You are given two integer arrays `quality` and `wage` where `quality[i]` is the quality of the `ith` worker and `wage[i]` is the minimum wage expectation for the `ith` worker.
+
+We want to hire exactly `k` workers to form a **paid group**. To hire a group of `k` workers, we must pay them according to the following rules:
+
+1. Every worker in the paid group must be paid at least their minimum wage expectation.
+2. In the group, each worker's pay must be directly proportional to their quality. This means if a worker’s quality is double that of another worker in the group, then they must be paid twice as much as the other worker.
+
+Given the integer `k`, return _the least amount of money needed to form a paid group satisfying the above conditions_. Answers within `10-5` of the actual answer will be accepted.
+
+**Example 1:**
+
+**Input:** quality = [10,20,5], wage = [70,50,30], k = 2
+**Output:** 105.00000
+**Explanation:** We pay 70 to 0th worker and 35 to 2nd worker.
+
+
+Solution: First sort by cost/quality and use heap to keep track of min cost
+- Ratio increasing in the loop so need to minimize total quality using heap (pop the largest)
+
+```python
+class Solution:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
+        
+        wage_per_quality = [w/q for (w,q) in zip(wage, quality)]
+        
+        sorted_quality = sorted(zip(wage_per_quality, quality))
+        
+        heap = []
+        min_cost = float(inf)
+        total_quality = 0
+        for ratio, q in sorted_quality:
+            heapq.heappush(heap, -q)
+            total_quality += q
+            
+            if len(heap) > k:
+                total_quality += heapq.heappop(heap)
+        
+            if len(heap) == k:
+                min_cost = min(min_cost, total_quality*ratio)
+                
+        return min_cost
+```
+
