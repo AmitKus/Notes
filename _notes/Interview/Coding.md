@@ -2050,3 +2050,91 @@ class Solution:
         
         return s
 ```
+
+## Merge k Sorted Lists
+
+Solution
+
+You are given an array of `k` linked-lists `lists`, each linked-list is sorted in ascending order.
+
+_Merge all the linked-lists into one sorted linked-list and return it._
+
+**Example 1:**
+
+**Input:** lists = [[1,4,5],[1,3,4],[2,6]]
+**Output:** [1,1,2,3,4,4,5,6]
+**Explanation:** The linked-lists are:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+merging them into one sorted list:
+1->1->2->3->4->4->5->6
+
+- Solution:
+	- Poor O (N*k)
+
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
+        n = len(lists)
+        
+        if n == 1:
+            return lists[0]
+        
+        dummy = ListNode()
+        current = dummy
+        while True:
+            
+            min_list = -1
+            min_val = float('inf')
+            for ind in range(n):
+                if lists[ind] and (lists[ind].val < min_val):
+                    min_val = lists[ind].val
+                    min_list = ind
+            
+            if min_list == -1:
+                break
+            current.next = lists[min_list]
+            current = current.next
+            lists[min_list] = lists[min_list].next
+        
+        return dummy.next
+```
+
+Use heaqpq for optimal implementation: $O(N*log(K))$
+
+```python
+import heapq
+from typing import Optional, List
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
+
+        heap = []
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+
+        dummy = ListNode()
+        current = dummy
+
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            current.next = node
+            current = current.next
+            if node.next:
+                heapq.heappush(heap, (node.next.val, i, node.next))
+
+        return dummy.next
+```
