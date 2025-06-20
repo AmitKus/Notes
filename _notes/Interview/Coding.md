@@ -2138,3 +2138,115 @@ class Solution:
 
         return dummy.next
 ```
+
+
+## Trapping Rain Water
+
+Solution
+
+Given `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it can trap after raining.
+
+**Example 1:**
+
+![](attachments/d47f1dad93855b8b478c489a555beb28_MD5.png)
+
+**Input:** height = [0,1,0,2,1,0,1,3,2,1,2,1]
+**Output:** 6
+**Explanation:** The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+
+Solution: left_max and right_max computation
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        
+        n = len(height)
+        
+        left_max = [0]*n
+        right_max = [0]*n
+        
+        left_val = 0
+        for i in range(n):
+            left_val = max(left_val, height[i])
+            left_max[i] = left_val
+
+        right_val = 0
+        for i in range(n-1, -1, -1):
+            right_val = max(right_val, height[i])
+            right_max[i] = right_val
+
+                
+        fill = 0
+        for i in range(n):
+            fill += max(min(left_max[i],right_max[i])-height[i],0)
+        
+        return fill
+            
+            
+        
+```
+
+
+## Kth Largest Element in an Array
+
+Solution
+
+Given an integer array `nums` and an integer `k`, return _the_ `kth` _largest element in the array_.
+
+Note that it is the `kth` largest element in the sorted order, not the `kth` distinct element.
+
+Can you solve it without sorting?
+
+**Example 1:**
+
+**Input:** nums = [3,2,1,5,6,4], k = 2
+**Output:** 5
+
+Solution:
+- O(N log(k))
+
+
+## Meeting Rooms II
+
+Solution
+
+Given an array of meeting time intervals `intervals` where `intervals[i] = [starti, endi]`, return _the minimum number of conference rooms required_.
+
+**Example 1:**
+
+**Input:** intervals = [[0,30],[5,10],[15,20]]
+**Output:** 2
+
+**Example 2:**
+
+**Input:** intervals = [[7,10],[2,4]]
+**Output:** 1
+
+
+Solution:
+- Kepp heap of end times of active meetings in room
+
+
+```python
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        
+        if len(intervals) < 1:
+            return len(intervals)
+        
+        intervals = sorted(intervals, key=lambda x:x[-0])
+        
+        heap = []
+        
+        heapq.heappush(heap, intervals[0][1])
+        
+        for st,en in intervals[1:]:
+            
+            if st >= heap[0]:
+                heapq.heappop(heap)
+                
+            heapq.heappush(heap, en)
+            
+        return len(heap)
+```
+
