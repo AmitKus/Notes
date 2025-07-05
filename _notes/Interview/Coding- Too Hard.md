@@ -326,3 +326,45 @@ A starting index is **good** if, starting from that index, you can reach the e
 
 Return _the number of **good** starting indices_.
 
+
+
+```python
+from typing import List
+
+class Solution:
+    def oddEvenJumps(self, arr: List[int]) -> int:
+        n = len(arr)
+
+        # Step 1: Build jump targets using a monotonic stack
+        def build_next(pairs):
+            result = [-1] * n
+            stack = []
+            for i, _ in pairs:
+                while stack and stack[-1] < i:
+                    result[stack.pop()] = i
+                stack.append(i)
+            return result
+
+        # Sort for odd jumps: increasing value, then increasing index
+        arr1 = sorted(enumerate(arr), key=lambda x: (x[1], x[0]))
+        # Sort for even jumps: decreasing value, then increasing index
+        arr2 = sorted(enumerate(arr), key=lambda x: (-x[1], x[0]))
+
+        odd_next = build_next(arr1)
+        even_next = build_next(arr2)
+
+        # Step 2: DP arrays
+        odd = [False] * n
+        even = [False] * n
+        odd[-1] = even[-1] = True  # You can always reach the end from the end
+
+        for i in range(n - 2, -1, -1):
+            if odd_next[i] != -1:
+                odd[i] = even[odd_next[i]]
+            if even_next[i] != -1:
+                even[i] = odd[even_next[i]]
+
+        # Step 3: Count good starting indices (starting with odd jump)
+        return sum(odd)
+
+```
