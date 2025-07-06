@@ -172,3 +172,98 @@ class Solution:
         return helper(root, -float('inf'), float('inf'))
 
 ```
+
+
+## Encode and Decode Strings
+
+Medium
+
+Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+
+Please implement `encode` and `decode`
+
+**Example 1:**
+
+```java
+Input: ["neet","code","love","you"]
+
+Output:["neet","code","love","you"]
+```
+
+### Solution
+- Append len(strs) in the string with ':' for identification
+	- 4:code
+	- : helps with > 1 digit lengths
+- During decode:
+	- loop over all string i
+	- use j to extract strings
+
+
+
+
+```python
+class Codec:
+
+    def encode(self, strs: List[str]) -> str:
+        # Use length + ':' + string as the encoding format
+        return ''.join(f'{len(s)}:{s}' for s in strs)
+
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        while i < len(s):
+            # Find the colon separator to extract the length
+            j = i
+            while s[j] != ':':
+                j += 1
+            length = int(s[i:j])
+            j += 1  # move past ':'
+            res.append(s[j:j+length])
+            i = j + length
+        return res
+
+```
+
+
+## Kth Smallest Integer in BST
+
+Solved 
+
+Medium
+
+Given the `root` of a binary search tree, and an integer `k`, return the `kth` smallest value (**1-indexed**) in the tree.
+
+A **binary search tree** satisfies the following constraints:
+
+- The left subtree of every node contains only nodes with keys **less than** the node's key.
+- The right subtree of every node contains only nodes with keys **greater than** the node's key.
+- Both the left and right subtrees are also binary search trees.
+
+**Example 1:**
+
+![](attachments/7d028b26c23a5345f5901feb772d7f15_MD5.png)
+
+
+### Solution:
+- BST is sorted so start from the left and keep the count
+
+
+```python
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        self.count = 0
+        self.result = None
+        
+        def inorder(node):
+            if not node or self.result is not None:
+                return
+            inorder(node.left)
+            self.count += 1
+            if self.count == k:
+                self.result = node.val
+                return
+            inorder(node.right)
+        
+        inorder(root)
+        return self.result
+```
