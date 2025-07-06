@@ -60,7 +60,7 @@ class Solution:
             first, second = tmp1, tmp2
 ```
 
-## # Sum of Two Integers
+## Sum of Two Integers
 
 Medium
 
@@ -125,5 +125,50 @@ def getSum(a, b):
         b = carry              # prepare next carry
 
     return a
+
+```
+
+
+## Valid Binary Search Tree
+
+Solved 
+
+Medium
+
+Given the `root` of a binary tree, return `true` if it is a **valid binary search tree**, otherwise return `false`.
+
+A **valid binary search tree** satisfies the following constraints:
+
+- The left subtree of every node contains only nodes with keys **less than** the node's key.
+- The right subtree of every node contains only nodes with keys **greater than** the node's key.
+- Both the left and right subtrees are also binary search trees.
+
+**Example 1:**
+
+![](attachments/7d028b26c23a5345f5901feb772d7f15_MD5.png)
+
+```java
+Input: root = [2,1,3]
+
+Output: true
+```
+
+### Solution
+
+![](attachments/84d762e7fbc0776a3b87ef29edf33065_MD5.jpeg)
+
+```python
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def helper(node, minval, maxval):
+            if not node:
+                return True
+            if not (minval < node.val < maxval):
+                return False
+            return (
+                helper(node.left, minval, node.val) and
+                helper(node.right, node.val, maxval)
+            )
+        return helper(root, -float('inf'), float('inf'))
 
 ```
