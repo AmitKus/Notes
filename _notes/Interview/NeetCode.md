@@ -59,3 +59,71 @@ class Solution:
             second.next = tmp1
             first, second = tmp1, tmp2
 ```
+
+## # Sum of Two Integers
+
+Medium
+
+Given two integers `a` and `b`, return the sum of the two integers without using the `+` and `-` operators.
+
+**Example 1:**
+
+```java
+Input: a = 1, b = 1
+
+Output: 2
+```
+
+
+### Step 1: Sum without carry = XOR (`a ^ b`)
+
+Example:
+
+makefile
+
+CopyEdit
+
+`a = 5 (0101) b = 3 (0011) a ^ b = 6 (0110)  # sum bits without carry`
+
+---
+
+### Step 2: Calculate carry = AND (`a & b`), then shift left (`<< 1`)
+
+makefile
+
+CopyEdit
+
+`a = 5 (0101) b = 3 (0011) a & b = 1 (0001) carry = 1 << 1 = 2 (0010)  # carry bits to add in the next step`
+
+---
+
+### Step 3: Repeat the addition with sum and carry
+
+Now add:
+
+- `sum_without_carry = a ^ b`
+    
+- `carry` (shifted AND)
+    
+
+Apply again:
+
+- `a = sum_without_carry`
+    
+- `b = carry`
+    
+
+Repeat the process until carry (`b`) becomes zero.
+
+
+
+```python
+def getSum(a, b):
+    while b != 0:
+        carry = (a & b) << 1   # calculate carry
+        a = a ^ b              # sum without carry
+        b = carry              # prepare next carry
+
+    return a
+
+```
