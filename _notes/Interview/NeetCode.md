@@ -267,3 +267,97 @@ class Solution:
         inorder(root)
         return self.result
 ```
+
+## Subtree of Another Tree
+
+Solved 
+
+Easy
+
+Given the roots of two binary trees `root` and `subRoot`, return `true` if there is a subtree of `root` with the same structure and node values of `subRoot` and `false` otherwise.
+
+A subtree of a binary tree `tree` is a tree that consists of a node in `tree` and all of this node's descendants. The tree `tree` could also be considered as a subtree of itself.
+
+**Example 1:**
+
+![](attachments/0b086daa86bb5df6bc488d75f51ff9bc_MD5.png)
+
+```java
+Input: root = [1,2,3,4,5], subRoot = [2,4,5]
+
+Output: true
+```
+
+Copy
+
+**Example 2:**
+
+![](attachments/b2778ed2a6a1a1881ccae60d6e051b32_MD5.png)
+
+```java
+Input: root = [1,2,3,4,5,null,null,6], subRoot = [2,4,5]
+
+Output: false
+```
+
+### Solution:
+- Pay attention to the second example False. It has to match exactly
+
+```python
+class Solution:   
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        if not root:
+            return False
+
+        if self.isequal(root, subRoot):
+            return True
+
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    
+    def isequal(self, root1, root2):
+        if not root1 and not root2:
+            return True
+        if not root1 or not root2:
+            return False
+
+        return (root1.val == root2.val and 
+                self.isequal(root1.left, root2.left) and 
+                self.isequal(root1.right, root2.right))
+```
+
+
+# # House Robber II
+
+Solved 
+
+Medium
+
+You are given an integer array `nums` where `nums[i]` represents the amount of money the `i`th house has. The houses are arranged in a circle, i.e. the first house and the last house are neighbors.
+
+You are planning to rob money from the houses, but you cannot rob **two adjacent houses** because the security system will automatically alert the police if two adjacent houses were _both_ broken into.
+
+Return the _maximum_ amount of money you can rob **without** alerting the police.
+
+**Example 1:**
+
+```java
+Input: nums = [3,4,3]
+
+Output: 4
+```
+
+Copy
+
+Explanation: You cannot rob `nums[0] + nums[2] = 6` because `nums[0]` and `nums[2]` are adjacent houses. The maximum you can rob is `nums[1] = 4`.
+
+**Example 2:**
+
+```java
+Input: nums = [2,9,8,3,6]
+
+Output: 15
+```
+
+### Solution
+
+![](attachments/3929b85d7f7d5dc886eb06aab985f47f_MD5.jpeg)
