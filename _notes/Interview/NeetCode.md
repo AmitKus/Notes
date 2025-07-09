@@ -361,3 +361,65 @@ Output: 15
 ### Solution
 
 ![](attachments/3929b85d7f7d5dc886eb06aab985f47f_MD5.jpeg)
+
+# ## Word Break
+
+Solved 
+
+Medium
+
+Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of dictionary words.
+
+You are allowed to reuse words in the dictionary an unlimited number of times. You may assume all dictionary words are unique.
+
+**Example 1:**
+
+```java
+Input: s = "neetcode", wordDict = ["neet","code"]
+
+Output: true
+```
+
+Copy
+
+Explanation: Return true because "neetcode" can be split into "neet" and "code".
+
+**Example 2:**
+
+```java
+Input: s = "applepenapple", wordDict = ["apple","pen","ape"]
+
+Output: true
+```
+
+### Solution
+- list to set for efficient lookup
+- Complexity:
+	- Time: O(m*n*k)
+		- sub_str.startswith(word) -> k
+		- m -> len(wordDict)
+		- n -> len(s)
+	- Space: O(n) + O($sum$ len(wordDict))
+
+
+```python
+from functools import lru_cache
+from typing import List
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        word_set = set(wordDict)
+
+        @lru_cache(maxsize=None)
+        def can_break(sub_str: str) -> bool:
+            if not sub_str:
+                return True
+
+            for word in word_set:
+                if sub_str.startswith(word) and can_break(sub_str[len(word):]):
+                    return True
+            return False
+
+        return can_break(s)
+
+```
