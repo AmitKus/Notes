@@ -493,3 +493,58 @@ class Solution:
 
 ### Trie implementation
 
+- Complexity:
+	- Time: O(WXL +MXNX4^L)
+	- Space: O(WXL + T + M X N)
+
+```python
+from functools import lru_cache
+from typing import List
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        m = len(board)
+        n = len(board[0])
+        words = set(words)
+
+        if m == 0 or n == 0 or len(words) == 0:
+            return []
+
+        # Create a trie data structure
+        head = {}
+        for w in words:
+            node = head
+            for c in w:
+                if c not in node:
+                    node[c] = {}
+                node = node[c]
+            node['end'] = True
+
+        res = set()
+
+        def dfs(i, j, node, path, visited):
+            if 'end' in node:
+                res.add(path)
+            
+            visited.add((i, j))
+
+            for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                ni, nj = i + di, j + dj
+
+                if 0 <= ni < m and 0 <= nj < n and (ni, nj) not in visited:
+                    c = board[ni][nj]
+                    if c in node:
+                        dfs(ni, nj, node[c], path + c, visited)
+            
+            visited.remove((i, j))
+
+        for i in range(m):
+            for j in range(n):
+                c = board[i][j]
+                if c in head:
+                    dfs(i, j, head[c], c, set([(i, j)]))
+        
+        return list(res)
+
+```
