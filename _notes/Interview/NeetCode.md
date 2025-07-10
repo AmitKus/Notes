@@ -423,3 +423,73 @@ class Solution:
         return can_break(s)
 
 ```
+
+
+#
+
+
+### Solution
+- Without the trie implementation
+- Time complexity:
+	- W = #words
+	- M x N = board size
+	- L: maximum lenght of word in words
+	- DFS of L: O(4^L)
+	- Total complexity: O(W x 4^L X M X N)
+- Space complexity:
+	- O(MXNXL)
+
+```python
+from collections import defaultdict
+from typing import List
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        m, n = len(board), len(board[0])
+        words = set(words)
+
+        if m == 0 or n == 0 or not words:
+            return []
+
+        def wordExists(word: str, loc: tuple, visited: set) -> bool:
+            if not word:
+                return True
+
+            i, j = loc
+            if board[i][j] != word[0]:
+                return False
+
+            if len(word) == 1:
+                return True
+
+            for di, dj in [(-1,0), (1,0), (0,-1), (0,1)]:
+                ni, nj = i + di, j + dj
+                new_loc = (ni, nj)
+
+                if 0 <= ni < m and 0 <= nj < n and new_loc not in visited:
+                    visited.add(new_loc)
+                    if wordExists(word[1:], new_loc, visited):
+                        return True
+                    visited.remove(new_loc)
+
+            return False
+
+        board_dict = defaultdict(list)
+        for i in range(m):
+            for j in range(n):
+                board_dict[board[i][j]].append((i, j))
+
+        words_found = []
+        for w in words:
+            for loc in board_dict[w[0]]:
+                visited = set([loc])
+                if wordExists(w, loc, visited):
+                    words_found.append(w)
+                    break
+
+        return words_found
+
+```
+
+### Trie implementation
+
