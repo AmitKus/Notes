@@ -548,3 +548,88 @@ class Solution:
         return list(res)
 
 ```
+
+
+## Find Median From Data Stream
+
+Solved 
+
+Hard
+
+The **[median](https://en.wikipedia.org/wiki/Median)** is the middle value in a sorted list of integers. For lists of _even_ length, there is no middle value, so the median is the [mean](https://en.wikipedia.org/wiki/Mean) of the two middle values.
+
+For example:
+
+- For `arr = [1,2,3]`, the median is `2`.
+- For `arr = [1,2]`, the median is `(1 + 2) / 2 = 1.5`
+
+### Solved
+- Use two min heap
+
+```python
+import heapq
+
+class MedianFinder:
+
+    def __init__(self):
+        # Lower half (max-heap via negation) and upper half (min-heap)
+        self.nums_lower_half = []
+        self.nums_upper_half = []
+        self.total_length = 0
+
+    def addNum(self, num: int) -> None:
+        # Decide which heap to push into
+        if self.total_length == 0 or num >= self.nums_upper_half[0]:
+            heapq.heappush(self.nums_upper_half, num)
+        else:
+            heapq.heappush(self.nums_lower_half, -num)
+
+        self.total_length += 1
+
+        # Balance the heaps to maintain invariant:
+        # len(lower) == len(upper) or len(lower) == len(upper) + 1
+        while len(self.nums_lower_half) > self.total_length // 2:
+            heapq.heappush(self.nums_upper_half, -heapq.heappop(self.nums_lower_half))
+        while len(self.nums_lower_half) < self.total_length // 2:
+            heapq.heappush(self.nums_lower_half, -heapq.heappop(self.nums_upper_half))
+
+    def findMedian(self) -> float:
+        if self.total_length % 2 == 0:
+            return 0.5 * (-self.nums_lower_half[0] + self.nums_upper_half[0])
+        else:
+            return self.nums_upper_half[0]
+
+```
+
+### Cleaner version
+- Always push on the lower and keep lower larger
+
+```python
+import heapq
+
+class MedianFinder:
+
+    def __init__(self):
+        # Max-heap for the lower half (stored as negated values)
+        self.lower = []
+        # Min-heap for the upper half
+        self.upper = []
+
+    def addNum(self, num: int) -> None:
+        # Always push to lower first (as max-heap)
+        heapq.heappush(self.lower, -num)
+
+        # Balance: move the max of lower to upper
+        heapq.heappush(self.upper, -heapq.heappop(self.lower))
+
+        # Maintain size invariant: lower can have one more element than upper
+        if len(self.upper) > len(self.lower):
+            heapq.heappush(self.lower, -heapq.heappop(self.upper))
+
+    def findMedian(self) -> float:
+        if len(self.lower) > len(self.upper):
+            return -self.lower[0]
+        else:
+            return (-self.lower[0] + self.upper[0]) / 2
+
+```
