@@ -633,3 +633,71 @@ class MedianFinder:
             return (-self.lower[0] + self.upper[0]) / 2
 
 ```
+
+## [Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/)
+
+Design a data structure that supports adding new words and finding if a string matches any previously added string.
+
+Implement the `WordDictionary` class:
+
+- `WordDictionary()` Initializes the object.
+- `void addWord(word)` Adds `word` to the data structure, it can be matched later.
+- `bool search(word)` Returns `true` if there is any string in the data structure that matches `word` or `false` otherwise. `word` may contain dots `'.'` where dots can be matched with any letter.
+
+**Example:**
+
+**Input**
+["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+**Output**
+[null,null,null,null,false,true,true,true] 
+
+### Solution
+- Trie data structure
+### ✅ Summary Table
+
+|Operation|Time Complexity|Space Complexity|
+|---|---|---|
+|`addWord(L)`|O(L)|O(L) per new word|
+|`search(L)`|O(26^d) worst, O(L) best|O(N) for memoization|
+
+```python
+class WordDictionary:
+
+    def __init__(self):
+        self.trie_struct = {}   
+        self.memory = {}  
+
+    def addWord(self, word: str) -> None:
+        node = self.trie_struct
+        for c in word:
+            if c not in node:
+                node[c] = {}
+            node = node[c]    
+        node['end'] = True
+        self.memory = {}
+
+    def search(self, word: str) -> bool:
+
+        def word_exists(node, ind: int) -> bool:
+            if not node or node is True: #when node['end'] comes in
+                return False
+
+            if ind == len(word):
+                return 'end' in node
+
+            if word[ind] in node:
+                return word_exists(node[word[ind]], ind + 1)
+            
+            if word[ind] == '.':
+                return any(word_exists(node[c], ind + 1) for c in node)
+
+            return False
+
+        if word in self.memory:
+            return self.memory[word]
+        else:
+            self.memory[word] = word_exists(self.trie_struct, 0)
+            return self.memory[word]
+
+```
