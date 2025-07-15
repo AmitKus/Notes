@@ -732,3 +732,34 @@ class Solution:
 
         return invert(root)
 ```
+
+# Rotate Image
+
+Solved 
+
+Medium
+
+Given a square `n x n` matrix of integers `matrix`, rotate it by 90 degrees _clockwise_.
+
+You must rotate the matrix _in-place_. Do not allocate another 2D matrix and do the rotation.
+
+**Example 1:**
+
+![](attachments/26097c4a98b914e6f16fe407d97d4656_MD5.png)
+
+
+### Solution:
+- Rotation clockwise spirally: start with top and keep going down. The number of elements will decrease as we go down
+
+```python
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+
+        for depth in range(n // 2):
+            for i in range(n - 1 - 2 * depth):
+                tmp, matrix[i+depth][n-1-depth] = matrix[i+depth][n-1-depth], matrix[depth][i+depth]
+                tmp, matrix[n-1-depth][n-1-i-depth] = matrix[n-1-depth][n-1-i-depth], tmp
+                tmp, matrix[n-1-i-depth][depth] = matrix[n-1-i-depth][depth], tmp
+                matrix[depth][i+depth] = tmp
+```
