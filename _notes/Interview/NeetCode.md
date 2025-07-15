@@ -763,3 +763,18 @@ class Solution:
                 tmp, matrix[n-1-i-depth][depth] = matrix[n-1-i-depth][depth], tmp
                 matrix[depth][i+depth] = tmp
 ```
+
+
+
+## # Number of Islands
+
+Solved 
+
+Medium
+
+Given a 2D grid `grid` where `'1'` represents land and `'0'` represents water, count and return the number of islands.
+
+An **island** is formed by connecting adjacent lands horizontally or vertically and is surrounded by water. You may assume water is surrounding the grid (i.e., all the edges are water).
+
+### Solution:
+- Keep track using visited
