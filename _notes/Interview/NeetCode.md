@@ -777,4 +777,100 @@ Given a 2D grid `grid` where `'1'` represents land and `'0'` represents wa
 An **island** is formed by connecting adjacent lands horizontally or vertically and is surrounded by water. You may assume water is surrounding the grid (i.e., all the edges are water).
 
 ### Solution:
-- Keep track using visited
+- Option1: Keep track using visited and traverse
+- Option2: Update grid itself
+
+
+
+
+```python
+from typing import List
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+
+        def traverse_island(i: int, j: int):
+            for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                ni, nj = i + di, j + dj
+                if 0 <= ni < m and 0 <= nj < n and grid[ni][nj] == '1':
+                    grid[ni][nj] = '0'
+                    traverse_island(ni, nj)
+
+        num_islands = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    grid[i][j] = '0'
+                    traverse_island(i, j)
+                    num_islands += 1
+
+        return num_islands
+
+```
+
+```python
+from typing import List, Set, Tuple
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+
+        def traverse_island(i: int, j: int, visited: Set[Tuple[int, int]]):
+            for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                ni, nj = i + di, j + dj
+                if (
+                    0 <= ni < m and
+                    0 <= nj < n and
+                    (ni, nj) not in visited and
+                    grid[ni][nj] == '1'
+                ):
+                    visited.add((ni, nj))
+                    traverse_island(ni, nj, visited)
+
+        num_islands = 0
+        visited = set()
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1' and (i, j) not in visited:
+                    visited.add((i, j))
+                    traverse_island(i, j, visited)
+                    num_islands += 1
+
+        return num_islands
+
+```
+
+
+```python [stack approach]
+from typing import List
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+
+        def traverse_island(i: int, j: int):
+            stack = [(i, j)]
+            while stack:
+                ci, cj = stack.pop()
+                for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                    ni, nj = ci + di, cj + dj
+                    if 0 <= ni < m and 0 <= nj < n and grid[ni][nj] == '1':
+                        grid[ni][nj] = '0'
+                        stack.append((ni, nj))
+
+        num_islands = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    grid[i][j] = '0'
+                    traverse_island(i, j)
+                    num_islands += 1
+
+        return num_islands
+
+```
