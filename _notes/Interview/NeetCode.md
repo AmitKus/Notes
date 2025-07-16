@@ -874,3 +874,72 @@ class Solution:
         return num_islands
 
 ```
+
+
+## # Graph Valid Tree
+
+Solved 
+
+Medium
+
+Given `n` nodes labeled from `0` to `n - 1` and a list of **undirected** edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.
+
+**Example 1:**
+
+```java
+Input:
+n = 5
+edges = [[0, 1], [0, 2], [0, 3], [1, 4]]
+
+Output:
+true
+```
+
+Copy
+
+**Example 2:**
+
+```java
+Input:
+n = 5
+edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]
+
+Output:
+false
+```
+
+### Solution:
+- n-1 edges for n nodes and all nodes reachable
+- No need to check for cycles because of first condition
+- Complexity:
+	- Time: O(nodes)
+	- Space: 
+		- adj_matrix: O(edges) ~ O(nodes)
+		- queue: O(nodes)
+
+```python
+from collections import defaultdict, deque
+from typing import List
+
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        if len(edges) != n - 1:
+            return False
+
+        adj_matrix = defaultdict(list)
+        for u, v in edges:
+            adj_matrix[u].append(v)
+            adj_matrix[v].append(u)
+
+        visited = {0}
+        q = deque([0])
+        while q:
+            node = q.popleft()
+            for neighbor in adj_matrix[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    q.append(neighbor)
+
+        return len(visited) == n
+
+```
