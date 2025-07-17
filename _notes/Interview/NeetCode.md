@@ -967,3 +967,70 @@ Input: head = [1,2,3,4], index = 1
 Output: true
 ```
 
+
+## # Meeting Rooms II
+
+Solved 
+
+Medium
+
+Given an array of meeting time interval objects consisting of start and end times `[[start_1,end_1],[start_2,end_2],...] (start_i < end_i)`, find the minimum number of days required to schedule all meetings without any conflicts.
+
+**Note:** (0,8),(8,10) is not considered a conflict at 8.
+
+**Example 1:**
+
+```java
+Input: intervals = [(0,40),(5,10),(15,20)]
+
+Output: 2
+```
+
+Copy
+
+Explanation:  
+day1: (0,40)  
+day2: (5,10),(15,20)
+
+**Example 2:**
+
+```java
+Input: intervals = [(4,9)]
+
+Output: 1
+```
+
+
+
+### Solution:
+- Iterate through meetings based on starting time and keep a heap of en times.
+- Pop the meeting where the new meetings start time is larger than end times of meeting in the heap
+- Complexity:
+	- Time: Min heap O(Nlog(N)) -- sorting, min-heap push
+	- Space: O(N)
+
+```python
+import heapq
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[Interval]) -> int:
+        
+        if not intervals:
+            return 0
+
+        intervals = sorted(intervals, key=lambda x: x.start)
+        queue = []
+        min_room = 0
+
+        for interval in intervals:
+            st = interval.start
+            en = interval.end
+
+            while queue and queue[0] <= st:
+                heapq.heappop(queue)
+
+            heapq.heappush(queue, en)
+            min_room = max(min_room, len(queue))
+
+        return min_room
+```
