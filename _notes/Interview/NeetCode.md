@@ -1119,3 +1119,59 @@ class Solution:
                     return res
 ```
 
+## # Longest Repeating Character Replacement
+
+Medium
+
+You are given a string `s` consisting of only uppercase english characters and an integer `k`. You can choose up to `k` characters of the string and replace them with any other uppercase English character.
+
+After performing at most `k` replacements, return the length of the longest substring which contains only one distinct character.
+
+**Example 1:**
+
+```java
+Input: s = "XYYX", k = 2
+
+Output: 4
+```
+
+Copy
+
+Explanation: Either replace the 'X's with 'Y's, or replace the 'Y's with 'X's.
+
+**Example 2:**
+
+```java
+Input: s = "AAABABB", k = 1
+
+Output: 5
+```
+
+Copy
+
+### Solution
+- Sliding window,
+- Keep a dict of frequency of chars and if the whole window is valid:
+	- K changes will turn it into window with same chars
+
+```python
+from collections import defaultdict
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        freq_dict = defaultdict(int)
+        max_count = 0
+        start = 0
+        maxwindow = 0
+
+        for end in range(len(s)):
+            freq_dict[s[end]] += 1
+            max_count = max(max_count, freq_dict[s[end]])
+
+            if end - start + 1 - max_count > k:
+                freq_dict[s[start]] -= 1
+                start += 1
+
+            maxwindow = max(maxwindow, end - start + 1)
+
+        return maxwindow
