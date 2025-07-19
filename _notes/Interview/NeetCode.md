@@ -1175,3 +1175,23 @@ class Solution:
             maxwindow = max(maxwindow, end - start + 1)
 
         return maxwindow
+```
+
+## Longest common substrig
+
+### **Problem Statement**
+
+Given two strings `text1` and `text2`, find the **length of the longest subsequence** that is **common to both strings**.
+
+- A **subsequence** is a sequence that appears in the same order but **not necessarily contiguously**.
+    
+- Not to be confused with a **substring**, which must be contiguous.
+
+
+### Solution
+- Basic idea
+
+```
+dp[i][j] = length of LCS between text1[0...i-1] and text2[0...j-1] 
+```
+
