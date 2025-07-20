@@ -1213,3 +1213,63 @@ class Solution:
 
         return dp[n1][n2]
 ```
+
+
+## Search in Rotated Sorted Array
+
+Solved 
+
+Medium
+
+You are given an array of length `n` which was originally sorted in ascending order. It has now been **rotated** between `1` and `n` times. For example, the array `nums = [1,2,3,4,5,6]` might become:
+
+- `[3,4,5,6,1,2]` if it was rotated `4` times.
+- `[1,2,3,4,5,6]` if it was rotated `6` times.
+
+Given the rotated sorted array `nums` and an integer `target`, return the index of `target` within `nums`, or `-1` if it is not present.
+
+You may assume all elements in the sorted rotated array `nums` are **unique**,
+
+A solution that runs in `O(n)` time is trivial, can you write an algorithm that runs in `O(log n) time`?
+
+**Example 1:**
+
+```java
+Input: nums = [3,4,5,6,1,2], target = 1
+
+Output: 4
+```
+
+
+### Solution:
+
+- Step 1: Find the sorted half: left or right based on start,mid
+- Step 2: Find if target in sorted half then update start/end and else will take care of other
+
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        start, end = 0, len(nums) - 1
+
+        while start <= end:
+            mid = (start + end) // 2
+
+            if nums[mid] == target:
+                return mid
+
+            # Check if the left half is sorted
+            if nums[start] <= nums[mid]:
+                if nums[start] <= target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            # Otherwise, the right half must be sorted
+            else:
+                if nums[mid] < target <= nums[end]:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+
+        return -1
+
+```
