@@ -1273,3 +1273,293 @@ class Solution:
         return -1
 
 ```
+
+## Find Minimum in Rotated Sorted Array
+
+Solved 
+
+Medium
+
+You are given an array of length `n` which was originally sorted in ascending order. It has now been **rotated** between `1` and `n` times. For example, the array `nums = [1,2,3,4,5,6]` might become:
+
+- `[3,4,5,6,1,2]` if it was rotated `4` times.
+- `[1,2,3,4,5,6]` if it was rotated `6` times.
+
+Notice that rotating the array `4` times moves the last four elements of the array to the beginning. Rotating the array `6` times produces the original array.
+
+Assuming all elements in the rotated sorted array `nums` are **unique**, return the minimum element of this array.
+
+A solution that runs in `O(n)` time is trivial, can you write an algorithm that runs in `O(log n) time`?
+
+**Example 1:**
+
+```java
+Input: nums = [3,4,5,6,1,2]
+
+Output: 1
+```
+
+### Solution:
+- Think of simple logic:
+	- if nums[mid] > nums[right] -> min is on right of mid so left = mid + 1
+	- else: mid is min or to the left -> focus on right = mid (not mid-1)
+- For duplicates: shrink the window: left +=1 or right -= 1
+
+
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        if not nums:
+            return -1
+
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1  # move right, min must be after mid
+            else:
+                right = mid     # min is at mid or to the left
+
+        return nums[left]
+```
+
+
+## Binary tree
+
+## 1. **Preorder Traversal** (Root → Left → Right)
+
+### 🔁 Recursive
+
+
+```python
+def preorder(root):
+    result = []
+    def dfs(node):
+        if not node:
+            return
+        result.append(node.val)   # visit root
+        dfs(node.left)            # left
+        dfs(node.right)           # right
+    dfs(root)
+    return result
+
+```
+
+### 🔁 Iterative
+
+```python
+def preorder(root):
+    if not root:
+        return []
+    stack = [root]
+    result = []
+    while stack:
+        node = stack.pop()
+        result.append(node.val)   # visit root
+        if node.right:
+            stack.append(node.right)  # right pushed first
+        if node.left:
+            stack.append(node.left)   # left will be popped first
+    return result
+
+```
+
+
+## ✅ 2. **Inorder Traversal** (Left → Root → Right)
+
+### 🔁 Recursive
+
+```python
+def inorder(root):
+    result = []
+    def dfs(node):
+        if not node:
+            return
+        dfs(node.left)            # left
+        result.append(node.val)   # visit root
+        dfs(node.right)           # right
+    dfs(root)
+    return result
+
+```
+
+### 🔁 Iterative
+
+```python
+def inorder(root):
+    result = []
+    stack = []
+    curr = root
+    while stack or curr:
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+        curr = stack.pop()
+        result.append(curr.val)   # visit root
+        curr = curr.right
+    return result
+
+```
+
+## ✅ 3. **Postorder Traversal** (Left → Right → Root)
+
+### 🔁 Recursive
+
+```python
+def postorder(root):
+    result = []
+    def dfs(node):
+        if not node:
+            return
+        dfs(node.left)            # left
+        dfs(node.right)           # right
+        result.append(node.val)   # visit root
+    dfs(root)
+    return result
+```
+
+### 🔁 Iterative (Using 2 stacks or modified preorder)
+
+```python
+def postorder(root):
+    if not root:
+        return []
+    stack = [root]
+    result = []
+    while stack:
+        node = stack.pop()
+        result.append(node.val)  # root
+        if node.left:
+            stack.append(node.left)   # left
+        if node.right:
+            stack.append(node.right)  # right
+    return result[::-1]  # reverse to get left→right→root
+```
+
+
+## # Construct Binary Tree from Preorder and Inorder Traversal
+
+Solved 
+
+Medium
+
+You are given two integer arrays `preorder` and `inorder`.
+
+- `preorder` is the preorder traversal of a binary tree
+- `inorder` is the inorder traversal of the same tree
+- Both arrays are of the same size and consist of unique values.
+
+Rebuild the binary tree from the preorder and inorder traversals and return its root.
+
+**Example 1:**
+
+![](attachments/9e6d27459873566599de10930ca92d27_MD5.png)
+
+```java
+Input: preorder = [1,2,3,4], inorder = [2,1,3,4]
+
+Output: [1,2,3,null,null,null,4]
+```
+
+Copy
+
+**Example 2:**
+
+```java
+Input: preorder = [1], inorder = [1]
+
+Output: [1]
+```
+
+
+### Solution:
+- Main idea:
+	- preorder: root->left->right
+	- inorder: left->root->right
+	- Pick root from preorder, and use inorder to find the left and right nodes
+
+### Example for logic
+
+preorder = [1, 2, 4, 5, 3, 6, 7]
+inorder  = [4, 2, 5, 1, 6, 3, 7]
+
+### 🔁 Step 1: Root from preorder
+
+`preorder[0] = 1 → root = 1`
+
+Find `1` in `inorder`:
+
+`inorder.index(1) = 3`
+
+- Left inorder: `inorder[:3] = [4, 2, 5]
+- Right inorder: `inorder[4:] = [6, 3, 7]`
+
+```python
+root.left  = self.buildTree([2, 4, 5], [4, 2, 5])
+root.right = self.buildTree([3, 6, 7], [6, 3, 7])
+```
+```
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+
+```
+
+Time: O(n2)
+Space: O(n)
+
+```python
+
+from typing import List, Optional
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder or not inorder:
+            return None
+
+        root_val = preorder[0]
+        root = TreeNode(root_val)
+        mid = inorder.index(root_val)
+
+        root.left = self.buildTree(preorder[1 : mid + 1], inorder[:mid])
+        root.right = self.buildTree(preorder[mid + 1 :], inorder[mid + 1 :])
+
+        return root
+```
+
+Time O(n): Not slicing the list everytime
+Space O(n)
+
+```python
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder or not inorder:
+            return None
+
+        # Map from value to index in inorder for O(1) lookup
+        idx_map = {val: idx for idx, val in enumerate(inorder)}
+        self.pre_idx = 0  # global pointer in preorder array
+
+        def build(left, right):
+            if left > right:
+                return None
+
+            # Pick the current root from preorder
+            root_val = preorder[self.pre_idx]
+            self.pre_idx += 1
+            root = TreeNode(root_val)
+
+            # Partition inorder into left and right subtrees
+            index = idx_map[root_val]
+
+            root.left = build(left, index - 1)
+            root.right = build(index + 1, right)
+
+            return root
+
+        return build(0, len(inorder) - 1)
+```
+
