@@ -1563,3 +1563,52 @@ class Solution:
         return build(0, len(inorder) - 1)
 ```
 
+
+# Combination Sum
+
+Solved 
+
+Medium
+
+You are given an array of **distinct** integers `nums` and a target integer `target`. Your task is to return a list of all **unique combinations** of `nums` where the chosen numbers sum to `target`.
+
+The **same** number may be chosen from `nums` an **unlimited number of times**. Two combinations are the same if the frequency of each of the chosen numbers is the same, otherwise they are different.
+
+You may return the combinations in **any order** and the order of the numbers in each combination can be in **any order**.
+
+**Example 1:**
+
+```java
+Input: 
+nums = [2,5,6,9] 
+target = 9
+
+Output: [[2,2,5],[9]]
+```
+
+### Solution:
+- Time: O(2^T/m) - choose or not choose, m is min(nums)
+- SPACE: O(T/m) - number of valid combinatiosn
+
+
+
+
+```python
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        res = []
+
+        def backtrack(start_idx: int, path: List[int], target_sum: int):
+            if target_sum == 0:
+                res.append(path[:])  # make a copy
+                return
+            for i in range(start_idx, len(nums)):
+                if nums[i] <= target_sum:
+                    path.append(nums[i])
+                    backtrack(i, path, target_sum - nums[i])  # reduce target
+                    path.pop()
+
+        backtrack(0, [], target)
+        return res
+
+```
