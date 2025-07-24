@@ -1634,3 +1634,58 @@ class Solution:
 
         return dp[target]
 ```
+
+
+## Maximum Subarray
+
+Solved 
+
+Medium
+
+Given an array of integers `nums`, find the subarray with the largest sum and return the sum.
+
+A **subarray** is a contiguous non-empty sequence of elements within an array.
+
+**Example 1:**
+
+```java
+Input: nums = [2,-3,4,-2,2,1,-1,4]
+
+Output: 8
+```
+
+### Solution:
+- Kadane' algorithm
+
+```python
+class Solution:
+
+def maxSubArray(self, nums: List[int]) -> int:
+
+	current_sum = max_sum = nums[0]
+	for num in nums[1:]:
+		current_sum = max(num, current_sum+num)
+		max_sum = max(max_sum, current_sum)
+return max_sum
+```
+
+
+#### Naive DP
+
+```python
+from typing import List
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [0] * n
+        dp[0] = nums[0]
+        max_sum = dp[0]
+
+        for i in range(1, n):
+            dp[i] = max(nums[i], dp[i-1] + nums[i])
+            max_sum = max(max_sum, dp[i])
+
+        return max_sum
+
+```
