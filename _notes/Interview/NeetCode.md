@@ -1612,3 +1612,25 @@ class Solution:
         return res
 
 ```
+
+Bottom up approach
+- Time: O(TNA)
+- Space: O(C*A)
+
+
+```python
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        dp = [[] for _ in range(target + 1)]
+        dp[0] = [[]]  # Base case: one way to make 0 — empty list
+
+        for t in range(1, target + 1):
+            for n in nums:
+                if t - n >= 0:
+                    for comb in dp[t - n]:
+                        # Only add if numbers are non-decreasing (to avoid duplicates like [2,3] and [3,2])
+                        if not comb or n >= comb[-1]:
+                            dp[t].append(comb + [n])
+
+        return dp[target]
+```
