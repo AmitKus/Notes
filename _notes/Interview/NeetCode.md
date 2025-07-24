@@ -1789,3 +1789,59 @@ class Solution:
 
         return res
 ```
+
+
+# # Lowest Common Ancestor in Binary Search Tree
+
+Solved 
+
+Medium
+
+Given a binary search tree (BST) where all node values are _unique_, and two nodes from the tree `p` and `q`, return the lowest common ancestor (LCA) of the two nodes.
+
+The lowest common ancestor between two nodes `p` and `q` is the lowest node in a tree `T` such that both `p` and `q` as descendants. The ancestor is allowed to be a descendant of itself.
+
+**Example 1:**
+
+![](attachments/1f95023cca8ec9bc5915b33b50b075e5_MD5.png)
+
+```java
+Input: root = [5,3,8,1,4,7,9,null,2], p = 3, q = 8
+
+Output: 5
+```
+
+### Solution
+- Find the split point for p and q
+	- If both are smaller than node: node.left
+	- If both are larger than node: node.right
+	- At node: node.val will be between p and q
+
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        # Ensure p.val <= q.val for simplicity (optional)
+        if p.val > q.val:
+            p, q = q, p
+
+        node = root
+        while node:
+            if q.val < node.val:
+                # Both p and q are smaller → go left
+                node = node.left
+            elif p.val > node.val:
+                # Both p and q are greater → go right
+                node = node.right
+            else:
+                # This is the split point → LCA found
+                return node
+
+```
