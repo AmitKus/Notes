@@ -1918,3 +1918,89 @@ class Solution:
         return jump(0)
 
 ```
+
+
+## Hard: # Minimum Window Substring
+
+Solved 
+
+Hard
+
+Given two strings `s` and `t`, return the shortest **substring** of `s` such that every character in `t`, including duplicates, is present in the substring. If such a substring does not exist, return an empty string `""`.
+
+You may assume that the correct output is always unique.
+
+**Example 1:**
+
+```java
+Input: s = "OUZODYXAZV", t = "XYZ"
+
+Output: "YXAZ"
+```
+
+Copy
+
+Explanation: `"YXAZ"` is the shortest substring that includes `"X"`, `"Y"`, and `"Z"` from string `t`.
+
+**Example 2:**
+
+```java
+Input: s = "xyz", t = "xyz"
+
+Output: "xyz"
+```
+
+Copy
+
+**Example 3:**
+
+```java
+Input: s = "x", t = "xy"
+
+Output: ""
+```
+
+
+### Solution:
+ - Basic idea: running window to capture the frequncy when matches the t ...try shrinking the window and gt the smallest
+- Time : O(s + t)
+- Space: O(s + t)
+
+```python
+from collections import Counter, defaultdict
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(t) > len(s):
+            return ''
+
+        t_dict = Counter(t)
+        window = defaultdict(int)
+        have, need = 0, len(t_dict)
+        start = 0
+        window_ind = [0, 0]
+        window_len = float('inf')
+
+        for end in range(len(s)):
+            window[s[end]] += 1
+
+            if s[end] in t_dict and window[s[end]] == t_dict[s[end]]:
+                have += 1
+
+            # Try shrinking the window from the left
+            while have == need:
+                # Update result if smaller window is found
+                if end - start + 1 < window_len:
+                    window_len = end - start + 1
+                    window_ind = [start, end]
+
+                window[s[start]] -= 1
+                if s[start] in t_dict and window[s[start]] < t_dict[s[start]]:
+                    have -= 1
+                start += 1
+
+        if window_len == float('inf'):
+            return ''
+        return s[window_ind[0]:window_ind[1] + 1]
+
+```
