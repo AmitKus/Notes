@@ -1845,3 +1845,76 @@ class Solution:
                 return node
 
 ```
+
+
+## # Jump Game
+
+Solved 
+
+Medium
+
+You are given an integer array `nums` where each element `nums[i]` indicates your maximum jump length at that position.
+
+Return `true` if you can reach the last index starting from index `0`, or `false` otherwise.
+
+**Example 1:**
+
+```java
+Input: nums = [1,2,0,1,0]
+
+Output: true
+```
+
+
+
+Explanation: First jump from index 0 to 1, then from index 1 to 3, and lastly from index 3 to 4.
+
+
+### Solution
+- Time: O(n2)
+- Space: O(n)
+
+```python
+# Bottom-up
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        n = len(nums)
+        dp = [False] * n
+        dp[-1] = True  # You can always "reach" the end from the end
+
+        for i in range(n - 2, -1, -1):  # Start from second last index
+            for j in range(i + 1, min(i + nums[i] + 1, n)):  # Look ahead within jump range
+                if dp[j]:
+                    dp[i] = True
+                    break
+
+        return dp[0]
+```
+
+```python
+# Top-Down
+from functools import lru_cache
+from typing import List
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        
+        n = len(nums)
+
+        if n <= 1:
+            return True
+
+        @lru_cache(maxsize=None)
+        def jump(ind: int):
+            if ind == n - 1:
+                return True
+
+            for step in range(1, nums[ind] + 1):
+                if ind + step < n and jump(ind + step):
+                    return True
+
+            return False
+        
+        return jump(0)
+
+```
