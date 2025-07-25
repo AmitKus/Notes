@@ -2092,3 +2092,101 @@ class Solution:
         return self.maxpathsum
 
 ```
+
+
+
+## # Word Search
+
+Solved 
+
+Medium
+
+Given a 2-D grid of characters `board` and a string `word`, return `true` if the word is present in the grid, otherwise return `false`.
+
+For the word to be present it must be possible to form it with a path in the board with horizontally or vertically neighboring cells. The same cell may not be used more than once in a word.
+
+**Example 1:**
+
+![](attachments/30e64c8e43e93e3b4c0a457f72945fb4_MD5.png)
+
+```java
+Input: 
+board = [
+  ["A","B","C","D"],
+  ["S","A","A","T"],
+  ["A","C","A","E"]
+],
+word = "CAT"
+```
+
+
+Complexity:
+ - Time: O(MXNX4^L)
+ - Space: O(L)
+
+```python
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        
+        m = len(board)
+        n = len(board[0])
+
+        def dfs(i: int, j: int, ind: int, visited: Set[Tuple[int, int]]) -> bool:
+            if ind == len(word):
+                return True
+
+            for di, dj in [(1,0), (-1,0), (0,1), (0,-1)]:
+                ni, nj = i + di, j + dj
+                if (0 <= ni < m) and (0 <= nj < n) and (ni, nj) not in visited:
+                    if board[ni][nj] == word[ind]:
+                        visited.add((ni, nj))
+                        if dfs(ni, nj, ind + 1, visited):
+                            return True
+                        visited.remove((ni, nj))
+            return False
+
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    visited = {(i, j)}
+                    if dfs(i, j, 1, visited):
+                        return True
+                    
+        return False
+
+```
+
+
+## # Course Schedule
+
+Medium
+
+You are given an array `prerequisites` where `prerequisites[i] = [a, b]` indicates that you **must** take course `b` first if you want to take course `a`.
+
+The pair `[0, 1]`, indicates that must take course `1` before taking course `0`.
+
+There are a total of `numCourses` courses you are required to take, labeled from `0` to `numCourses - 1`.
+
+Return `true` if it is possible to finish all courses, otherwise return `false`.
+
+**Example 1:**
+
+```java
+Input: numCourses = 2, prerequisites = [[0,1]]
+
+Output: true
+```
+
+Copy
+
+Explanation: First take course 1 (no prerequisites) and then take course 0.
+
+**Example 2:**
+
+```java
+Input: numCourses = 2, prerequisites = [[0,1],[1,0]]
+
+Output: false
+```
+
+
