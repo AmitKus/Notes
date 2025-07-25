@@ -2190,3 +2190,34 @@ Output: false
 ```
 
 
+### Solution
+- Think of cycle detection as the general problem here.
+- Keep the visit state of the node
+
+```python
+def canFinish(numCourses, prerequisites):
+    graph = defaultdict(list)
+    for course, prereq in prerequisites:
+        graph[course].append(prereq)
+
+    visit_state = [0] * numCourses  # 0 = unvisited, 1 = visiting, 2 = visited
+
+    def dfs(course):
+        if visit_state[course] == 1:  # Cycle detected
+            return False
+        if visit_state[course] == 2:  # Already checked
+            return True
+
+        visit_state[course] = 1  # Mark as visiting
+        for prereq in graph[course]:
+            if not dfs(prereq):
+                return False
+        visit_state[course] = 2  # Mark as visited
+        return True
+
+    for course in range(numCourses):
+        if not dfs(course):
+            return False
+    return True
+
+```
