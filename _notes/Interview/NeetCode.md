@@ -2004,3 +2004,91 @@ class Solution:
         return s[window_ind[0]:window_ind[1] + 1]
 
 ```
+
+
+
+## Hard # Binary Tree Maximum Path Sum
+
+Solved 
+
+Hard
+
+Given the `root` of a _non-empty_ binary tree, return the maximum **path sum** of any _non-empty_ path.
+
+A **path** in a binary tree is a sequence of nodes where each pair of adjacent nodes has an edge connecting them. A node can _not_ appear in the sequence more than once. The path does _not_ necessarily need to include the root.
+
+The **path sum** of a path is the sum of the node's values in the path.
+
+**Example 1:**
+
+![](attachments/52c07dca1a0443c439f137c5b6d78a7b_MD5.png)
+
+```java
+Input: root = [1,2,3]
+
+Output: 6
+```
+
+
+### Solution:
+
+
+
+### 🧠 Example:
+
+Suppose you have this tree:
+
+markdown
+
+     -10
+     /  \
+    9   20
+        / \
+       15  7
+
+
+Here’s what happens:
+
+- `dfs(15)` returns `15`
+    
+- `dfs(7)` returns `7`
+    
+- At `20`, the best path _through_ it is `15 + 20 + 7 = 42`, so we update `self.maxpathsum`
+
+
+- Keep track of maxpathsum: nodel.val + left + right
+- Only return the max branch up so:  ```return node.val + max(left_pathsum, right_pathsum) ```
+
+- Complexity: Time O(node)
+- Space: O(H)
+
+```python
+from typing import Optional
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        
+        self.maxpathsum = -float('inf')
+
+        def dfs(node: Optional[TreeNode]) -> int:
+            if not node:
+                return 0
+
+            left_pathsum = max(0, dfs(node.left))
+            right_pathsum = max(0, dfs(node.right))
+
+            self.maxpathsum = max(self.maxpathsum, node.val + left_pathsum + right_pathsum)
+
+            return node.val + max(left_pathsum, right_pathsum)
+
+        dfs(root)
+        return self.maxpathsum
+
+```
