@@ -2405,3 +2405,60 @@ class Solution:
         return len(sub)
 
 ```
+
+
+## # Palindromic Substrings
+
+Solved 
+
+Medium
+
+Given a string `s`, return the number of substrings within `s` that are palindromes.
+
+A **palindrome** is a string that reads the same forward and backward.
+
+**Example 1:**
+
+```java
+Input: s = "abc"
+
+Output: 3
+```
+
+Copy
+
+Explanation: "a", "b", "c".
+
+**Example 2:**
+
+```java
+Input: s = "aaa"
+
+Output: 6
+```
+
+
+```python
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        n = len(s)
+        total_palindromes = 0
+
+        # Expand around each character (odd-length palindromes)
+        for i in range(n):
+            left = right = i
+            while left >= 0 and right < n and s[left] == s[right]:
+                total_palindromes += 1
+                left -= 1
+                right += 1
+
+        # Expand between characters (even-length palindromes)
+        for i in range(n - 1):
+            left, right = i, i + 1
+            while left >= 0 and right < n and s[left] == s[right]:
+                total_palindromes += 1
+                left -= 1
+                right += 1
+
+        return total_palindromes
+```
