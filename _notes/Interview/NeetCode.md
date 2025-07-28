@@ -2327,3 +2327,55 @@ class Solution:
         return res
 
 ```
+
+
+## # Counting Bits
+
+Easy
+
+Given an integer `n`, count the number of `1`'s in the binary representation of every number in the range `[0, n]`.
+
+Return an array `output` where `output[i]` is the number of `1`'s in the binary representation of `i`.
+
+**Example 1:**
+
+```java
+Input: n = 4
+
+Output: [0,1,1,2,1]
+```
+
+Copy
+
+Explanation:  
+0 --> 0  
+1 --> 1  
+2 --> 10  
+3 --> 11  
+4 --> 100
+
+### Solution: DP approach
+
+```python
+from typing import List
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        # Initialize a list to store the number of 1's for each number from 0 to n
+        dp = [0] * (n + 1)
+
+        # 'offset' tracks the largest power of 2 less than or equal to i
+        offset = 1
+
+        for i in range(1, n + 1):
+            # When i reaches the next power of 2, update the offset
+            if offset * 2 == i:
+                offset = i
+
+            # The number of 1's in i is 1 + number of 1's in (i - offset)
+            dp[i] = 1 + dp[i - offset]
+
+        return dp
+
+```
+
