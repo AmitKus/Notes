@@ -2462,3 +2462,130 @@ class Solution:
 
         return total_palindromes
 ```
+
+
+
+## # Alien Dictionary
+
+Solved 
+
+Hard
+
+There is a foreign language which uses the latin alphabet, but the order among letters is _not_ "a", "b", "c" ... "z" as in English.
+
+You receive a list of _non-empty_ strings `words` from the dictionary, where the words are **sorted lexicographically** based on the rules of this new language.
+
+Derive the order of letters in this language. If the order is invalid, return an empty string. If there are multiple valid order of letters, return **any** of them.
+
+A string `a` is lexicographically smaller than a string `b` if either of the following is true:
+
+- The first letter where they differ is smaller in `a` than in `b`.
+- There is no index `i` such that `a[i] != b[i]` _and_ `a.length < b.length`.
+
+**Example 1:**
+
+```java
+Input: ["z","o"]
+
+Output: "zo"
+```
+
+Copy
+
+Explanation:  
+From "z" and "o", we know 'z' < 'o', so return "zo".
+
+**Example 2:**
+
+```java
+Input: ["hrn","hrf","er","enn","rfnn"]
+
+Output: "hernf"
+```
+
+
+### Solution
+	**Time Complexity: O(C)** Where C = total number of characters across all words
+
+**Breaking it down:**
+
+1. **Graph building:** O(N × M) where N = number of words, M = average word length
+    - But this is bounded by C since we only process each character once
+2. **Collecting all characters:** O(C)
+3. **DFS traversal:** O(V + E) where V = unique characters, E = edges
+    - V ≤ 26 (at most 26 letters in alphabet)
+    - E ≤ V² ≤ 26² = 676 (at most)
+    - So this is effectively O(1) or O(26) = constant
+
+**Overall: O(C)** - linear in total input size
+
+**Space Complexity: O(1) or O(26)**
+
+**Breaking it down:**
+
+1. **Adjacency graph:** O(V + E) ≤ O(26 + 676) = O(1)
+2. **all_chars set:** O(V) ≤ O(26) = O(1)
+3. **visit_state dictionary:** O(V) ≤ O(26) = O(1)
+4. **result array:** O(V) ≤ O(26) = O(1)
+5. **DFS recursion stack:** O(V) ≤ O(26) = O(1)
+
+**Overall: O(1)** - constant space (bounded by alphabet size)
+
+**Key insight:** Since we're dealing with a fixed alphabet (English letters), the graph size is bounded by a constant, making the graph operations effectively O(1).
+
+**In interview terms:** "Linear time in input size, constant space."
+
+
+![](attachments/47fa4840e96e79693d0b46586123bde8_MD5.jpeg)
+
+```python
+from collections import defaultdict
+from typing import List
+
+class Solution:
+    def foreignDictionary(self, words: List[str]) -> str:
+        
+        adjacency_graph = defaultdict(set)
+        for w1, w2 in zip(words[:-1], words[1:]):
+            found_difference = False
+            n = min(len(w1), len(w2))
+            for ind in range(n):
+                if w1[ind] == w2[ind]:
+                    continue
+                adjacency_graph[w1[ind]].add(w2[ind])
+                found_difference = True
+                break
+
+            if not found_difference and (len(w1) > len(w2)):
+                return ''
+                
+        all_chars = set()
+        for w in words:
+            for c in w:
+                all_chars.add(c)
+
+        def dfs(node):
+            if visit_state[node] == 1:
+                return False
+            
+            if visit_state[node] == 2:
+                return True
+
+            visit_state[node] = 1
+            for neighbor in adjacency_graph[node]:
+                if not dfs(neighbor):
+                    return False
+            visit_state[node] = 2
+            result.append(node)
+            return True
+
+        # Main logic:
+        result = []
+        visit_state = {c: 0 for c in all_chars}
+        for char in all_chars:
+            if visit_state[char] == 0:  # Unvisited
+                if not dfs(char):
+                    return ""  # Cycle detected
+                    
+        return ''.join(reversed(result))
+```
