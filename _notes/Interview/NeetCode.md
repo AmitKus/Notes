@@ -2589,3 +2589,97 @@ class Solution:
                     
         return ''.join(reversed(result))
 ```
+
+
+## # Serialize and Deserialize Binary Tree
+
+Solved 
+
+Hard
+
+Implement an algorithm to serialize and deserialize a binary tree.
+
+Serialization is the process of converting an in-memory structure into a sequence of bits so that it can be stored or sent across a network to be reconstructed later in another computer environment.
+
+You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure. There is no additional restriction on how your serialization/deserialization algorithm should work.
+
+**Note:** The input/output format in the examples is the same as how NeetCode serializes a binary tree. You do not necessarily need to follow this format.
+
+
+### Solution
+- Serialize: use queue and joion with # in the end
+- Deserialize: use queue again and start with root....keep adding the childrens in the queue, similar to serialize
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+from collections import deque
+from typing import Optional
+
+class Codec:
+    
+    # Encodes a tree to a single string.
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        res = []
+        queue = deque([root])
+        
+        while queue:
+            node = queue.popleft()
+            if node:
+                res.append(str(node.val))
+            else:
+                res.append('null')
+                continue
+
+            if node.left:
+                queue.append(node.left)
+            else:
+                queue.append(None)
+
+            if node.right:
+                queue.append(node.right)
+            else:
+                queue.append(None)
+        
+        return '#'.join(res)
+
+    # Decodes your encoded data to tree.
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        values = data.split('#')
+        if values[0] == 'null':
+            return None
+
+        root = TreeNode(int(values[0]))
+        queue = deque([root])
+        ind = 1
+        
+        while ind < len(values) and queue:
+            node = queue.popleft()
+
+            if ind < len(values) and values[ind] != 'null':
+                node.left = TreeNode(int(values[ind]))
+                queue.append(node.left)
+            else:
+                node.left = None
+            ind += 1
+
+            if ind < len(values) and values[ind] != 'null':
+                node.right = TreeNode(int(values[ind]))
+                queue.append(node.right)
+            else:
+                node.right = None
+            ind += 1
+
+        return root
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
+```
+
