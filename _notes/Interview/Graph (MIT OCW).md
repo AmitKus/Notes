@@ -27,3 +27,7 @@
 - Latency in netoworks
 - Social network
 - Distance on maps
+- Negative weight cycles :(
+
+
+![](attachments/98a538a2073a2a5f2fe48eb437277bf1_MD5.jpeg)
