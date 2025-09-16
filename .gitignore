@@ -13,3 +13,10 @@ _includes/notes_graph.json
 
 # Obsidian config
 .obsidian/
+
+# Bundle install files
+.bundle/
+vendor/
+
+# Temporary Gemfile backup (created during dev)
+Gemfile.backup
