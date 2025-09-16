@@ -5,27 +5,20 @@
 1. [Introduction](_notes/_01_Introduction/README.md)
 2. [How to Use This Knowledgebase](_notes/_02_HowToUseThisKnowledgebase/README.md)
 3. [Models](_notes/_03_Models/README.md)
-   - [Inference](_03_Models/_01_Inference.md)
-   - [Performance](_03_Models/_02_Performance.md)
-   - [Training](_03_Models/_03_Training.md)
-   - [Visions](_03_Models/_04_Visions.md)
 4. [Tools](_notes/_04_Tools/README.md)
 5. [Workflows](_notes/_05_Workflows/README.md)
-   - [Agents](_05_Workflows/_01_Agents.md)
-   - [RAG (Retrieval-Augmented Generation)](_05_Workflows/_02_RAG.md)
 6. [Conferences and Papers](_notes/_06_ConferencesAndPapers/README.md)
 7. [Additional Resources](_notes/_07_AdditionalResources/README.md)
-   - [Notes](_07_AdditionalResources/_01_Notes.md)
-   - [Pics](_07_AdditionalResources/_02_Pics.md)
 8. [Guides](_notes/_08_Guides/README.md)
-   - [Finding What You Need](_08_Guides/_01_FindingWhatYouNeed.md)
-   - [Using the Tools and Models](_08_Guides/_02_UsingTheToolsAndModels.md)
 9. [Contributing](_notes/_09_Contributing/README.md)
 10. [Case Studies](_notes/_10_CaseStudies/README.md)
 11. [Tutorials](_notes/_11_Tutorials/README.md)
 12. [Glossary](_notes/_12_Glossary/README.md)
 13. [FAQ](_notes/_13_FAQ/README.md)
 14. [Community Contributions](_notes/_14_CommunityContributions/README.md)
+15. [Courses](_notes/_15_Courses/)
+16. [Interview Preparation](_notes/_16_Interview/)
+17. [Research Papers](_notes/_17_Papers/)
 
 ## Introduction
 
@@ -45,32 +38,32 @@ Navigating this knowledgebase is straightforward:
 
 This section delves into the intricacies of AI models, covering everything from the basics of inference and performance to advanced training techniques and visionary models. 
 
-[Read more about Models](_03_Models/README.md)
+[Read more about Models](_notes/_03_Models/README.md)
 
 ## Tools
 
 Discover the tools that drive AI innovation, including LlamaIndex for complex query resolution and more. Each tool is detailed with its use case, benefits, and links to additional resources.
 
-[Explore Tools](_04_Tools/README.md)
+[Explore Tools](_notes/_04_Tools/README.md)
 
 ## Workflows
 
 Learn about the workflows that streamline AI development, such as agents and RAG. This section provides a comprehensive overview of each workflow with practical examples and further reading links.
 
-[Understand Workflows](_05_Workflows/README.md)
+[Understand Workflows](_notes/_05_Workflows/README.md)
 
 ## Conferences and Papers
 
 Stay updated with the latest in AI research through our curated list of conferences and seminal papers. This section highlights key findings and trends in the AI field, including notable conferences like NeurIPS 2023.
 
-[Discover Conferences and Papers](_06_ConferencesAndPapers/README.md)
+[Discover Conferences and Papers](_notes/_06_ConferencesAndPapers/README.md)
 
 ## Additional Resources
 
 Dive deeper with notes on AI topics, and visualize concepts with the pics directory, featuring diagrams and screenshots that complement our guides and explanations.
 
-- [Notes](_07_AdditionalResources/_01_Notes.md)
-- [Pics](_07_AdditionalResources/_02_Pics.md)
+- [Notes](_notes/_07_AdditionalResources/_01_Notes.md)
+- [Pics](_notes/_07_AdditionalResources/_02_Pics.md)
 
 ## Guides
 

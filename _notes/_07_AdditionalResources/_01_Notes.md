@@ -1,3 +1,6 @@
+---
+---
+
 ## Courses
 
 - [Hardware accelerators](https://cs217.stanford.edu/)

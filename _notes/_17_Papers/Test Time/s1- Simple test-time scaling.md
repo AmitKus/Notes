@@ -1,3 +1,6 @@
+---
+---
+
 
 ### Core question
 what is the simplest approach to achieve both test-time scaling and strong reasoning performance?
