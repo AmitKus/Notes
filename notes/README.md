@@ -2,23 +2,30 @@
 
 ## Table of Contents
 
-1. [Introduction](notes/01_Introduction/README.md)
-2. [How to Use This Knowledgebase](notes/02_HowToUseThisKnowledgebase/README.md)
-3. [Models](notes/03_Models/README.md)
-4. [Tools](notes/04_Tools/README.md)
-5. [Workflows](notes/05_Workflows/README.md)
-6. [Conferences and Papers](notes/06_ConferencesAndPapers/README.md)
-7. [Additional Resources](notes/07_AdditionalResources/README.md)
-8. [Guides](notes/08_Guides/README.md)
-9. [Contributing](notes/09_Contributing/README.md)
-10. [Case Studies](notes/10_CaseStudies/README.md)
-11. [Tutorials](notes/11_Tutorials/README.md)
-12. [Glossary](notes/12_Glossary/README.md)
-13. [FAQ](notes/13_FAQ/README.md)
-14. [Community Contributions](notes/14_CommunityContributions/README.md)
-15. [Courses](notes/15_Courses/)
-16. [Interview Preparation](notes/16_Interview/)
-17. [Research Papers](notes/17_Papers/)
+1. [Introduction](./01_Introduction/README.md)
+2. [How to Use This Knowledgebase](./02_HowToUseThisKnowledgebase/README.md)
+3. [Models](./03_Models/README.md)
+   - [Inference](03_Models/Inference.md)
+   - [Performance](03_Models/Performance.md)
+   - [Training](03_Models/Training.md)
+   - [Visions](03_Models/Visions.md)
+4. [Tools](LlamaIndex.md)
+5. [Workflows](./05_Workflows/README.md)
+   - [Agents](05_Workflows/Agents.md)
+   - [RAG (Retrieval-Augmented Generation)](05_Workflows/RAG.md)
+6. [Conferences and Papers](./06_ConferencesAndPapers/README.md)
+7. [Additional Resources](./07_AdditionalResources/README.md)
+   - [Notes](07_AdditionalResources/Notes.md)
+   - [Pics](07_AdditionalResources/Pics.md)
+8. [Guides](./08_Guides/README.md)
+   - [Finding What You Need](08_Guides/FindingWhatYouNeed.md)
+   - [Using the Tools and Models](08_Guides/UsingTheToolsAndModels.md)
+9. [Contributing](./09_Contributing/README.md)
+10. [Case Studies](./10_CaseStudies/README.md)
+11. [Tutorials](./11_Tutorials/README.md)
+12. [Glossary](./12_Glossary/README.md)
+13. [FAQ](./13_FAQ/README.md)
+14. [Community Contributions](./14_CommunityContributions/README.md)
 
 ## Introduction
 
@@ -38,32 +45,31 @@ Navigating this knowledgebase is straightforward:
 
 This section delves into the intricacies of AI models, covering everything from the basics of inference and performance to advanced training techniques and visionary models.
 
-[Read more about Models](notes/03_Models/README.md)
+[Read more about Models](03_Models/README.md)
 
 ## Tools
 
 Discover the tools that drive AI innovation, including LlamaIndex for complex query resolution and more. Each tool is detailed with its use case, benefits, and links to additional resources.
 
-[Explore Tools](notes/04_Tools/README.md)
+[Explore Tools](LlamaIndex.md)
 
 ## Workflows
 
 Learn about the workflows that streamline AI development, such as agents and RAG. This section provides a comprehensive overview of each workflow with practical examples and further reading links.
 
-[Understand Workflows](notes/05_Workflows/README.md)
+[Understand Workflows](05_Workflows/README.md)
 
 ## Conferences and Papers
 
 Stay updated with the latest in AI research through our curated list of conferences and seminal papers. This section highlights key findings and trends in the AI field, including notable conferences like NeurIPS 2023.
 
-[Discover Conferences and Papers](notes/06_ConferencesAndPapers/README.md)
+[Discover Conferences and Papers](06_ConferencesAndPapers/README.md)
 
 ## Additional Resources
 
-Dive deeper with notes on AI topics, and visualize concepts with the pics directory, featuring diagrams and screenshots that complement our guides and explanations.
+- [ML-papers-of-the-week](https://github.com/dair-ai/ML-Papers-of-the-Week/tree/main?tab=readme-ov-file#top-ml-papers-of-the-week-february-26---march-3---2024)
+- [Awesome-LLMs-Datasets](https://github.com/lmmlzn/Awesome-LLMs-Datasets?tab=readme-ov-file)
 
-- [Notes](notes/07_AdditionalResources/Notes.md)
-- [Pics](notes/07_AdditionalResources/Pics.md)
 
 ## Guides
 

@@ -1,22 +1,7 @@
-# Generated website directory
-_site/
-
-# Sass cache
-.sass-cache/
-
-# Jekyll cache & metadata
-.jekyll-cache/
-.jekyll-metadata
-
-# Notes graph metadata
-_includes/notes_graph.json
-
-# Obsidian config
+# Obsidian
 .obsidian/
+.trash/
 
-# Bundle install files
-.bundle/
-vendor/
-
-# Temporary Gemfile backup (created during dev)
-Gemfile.backup
+# OS files
+.DS_Store
+Thumbs.db
