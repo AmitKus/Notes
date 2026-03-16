@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-This is an Obsidian vault / knowledge base focused on artificial intelligence topics. Content is organized as markdown files in the `notes/` directory.
+This is an Obsidian vault / knowledge base focused on artificial intelligence topics. Content is organized as markdown files in numbered directories at the repo root.
 
 ## Content Structure
 
-The knowledge base follows a numbered hierarchical organization in `notes/`:
+The knowledge base follows a numbered hierarchical organization:
 - `00_Attachments/` - Centralized storage for all attachments and assets
 - `01_Introduction/` - Entry point documentation
 - `02_HowToUseThisKnowledgebase/` - Usage guides and project TODO
